@@ -3,14 +3,14 @@ import { AvatarPost } from "@/components/AvatarPost";
 import { MessageSquare, HeartIcon } from "lucide-react";
 
 export default function Card({
-    userId, // used to navigate to the user profile
+    /* userId, */ // used to navigate to the user profile
     userName,
     userImg,
     postImg,
     description,
     likes
 } : {
-    userId: string;
+    /* userId: string; */
     userName: string;
     userImg: string;
     postImg: string;

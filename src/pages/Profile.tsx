@@ -34,7 +34,7 @@ export default function Profile() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const getUserPosts = async ({ id }: any) => {
+        /* const getUserPosts = async ({ id }: any) => {
             try {
                 const response = await fetch(`api/${id}`, {
                     method: 'GET',
@@ -68,7 +68,7 @@ export default function Profile() {
             } catch (error) {
                 console.error(error);
             }
-        }
+        } */
 
         // getUserPosts({ id });
 
@@ -76,13 +76,14 @@ export default function Profile() {
         const posts = mockPosts.filter((post) => post.userId === id);
         setUser(user || blankUser);
         setUserPosts(posts);
+        setLoading(false);
 
     }, [])
 
     return (
         <div className=' lg:flex lg:justify-between'>
             <DummyHeader/>
-            {loading &&  
+            {!loading &&  
                 <div className='w-[full] lg:w-[35vw]'>
                     <ProfileHeader username={user.userName} />
                     <div className='h-[25vh] lg:h-[50vh]'>
@@ -113,6 +114,10 @@ export default function Profile() {
                                 <p className='font-bold'>{user.following.length}</p>
                                 <p>following</p>
                             </div>
+                        </div>
+
+                        <div className="flex flex-row justify-evenly w-full px-4 lg:hidden">
+
                         </div>
 
                         <div className='grid grid-cols-3 gap-x-0 overflow-hidden lg:gap-1'>

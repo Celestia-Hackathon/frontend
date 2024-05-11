@@ -14,7 +14,7 @@ export default function Home() {
     const [postsData, setPostsData] = useState<Post[]>([{ postId: "" ,userId: "", userName: "", avatarImg: "", postImg: "", caption: "", likes: [""], comments: [""], createdAt: ""}]);
 
     useEffect(() => {
-        const fetchData = async () => {
+        /* const fetchData = async () => {
             try {
                 const response = await fetch("api");
                 console.log(response);
@@ -31,7 +31,7 @@ export default function Home() {
             } catch (error) {
                 console.error(error);
             }
-        };
+        }; */
 
         // fetchData();
 
@@ -64,7 +64,7 @@ export default function Home() {
                             <div className="w-full">
                                 <Card
                                     key={index}
-                                    userId={post.userId}
+                                    /* userId={post.userId} */
                                     userName={post.userName}
                                     userImg={post.avatarImg}
                                     postImg={post.postImg}
