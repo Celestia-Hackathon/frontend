@@ -3,6 +3,7 @@ import './App.css'
 import { ThemeProvider } from './components/theme-provider'
 import Home from './pages/Home'
 import Layout from './pages/Layout'
+import Profile from './pages/Profile'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
         <Routes >
           <Route path="/" element={<Layout />} >
             <Route path='/' element={<Home />} />
+            <Route path='profile/:id' element={<Profile />} />
           </Route>
         </Routes>
       </BrowserRouter>

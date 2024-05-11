@@ -5,14 +5,14 @@ import Logo from "@/assets/logo.svg";
 import { Home, CircleUser, ShoppingCart, ScrollText, PlusCircleIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-export function Header() {
+export default function DummyHeader() {
     const navigator = useNavigate();
 
     return (
-        <div className="fixed w-full h-16 bottom-0 lg:left-0 z-20 lg:shadow-2xl lg:backdrop-blur-md lg:bg-background/50 lg:w-fit lg:top-0 lg:h-[100vh] bg-background flex justify-center lg:justify-normal">
-            <div className="w-full bg-transparent flex flex-row justify-center items-center lg:px-4 lg:flex-col lg:justify-between lg:py-2 h-full">
-                <div className="flex flex-col gap-2 items-center">
-                    <img className="cursor-pointer w-1/2 hidden lg:inline-block" src={Logo} alt="" onClick={() => navigator('/')}/>
+        <div className="hidden lg:invisible lg:inline h-16 bottom-0 lg:left-0 z-20 lg:shadow-2xl lg:backdrop-blur-md lg:bg-background/50 lg:w-fit lg:top-0 lg:h-[100vh] bg-background flex justify-center lg:justify-normal">
+            <div className="w-full bg-transparent flex flex-row justify-center items-center lg:px-4 lg:flex-col lg:justify-between lg:py-10 h-full">
+                <div className="flex flex-col items-center">
+                    <img className="cursor-pointer w-1/2 py-2 hidden lg:inline-block" src={Logo} alt="" onClick={() => navigator('/')}/>
                     <p className="cursor-pointer text-primary mx-2 hidden lg:inline-block" onClick={() => navigator('/')}>ChatSpace</p>
                 </div>
                 <div className="items-start w-full hidden lg:flex lg:flex-col">

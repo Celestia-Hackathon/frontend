@@ -11,6 +11,8 @@ const NavButton: React.FC<NavLinkButtonProps> = ({ to, children }) => {
 
   const navigator = useNavigate();
 
+  const windowWidth = window.innerWidth;
+
   const handleClick = () => {
     navigator(to);
   };
@@ -19,7 +21,7 @@ const NavButton: React.FC<NavLinkButtonProps> = ({ to, children }) => {
   const isActive = location.pathname.startsWith(to);
 
   return (
-    <Button variant="ghost" className={`h-[100%] w-24 relative  group ${isActive ? "text-primary font-bold glow-bottom-border-fixed" : "" }`} onClick={handleClick}><div>{children}</div></Button>
+    <Button variant={`${windowWidth > 1280 ? "desktop" : "mobile"}`} className={`h-[100%] relative  group ${isActive ? "text-primary font-bold glow-bottom-border-fixed" : "" }`} onClick={handleClick}><div className='flex gap-2'>{children}</div></Button>
   );
 };
 

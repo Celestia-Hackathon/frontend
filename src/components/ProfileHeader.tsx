@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 export default function ProfileHeader({username} : {username: string}) {
     const navigator = useNavigate();
     const handleClick = () => {
-        navigator('/feed');
+        navigator('/');
     }
     return (
-        <header className='lg:invisible'>
+        <header className='lg:hidden'>
             <div className='w-[100vw] py-2 px-6 grid grid-cols-[1fr_8fr_1fr] items-center'>
                 <div className="" onClick={handleClick}>
                     <MoveLeft className='my-auto mx-auto' color='hsl(var(--foreground))'/>
