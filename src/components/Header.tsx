@@ -19,7 +19,7 @@ export function Header() {
                         <NavButton to="/marketplace"><ShoppingCart size={20}/><span className='text-lg'>Marketplace</span></NavButton>
                         <NavButton to='/new'><PlusCircleIcon size={20}/><span className='text-lg'>New post</span></NavButton>
                         <NavButton to="/wallets"><ScrollText size={20}/><span className='text-lg'>Quests</span></NavButton>
-                        <NavButton to="/profile/1"><CircleUser size={20}/><span className='text-lg'>Profile</span></NavButton>
+                        <NavButton to="/profile/J7td4a56MVHTqYXDI2aD"><CircleUser size={20}/><span className='text-lg'>Profile</span></NavButton>
                         <NavButton to="/settings"><Settings size={20}/><span className='text-lg'>Settings</span></NavButton>
                     </div>
                 </div>
@@ -29,7 +29,7 @@ export function Header() {
                     <NavButton to="/marketplace"><ShoppingCart size={24}/></NavButton>
                     <NavButton to='/new'><PlusCircleIcon size={24}/></NavButton>
                     <NavButton to="/wallets"><ScrollText size={24}/></NavButton>
-                    <NavButton to="/profile/1"><CircleUser size={24}/></NavButton>
+                    <NavButton to="/profile/J7td4a56MVHTqYXDI2aD"><CircleUser size={24}/></NavButton>
                 </div>
 
                 <div className="flex flex-col items-center justify-center hidden lg:flex">

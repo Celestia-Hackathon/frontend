@@ -9,8 +9,8 @@ import { MarketPlacePost, Post, User } from "@/utils/types.ts";
 import { mockUsers } from "@/utils/mockUsers";
 import { mockPosts } from "@/utils/mockPosts";
 
-export default function Home() {
-    const blankUser : User = {
+export default function Home({ users, posts }: any) {
+    const blankUser: User = {
         name: "",
         userName: "",
         userId: "",
@@ -25,7 +25,7 @@ export default function Home() {
         badges: []
     }
 
-    const blankPost : Post = {
+    const blankPost: Post = {
         postId: "",
         userId: "",
         userName: "",
@@ -37,8 +37,8 @@ export default function Home() {
         createdAt: ""
     }
 
-    const [users, setUsers] = useState<User[]>([blankUser]);
-    const [postsData, setPostsData] = useState<(Post | MarketPlacePost)[]>([blankPost]);
+    // const [users, setUsers] = useState<User[]>([blankUser]);
+    // const [postsData, setPostsData] = useState<(Post | MarketPlacePost)[]>([blankPost]);
 
     useEffect(() => {
         /* const fetchData = async () => {
@@ -62,36 +62,37 @@ export default function Home() {
 
         // fetchData();
 
-        setUsers(mockUsers);
-        setPostsData(mockPosts);
+        // setUsers(mockUsers);
+        // setPostsData(mockPosts);
     }, []);
 
     return (
         <div className="flex lg:justify-between lg:pt-2 mb-16 justify-center items-center outline-none">
-            <DummyHeader/>
+            <DummyHeader />
             <div className="flex flex-col items-center w-full lg:w-[35vw]">
                 <div className="pt-2 flex items-center w-full h-full bg-background justify-start overflow-x-auto lg:w-full">
                     {users.map((user: User, index: number) => {
-                    return (
-                        <div className="mx-3">
-                        <AvatarFeed
-                            avatar={user.avatarImg}
-                            username={user.userName}
-                            activeUser={index == 0}
-                        />
-                        </div>
-                    );
+                        return (
+                            <div className="mx-3">
+                                <AvatarFeed
+                                    key={index}
+                                    avatar={user.avatarImg}
+                                    username={user.userName}
+                                    activeUser={index == 0}
+                                />
+                            </div>
+                        );
                     })}
                 </div>
                 <div className="flex flex-col w-full items-center bg-background lg:w-full">
-                    {postsData.map((post: Post | MarketPlacePost, index: number) => {
+                    {posts.map((post: Post | MarketPlacePost, index: number) => {
                         const isMarketPlace = !!(post as MarketPlacePost).nft;
 
                         return (
                             <div className="w-full">
                                 <Card
                                     key={index}
-                                    userId={post.userId} 
+                                    userId={post.userId}
                                     userName={post.userName}
                                     userImg={post.avatarImg}
                                     postImg={post.postImg}
@@ -105,7 +106,7 @@ export default function Home() {
                     })}
                 </div>
             </div>
-            <DummyHeader/>
+            <DummyHeader />
         </div>
     )
 }
