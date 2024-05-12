@@ -20,6 +20,8 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         desktop: "w-full bg-background hover:bg-secondary",
         mobile: "w-24 justify-center",
+        following: "bg-accent text-accent-foreground hover:bg-accent/90 justify-center text-sm font-bold",
+        follow: "bg-primary text-primary-foreground hover:bg-primary/90 justify-center text-sm font-bold",
       },
       size: {
         default: "h-10 px-4 py-2",

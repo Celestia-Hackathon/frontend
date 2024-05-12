@@ -1,4 +1,6 @@
 import { User } from "@/utils/types.ts";
+import nftImg from "@/assets/nft.png";
+import badgeImg from "@/assets/badge.png";
 
 export const mockUsers: User[] = [
     {
@@ -9,27 +11,27 @@ export const mockUsers: User[] = [
         followers: ["2", "3"],
         following: ["2", "3"],
         bio: "eu sou pintado 🐟",
-        wallet: "0x1234567890abcdef",
+        wallet: "0xa9760110671d7a5a37A72F684D7D1d92F2dE84dA",
         postsId: ["1", "2", "3"],
         bannerImg: "https://random.imagecdn.app/500/150",
         nfts: [
             {
                 nftId: "1",
-                nftImg: "/src/assets/nft.png",
+                nftImg: nftImg,
                 name: "NFT",
                 address: "0x1234567890abcdef",
                 rarity: "Rare"
             },
             {
                 nftId: "2",
-                nftImg: "/src/assets/nft.png",
+                nftImg: nftImg,
                 name: "NFT",
                 address: "0x1234567890abcdef",
                 rarity: "Legendary"
             },
             {
                 nftId: "3",
-                nftImg: "/src/assets/nft.png",
+                nftImg: nftImg,
                 name: "NFT",
                 address: "0x1234567890abcdef",
                 rarity: "Epic"
@@ -38,7 +40,7 @@ export const mockUsers: User[] = [
         badges: [
             {
                 badgeId: "1",
-                badgeImg: "/src/assets/badge.png",
+                badgeImg: badgeImg,
                 name: "Mint three",
                 description: "Badge earned for minting three NFTs"
             }
@@ -52,27 +54,27 @@ export const mockUsers: User[] = [
         followers: ["2", "3"],
         following: ["2", "3"],
         bio: "violets are purple, roses are blue, I'm a poet and I know it",
-        wallet: "0x1234567890abcdef",
+        wallet: "0xa9760110671d7a5a37A72F684D7D1d92F2dE84dA",
         postsId: ["1", "2", "3"],
         bannerImg: "https://random.imagecdn.app/500/150",
         nfts: [
             {
                 nftId: "1",
-                nftImg: "/src/assets/nft.png",
+                nftImg: nftImg,
                 name: "NFT",
                 address: "0x1234567890abcdef",
                 rarity: "Rare"
             },
             {
                 nftId: "2",
-                nftImg: "/src/assets/nft.png",
+                nftImg: nftImg,
                 name: "NFT",
                 address: "0x1234567890abcdef",
                 rarity: "Legendary"
             },
             {
                 nftId: "3",
-                nftImg: "/src/assets/nft.png",
+                nftImg: nftImg,
                 name: "NFT",
                 address: "0x1234567890abcdef",
                 rarity: "Epic"
@@ -81,7 +83,7 @@ export const mockUsers: User[] = [
         badges: [
             {
                 badgeId: "1",
-                badgeImg: "/src/assets/badge.png",
+                badgeImg: badgeImg,
                 name: "Mint three",
                 description: "Badge earned for minting three NFTs"
             }
@@ -95,7 +97,7 @@ export const mockUsers: User[] = [
         followers: ["1000"],
         following: ["10"],
         bio: "rosas são vermelhas, violetas são azuis, eu sou um poeta e sei disso",
-        wallet: "0xabcdef1234567890",
+        wallet: "0xa9760110671d7a5a37A72F684D7D1d92F2dE84dA",
         postsId: ["4", "5", "6"],
         bannerImg: "https://random.imagecdn.app/500/150",
         nfts: [],
@@ -109,7 +111,7 @@ export const mockUsers: User[] = [
         followers: ["23091"],
         following: ["2100"],
         bio: "sou legal",
-        wallet: "0xabcdef1234567890",
+        wallet: "0xa9760110671d7a5a37A72F684D7D1d92F2dE84dA",
         postsId: ["7", "8", "9"],
         bannerImg: "https://random.imagecdn.app/500/150",
         nfts: [],

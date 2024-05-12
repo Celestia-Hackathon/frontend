@@ -1,17 +1,21 @@
-import { Award, Crown, Grid3x3, Heart } from "lucide-react";
+import { Award, Crown, Grid3x3, Heart, Copy, CopyCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { MarketPlacePost, Post, User } from "@/utils/types";
 
+import { Button } from "@/components/ui/button";
 import { mockPosts } from "@/utils/mockPosts";
 import { mockUsers } from "@/utils/mockUsers";
 import { Avatar } from "@/components/Avatar";
 import DummyHeader from "@/components/DummyHeader";
 import ProfileHeader from "@/components/ProfileHeader";
 import tokenImg from "@/assets/token.svg";
+import Rarity from "@/components/Rarity";
 
 export default function Profile() {
+    console.log(tokenImg)
+
     const params = useParams();
     const id = params.id || "";
     
@@ -36,6 +40,10 @@ export default function Profile() {
     const [userPosts, setUserPosts] = useState<(Post | MarketPlacePost)[]>([]);
 
     const [loading, setLoading] = useState(true);
+
+    const [copyColor, setCopyColor] = useState('hsl(var(--foreground))');
+    const [check, setCheck] = useState(false);
+    const [following, setFollowing] = useState(false);
 
     useEffect(() => {
         /* const getUserPosts = async ({ id }: any) => {
@@ -83,6 +91,99 @@ export default function Profile() {
         setLoading(false);
     }, [id])
 
+    useEffect(() => {
+        const user = mockUsers[0];
+        setFollowing(user.following.includes(id));
+    }, [])
+
+    const handleCopy = async () => {
+        await navigator.clipboard.writeText(user.wallet);
+
+        setCheck(true);
+        setCopyColor('hsl(var(--accent))');
+        
+
+        const timer = setInterval(() => {
+            setCheck(false);
+            setCopyColor('hsl(var(--foreground))');
+        }, 1000)
+
+        return () => clearInterval(timer);
+    }
+
+    const follow = async () => {
+        /* const followers = user.followers;
+        followers.push(id);
+        await fetch(`api/${user.userId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                followers
+            })
+        });
+
+        const following = user.following;
+        following.push(id);
+        await fetch(`api/${user.userId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                following
+            })
+        });
+        setFollowing(true); 
+        */
+
+        const followers = user.followers;
+        followers.push(id);
+        setUser({
+            ...user,
+            followers
+        });
+        mockUsers[Number(id) - 1].followers = followers;
+        mockUsers[0].following.push(id);
+        setFollowing(true);
+    }
+
+    const unfollow = async () => {
+        /* const followers = user.followers.filter((follower: string) => follower !== id);
+        await fetch(`api/${user.userId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                followers
+            })
+        });
+        setFollowing(false); 
+
+        const following = user.following.filter((follow: string) => follow !== id);
+        await fetch(`api/${user.userId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                following
+            })
+        });
+        */
+
+        const followers = user.followers.filter((follower: string) => follower !== id);
+        setUser({
+            ...user,
+            followers
+        });
+        mockUsers[Number(id) - 1].followers = followers;
+        mockUsers[0].following = mockUsers[0].following.filter((follow: string) => follow !== id);
+        setFollowing(false);
+    }
+
     return (
         <div className=' lg:flex lg:justify-between'>
             <DummyHeader/>
@@ -97,40 +198,69 @@ export default function Profile() {
                             <Avatar avatar={user.avatarImg} profile={true} />
                             <p className='mt-1'><span className='font-bold'>{user.userName}</span></p>
                             <p className='text-base text-secondary-foreground'>{user.bio}</p>
-                        </div>
-                        <div className={`${id != '1' ? 'hidden' : ''} flex justify-center mt-4`}>
-                            <div className="bg-accent lg:bg-background hover:bg-accent w-fit py-1 px-2 rounded-lg flex items-center gap-2">
-                                <img className="w-[1.5rem]" src={tokenImg} alt="" />
-                                <p className="font-bold">1000 STR</p>
+                            <div className="flex items-center gap-1">
+                                <p className='text-base text-secondary-foreground/50'>{user.wallet.substring(0, 7) + '...' + user.wallet.substring(35, 42)}</p>
+                                <button onClick={handleCopy} className="flex items-center">
+                                    <Copy size={16} color={copyColor} className={`transition-all ${check && 'hidden'}`}/>
+                                    <CopyCheck size={16} color={copyColor} className={`transition-all ${!check && 'hidden'}`}/>
+                                </button>
                             </div>
                         </div>
+                        
                         <div className='w-full mt-6 flex items-center justify-between text-foreground pb-6'>
-                            <div className='w-[20%] text-base flex flex-col items-center'>
-                                <p className='font-bold'>{Object.keys(userPosts).length}</p>
-                                <p>posts</p>
+                            <div className={`${id == '1' && 'hidden'} w-full`}>
+                                {following ?
+                                    <Button onClick={unfollow} variant="following" className='w-1/2 relative group'>
+                                        <span>Following</span>
+                                        <div className='absolute top-0 left-0 w-full h-full bg-secondary rounded-md flex items-center justify-center opacity-0 group-hover:opacity-100'>
+                                            <span>Unfollow</span>
+                                        </div>
+                                    </Button>
+                                    :
+                                    <Button onClick={follow} variant="follow" className='w-1/2'>Follow</Button>
+                                }
                             </div>
-                            <div className='w-[20%] text-base flex flex-col items-center'>
+                            <div className={`${id != '1' ? 'hidden' : ''} w-full flex justify-center`}>
+                                <div className="bg-accent/75 lg:bg-background hover:bg-secondary/75 w-fit py-1 px-2 rounded-lg flex items-center gap-2">
+                                    <img className="w-[1.5rem]" src={tokenImg} alt="" />
+                                    <p className="font-bold">1000 STR</p>
+                                </div>
+                            </div>
+                            <div className='w-full flex flex-col items-center'>
                                 <p className='font-bold'>{user.followers.length}</p>
                                 <p>followers</p>
                             </div>
-                            <div className='w-[20%] text-base  flex flex-col items-center'>
+                            <div className='w-full text-base  flex flex-col items-center'>
                                 <p className='font-bold'>{user.following.length}</p>
                                 <p>following</p>
-                            </div>
-                            <div className='w-[20%] text-base  flex flex-col items-center'>
-                                <p className='font-bold'>{user.nfts.length}</p>
-                                <p>NFTs</p>
-                            </div>
-                            <div className='w-[20%] text-base  flex flex-col items-center'>
-                                <p className='font-bold'>{user.badges.length}</p>
-                                <p>badges</p>
                             </div>
                         </div>
 
                         <div className="flex flex-row justify-between w-full">
-                            <div onClick={() => {setSelected('feed')}} className={`py-2 w-full flex justify-center cursor-pointer ${selected == 'feed' ? 'border-b-2 border-white' : ''}`}><Grid3x3 color={selected == 'feed' ? 'hsl(var(--primary))' : 'hsl(var(--secondary))'}/></div>
-                            <div onClick={() => {setSelected('nft')}} className={`py-2 w-full flex justify-center cursor-pointer ${selected == 'nft' ? 'border-b-2 border-white' : ''}`}><Crown color={selected == 'nft' ? 'hsl(var(--primary))' : 'hsl(var(--secondary))'}/></div>
-                            <div onClick={() => {setSelected('badges')}} className={`py-2 w-full flex justify-center cursor-pointer ${selected == 'badges' ? 'border-b-2 border-white' : ''}`}><Award color={selected == 'badges' ? 'hsl(var(--primary))' : 'hsl(var(--secondary))'}/></div>
+                            <div onClick={() => {setSelected('feed')}} className={`py-2 w-full flex justify-center cursor-pointer ${selected == 'feed' ? 'border-b-2 border-accent' : ''}`}>
+                                <div className="relative">
+                                    <Grid3x3 size={28} color={selected == 'feed' ? 'hsl(var(--accent))' : 'hsl(var(--primary))'}/>
+                                    <div className="absolute text-[0.8rem] font-bold -bottom-1.5 -right-1.5 bg-muted flex items-center justify-center rounded-full w-5 h-5">
+                                        {Object.keys(userPosts).length}
+                                    </div>
+                                </div>
+                            </div>
+                            <div onClick={() => {setSelected('nft')}} className={`py-2 w-full flex justify-center cursor-pointer ${selected == 'nft' ? 'border-b-2 border-accent' : ''}`}>
+                                <div className="relative">
+                                    <Crown size={28} color={selected == 'nft' ? 'hsl(var(--accent))' : 'hsl(var(--primary))'}/>
+                                    <div className="absolute text-[0.8rem] font-bold -bottom-1.5 -right-1.5 bg-muted flex items-center justify-center rounded-full w-5 h-5">
+                                        {user.nfts.length}
+                                    </div>
+                                </div>
+                            </div>
+                            <div onClick={() => {setSelected('badges')}} className={`py-2 w-full flex justify-center cursor-pointer ${selected == 'badges' ? 'border-b-2 border-accent' : ''}`}>
+                                <div className="relative">
+                                    <Award size={28} color={selected == 'badges' ? 'hsl(var(--accent))' : 'hsl(var(--primary))'}/>
+                                    <div className="absolute text-[0.8rem] font-bold -bottom-1.5 -right-1.5 bg-muted flex items-center justify-center rounded-full w-5 h-5">
+                                        {user.badges.length}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div className='grid grid-cols-3 gap-x-[0.01rem] overflow-hidden'>
@@ -139,11 +269,15 @@ export default function Profile() {
                                 return (
                                     // should add routes to the post ?
                                     <div key={index} className='relative group'>
-                                        <p>{isMarketPlace ? (post as MarketPlacePost).price + "STR" : "Not marketplace"}</p>
-                                        <img src={isMarketPlace ? (post as MarketPlacePost).nft.nftImg : post.postImg} alt="" className='w-full aspect-[1/1.6] object-cover group-hover:brightness' />
+                                        <Rarity rarity={isMarketPlace && (post as MarketPlacePost).nft.rarity} />
+                                        <img src={isMarketPlace ? (post as MarketPlacePost).nft.nftImg : post.postImg} alt="" className={`w-full aspect-[1/1.6] object-cover group-hover:brightness ${isMarketPlace && 'object-contain aspect-square '}`} />
                                         <div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100'>
                                             <Heart color='hsl(var(--foreground))' />
                                             <p className='text-white ml-1'>{post.likes.length}</p>
+                                        </div>
+                                        <div className={`absolute w-full bottom-0 flex items-center justify-center bg-background/75 ${!isMarketPlace && 'hidden'}`}>
+                                            <img className="w-[1.5rem]" src={tokenImg} alt="" />
+                                            <p className="text-xs font-bold">{isMarketPlace ? (post as MarketPlacePost).price + " STR" : ""}</p>
                                         </div>
                                     </div>
                                 )
@@ -151,26 +285,7 @@ export default function Profile() {
                             {selected == 'nft' && user.nfts.map((nft, index) => {
                                 return (
                                     <div key={index} className='relative group'>
-                                        {nft.rarity == "Common" && 
-                                        <div className={`absolute top-1 left-1 px-1 rounded-lg border-2 border-common bg-common/[.35]`}>   
-                                           <p className={`text-[0.6rem] lg:text-[0.7rem] text-common font-bold`}>{nft.rarity}</p>
-                                        </div> }
-                                        {nft.rarity == "Rare" && 
-                                        <div className={`absolute top-1 left-1 px-1 rounded-lg border-2 border-rare bg-rare/[.35]`}>   
-                                           <p className={`text-[0.6rem] lg:text-[0.7rem] text-rare font-bold`}>{nft.rarity}</p>
-                                        </div> }
-                                        {nft.rarity == "Epic" && 
-                                        <div className={`absolute top-1 left-1 px-1 rounded-lg border-2 border-epic bg-epic/[.35]`}>   
-                                           <p className={`text-[0.6rem] lg:text-[0.7rem] text-epic font-bold`}>{nft.rarity}</p>
-                                        </div> }
-                                        {nft.rarity == "Legendary" && 
-                                        <div className={`absolute top-1 left-1 px-1 rounded-lg border-2 border-legendary bg-legendary/[.35]`}>   
-                                           <p className={`text-[0.6rem] lg:text-[0.7rem] text-legendary font-bold`}>{nft.rarity}</p>
-                                        </div> }
-                                        {nft.rarity == "Special" && 
-                                        <div className={`absolute top-1 left-1 px-1 rounded-lg border-2 border-special bg-special/[.35]`}>   
-                                           <p className={`text-[0.6rem] lg:text-[0.7rem] text-special font-bold`}>{nft.rarity}</p>
-                                        </div> }
+                                        <Rarity rarity={nft.rarity} />
                                         <img src={nft.nftImg} alt="" className='w-full aspect-square object-cover group-hover:brightness' />
                                         <div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100'>
                                             <p className='text-primary'>{nft.name}</p>

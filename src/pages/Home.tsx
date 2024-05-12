@@ -4,7 +4,7 @@ import { AvatarFeed } from "@/components/AvatarFeed";
 import Card from "@/components/Card";
 import DummyHeader from "@/components/DummyHeader";
 
-import { Post, User } from "@/utils/types.ts";
+import { MarketPlacePost, Post, User } from "@/utils/types.ts";
 
 import { mockUsers } from "@/utils/mockUsers";
 import { mockPosts } from "@/utils/mockPosts";
@@ -38,7 +38,7 @@ export default function Home() {
     }
 
     const [users, setUsers] = useState<User[]>([blankUser]);
-    const [postsData, setPostsData] = useState<Post[]>([blankPost]);
+    const [postsData, setPostsData] = useState<(Post | MarketPlacePost)[]>([blankPost]);
 
     useEffect(() => {
         /* const fetchData = async () => {
@@ -84,7 +84,9 @@ export default function Home() {
                     })}
                 </div>
                 <div className="flex flex-col w-full items-center bg-background lg:w-full">
-                    {postsData.map((post: Post, index: number) => {
+                    {postsData.map((post: Post | MarketPlacePost, index: number) => {
+                        const isMarketPlace = !!(post as MarketPlacePost).nft;
+
                         return (
                             <div className="w-full">
                                 <Card
@@ -95,6 +97,8 @@ export default function Home() {
                                     postImg={post.postImg}
                                     description={post.caption}
                                     likes={post.likes}
+                                    nft={isMarketPlace ? (post as MarketPlacePost).nft : undefined}
+                                    price={isMarketPlace ? (post as MarketPlacePost).price : undefined}
                                 />
                             </div>
                         );
