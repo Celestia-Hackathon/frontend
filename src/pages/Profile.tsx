@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { Badge, MarketPlacePost, NFT, Post, User } from "@/utils/types";
 
 import { Button } from "@/components/ui/button";
-import { mockPosts } from "@/utils/mockPosts";
+// import { mockPosts } from "@/utils/mockPosts";
 import { mockUsers } from "@/utils/mockUsers";
 import { Avatar } from "@/components/Avatar";
 import DummyHeader from "@/components/DummyHeader";
@@ -17,8 +17,8 @@ import ProfileFeedPost from "@/components/ProfileFeedPost";
 import ProfileNFT from "@/components/ProfileNFT";
 import ProfileBadge from "@/components/ProfileBadge";
 
-export default function Profile() {
-    console.log(tokenImg)
+export default function Profile({ users, posts }: any) {
+    // console.log(tokenImg)
 
     const params = useParams();
     const id = params.id || "";
@@ -86,10 +86,17 @@ export default function Profile() {
 
         // getUserPosts({ id });
 
-        const user = mockUsers.find((user: User) => user.userId === id);
-        const posts = mockPosts.filter((post) => post.userId === id);
+        // const user = mockUsers.find((user: User) => user.userId === id);
+        // const posts = mockPosts.filter((post) => post.userId === id);
+
+        const user = users.find((user: User) => user.userId === id);
+        const userPosts = posts.filter((post: Post | MarketPlacePost) => post.userId === id);
+
+        console.log(user);
+        console.log(userPosts);
+
         setUser(user || blankUser);
-        setUserPosts(posts);
+        setUserPosts(userPosts || []);
         setLoading(false);
     }, [id])
 
