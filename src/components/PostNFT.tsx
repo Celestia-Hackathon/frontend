@@ -1,3 +1,4 @@
+import { getColor } from "@/lib/utils";
 import { NFT } from "@/utils/types";
 import { useEffect, useState } from "react";
 
@@ -5,30 +6,8 @@ export default function PostNFT({nft} : {nft: NFT}) {
     const [color, setColor] = useState({text: "", border: "", bg: ""});
 
     useEffect(() => {
-        switch(nft.rarity) {
-            case "Common":
-                setColor({text: "text-common", border: "border-common", bg: "bg-common"});
-                break;
-            case "Uncommon":
-                setColor({text: "text-uncommon", border: "border-uncommon", bg: "bg-uncommon"});
-                break;
-            case "Rare":
-                setColor({text: "text-rare", border: "border-rare", bg: "bg-rare"});
-                break;
-            case "Epic":
-                setColor({text: "text-epic", border: "border-epic", bg: "bg-epic"});
-                break;
-            case "Legendary":
-                setColor({text: "text-legendary", border: "border-legendary", bg: "bg-legendary"});
-                break;
-            case "Special":
-                setColor({text: "text-special", border: "border-special", bg: "bg-special"});
-                break;
-            default:
-                setColor({text: "text-black", border: "border-epic", bg: "bg-epic"});
-        }
+        setColor(getColor(nft.rarity));
     }, [])
-
 
     return (
         <div className="py-[7.5%] flex flex-col items-center justify-center">

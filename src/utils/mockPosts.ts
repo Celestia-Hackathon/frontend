@@ -1,5 +1,6 @@
 import { MarketPlacePost, Post } from "@/utils/types";
 import { mockUsers } from "./mockUsers";
+import nftImg from "@/assets/nft.png";
 
 export const mockPosts: (Post | MarketPlacePost)[] = [
     {
@@ -47,7 +48,7 @@ export const mockPosts: (Post | MarketPlacePost)[] = [
         price: 100,
         nft: {
             nftId: "1",
-            nftImg: "/src/assets/nft.png",
+            nftImg: nftImg,
             name: "NFT Name",
             address: "0xa9760110671d7a5a37A72F684D7D1d92F2dE84dA",
             rarity: "Special",
