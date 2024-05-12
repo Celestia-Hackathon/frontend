@@ -52,10 +52,12 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         common: "hsl(var(--common))",
+        uncommon: "hsl(var(--uncommon))",
         rare: "hsl(var(--rare))",
         epic: "hsl(var(--epic))",
         legendary: "hsl(var(--legendary))",
-        special: "hsl(var(--special))"
+        special: "hsl(var(--special))",
+        marketplace: "hsl(var(--marketplace))"
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -75,7 +77,7 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-      },
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

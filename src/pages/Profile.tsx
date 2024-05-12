@@ -1,8 +1,8 @@
-import { Award, Crown, Grid3x3, Heart, Copy, CopyCheck } from "lucide-react";
+import { Award, Crown, Grid3x3 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { MarketPlacePost, Post, User } from "@/utils/types";
+import { Badge, MarketPlacePost, NFT, Post, User } from "@/utils/types";
 
 import { Button } from "@/components/ui/button";
 // import { mockPosts } from "@/utils/mockPosts";
@@ -11,7 +11,11 @@ import { Avatar } from "@/components/Avatar";
 import DummyHeader from "@/components/DummyHeader";
 import ProfileHeader from "@/components/ProfileHeader";
 import tokenImg from "@/assets/token.svg";
-import Rarity from "@/components/Rarity";
+import CopyAddress from "@/components/CopyAddress";
+import ProfileFeedMarketplace from "@/components/ProfileFeedMarketplace";
+import ProfileFeedPost from "@/components/ProfileFeedPost";
+import ProfileNFT from "@/components/ProfileNFT";
+import ProfileBadge from "@/components/ProfileBadge";
 
 export default function Profile({ users, posts }: any) {
     // console.log(tokenImg)
@@ -41,8 +45,6 @@ export default function Profile({ users, posts }: any) {
 
     const [loading, setLoading] = useState(true);
 
-    const [copyColor, setCopyColor] = useState('hsl(var(--foreground))');
-    const [check, setCheck] = useState(false);
     const [following, setFollowing] = useState(false);
 
     useEffect(() => {
@@ -102,21 +104,6 @@ export default function Profile({ users, posts }: any) {
         const user = mockUsers[0];
         setFollowing(user.following.includes(id));
     }, [])
-
-    const handleCopy = async () => {
-        await navigator.clipboard.writeText(user.wallet);
-
-        setCheck(true);
-        setCopyColor('hsl(var(--accent))');
-        
-
-        const timer = setInterval(() => {
-            setCheck(false);
-            setCopyColor('hsl(var(--foreground))');
-        }, 1000)
-
-        return () => clearInterval(timer);
-    }
 
     const follow = async () => {
         /* const followers = user.followers;
@@ -205,13 +192,7 @@ export default function Profile({ users, posts }: any) {
                             <Avatar avatar={user.avatarImg} profile={true} />
                             <p className='mt-1'><span className='font-bold'>{user.userName}</span></p>
                             <p className='text-base text-secondary-foreground'>{user.bio}</p>
-                            <div className="flex items-center gap-1">
-                                <p className='text-base text-secondary-foreground/50'>{user.wallet.substring(0, 7) + '...' + user.wallet.substring(35, 42)}</p>
-                                <button onClick={handleCopy} className="flex items-center">
-                                    <Copy size={16} color={copyColor} className={`transition-all ${check && 'hidden'}`}/>
-                                    <CopyCheck size={16} color={copyColor} className={`transition-all ${!check && 'hidden'}`}/>
-                                </button>
-                            </div>
+                            <CopyAddress background="dark" address={user.wallet} />
                         </div>
                         
                         <div className='w-full mt-6 flex items-center justify-between text-foreground pb-6'>
@@ -273,42 +254,20 @@ export default function Profile({ users, posts }: any) {
                         <div className='grid grid-cols-3 gap-x-[0.01rem] overflow-hidden'>
                             {selected == 'feed' && userPosts.map((post: MarketPlacePost | Post, index: number) => {
                                 const isMarketPlace = !!(post as MarketPlacePost).nft;
+                                if(isMarketPlace) {
+                                    return <ProfileFeedMarketplace key={index} post={post as MarketPlacePost} />
+                                } else {
+                                    return <ProfileFeedPost key={index} post={post as Post} />
+                                }
+                            })}
+                            {selected == 'nft' && user.nfts.map((nft: NFT, index) => {
                                 return (
-                                    // should add routes to the post ?
-                                    <div key={index} className='relative group'>
-                                        <Rarity rarity={isMarketPlace && (post as MarketPlacePost).nft.rarity} />
-                                        <img src={isMarketPlace ? (post as MarketPlacePost).nft.nftImg : post.postImg} alt="" className={`w-full aspect-[1/1.6] object-cover group-hover:brightness ${isMarketPlace && 'object-contain aspect-square '}`} />
-                                        <div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100'>
-                                            <Heart color='hsl(var(--foreground))' />
-                                            <p className='text-white ml-1'>{post.likes.length}</p>
-                                        </div>
-                                        <div className={`absolute w-full bottom-0 flex items-center justify-center bg-background/75 ${!isMarketPlace && 'hidden'}`}>
-                                            <img className="w-[1.5rem]" src={tokenImg} alt="" />
-                                            <p className="text-xs font-bold">{isMarketPlace ? (post as MarketPlacePost).price + " STR" : ""}</p>
-                                        </div>
-                                    </div>
+                                    <ProfileNFT key={index} nft={nft} />
                                 )
                             })}
-                            {selected == 'nft' && user.nfts.map((nft, index) => {
+                            {selected == "badges" && user.badges.map((badge: Badge, index) => {
                                 return (
-                                    <div key={index} className='relative group'>
-                                        <Rarity rarity={nft.rarity} />
-                                        <img src={nft.nftImg} alt="" className='w-full aspect-square object-cover group-hover:brightness' />
-                                        <div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100'>
-                                            <p className='text-primary'>{nft.name}</p>
-                                        </div>
-                                    </div>
-                                )
-                            })}
-                            {selected == "badges" && user.badges.map((badge, index) => {
-                                return (
-                                    <div key={index} className='flex justify-between items-center px-4 col-span-3'>
-                                        <img src={badge.badgeImg} alt="" className='w-1/4 aspect-square' />
-                                        <div className="w-full">
-                                            <p className='text-primary text-sm font-bold'>{badge.name}</p>
-                                            <p className="text-primary text-sm">{badge.description}</p>
-                                        </div>
-                                    </div>
+                                    <ProfileBadge key={index} badge={badge}/>
                                 )  
                             })}
                         </div>

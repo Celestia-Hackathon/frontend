@@ -24,7 +24,7 @@ export function AvatarFeed({
                 />
             </div>
         </div>
-        <p className="text-foreground mt-2 font-bold text-base">{username}</p>
+        <p className="text-foreground mt-2 font-bold text-sm">{username}</p>
       </div>
     );
   }

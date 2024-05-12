@@ -22,6 +22,7 @@ const buttonVariants = cva(
         mobile: "w-24 justify-center",
         following: "bg-accent text-accent-foreground hover:bg-accent/90 justify-center text-sm font-bold",
         follow: "bg-primary text-primary-foreground hover:bg-primary/90 justify-center text-sm font-bold",
+        buy: "bg-accent justify-center hover:bg-secondary text-base font-bold",
       },
       size: {
         default: "h-10 px-4 py-2",
