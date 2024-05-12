@@ -36,7 +36,7 @@ export type NFT = {
     nftImg: string;
     name: string;
     address: string;
-    rarity: "Common" | "Rare" | "Epic" | "Legendary" | "Special";
+    rarity: "Common" | "Uncommon" | "Rare" | "Epic" | "Legendary" | "Special";
 }
 
 export type Badge = {

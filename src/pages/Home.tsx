@@ -83,7 +83,7 @@ export default function Home() {
                     );
                     })}
                 </div>
-                <div className="flex flex-col w-full items-center bg-background lg:w-full">
+                <div className="flex flex-col w-full items-center bg-background">
                     {postsData.map((post: Post | MarketPlacePost, index: number) => {
                         const isMarketPlace = !!(post as MarketPlacePost).nft;
 

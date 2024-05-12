@@ -1,4 +1,4 @@
-import { Award, Crown, Grid3x3, Heart, Copy, CopyCheck } from "lucide-react";
+import { Award, Crown, Grid3x3, Heart } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -12,6 +12,7 @@ import DummyHeader from "@/components/DummyHeader";
 import ProfileHeader from "@/components/ProfileHeader";
 import tokenImg from "@/assets/token.svg";
 import Rarity from "@/components/Rarity";
+import CopyAddress from "@/components/CopyAddress";
 
 export default function Profile() {
     console.log(tokenImg)
@@ -41,8 +42,6 @@ export default function Profile() {
 
     const [loading, setLoading] = useState(true);
 
-    const [copyColor, setCopyColor] = useState('hsl(var(--foreground))');
-    const [check, setCheck] = useState(false);
     const [following, setFollowing] = useState(false);
 
     useEffect(() => {
@@ -95,21 +94,6 @@ export default function Profile() {
         const user = mockUsers[0];
         setFollowing(user.following.includes(id));
     }, [])
-
-    const handleCopy = async () => {
-        await navigator.clipboard.writeText(user.wallet);
-
-        setCheck(true);
-        setCopyColor('hsl(var(--accent))');
-        
-
-        const timer = setInterval(() => {
-            setCheck(false);
-            setCopyColor('hsl(var(--foreground))');
-        }, 1000)
-
-        return () => clearInterval(timer);
-    }
 
     const follow = async () => {
         /* const followers = user.followers;
@@ -198,13 +182,7 @@ export default function Profile() {
                             <Avatar avatar={user.avatarImg} profile={true} />
                             <p className='mt-1'><span className='font-bold'>{user.userName}</span></p>
                             <p className='text-base text-secondary-foreground'>{user.bio}</p>
-                            <div className="flex items-center gap-1">
-                                <p className='text-base text-secondary-foreground/50'>{user.wallet.substring(0, 7) + '...' + user.wallet.substring(35, 42)}</p>
-                                <button onClick={handleCopy} className="flex items-center">
-                                    <Copy size={16} color={copyColor} className={`transition-all ${check && 'hidden'}`}/>
-                                    <CopyCheck size={16} color={copyColor} className={`transition-all ${!check && 'hidden'}`}/>
-                                </button>
-                            </div>
+                            <CopyAddress background="dark" address={user.wallet} />
                         </div>
                         
                         <div className='w-full mt-6 flex items-center justify-between text-foreground pb-6'>
@@ -269,7 +247,10 @@ export default function Profile() {
                                 return (
                                     // should add routes to the post ?
                                     <div key={index} className='relative group'>
-                                        <Rarity rarity={isMarketPlace && (post as MarketPlacePost).nft.rarity} />
+                                        {/* <Rarity rarity={isMarketPlace && (post as MarketPlacePost).nft.rarity} /> */}
+                                        <div className={`${!isMarketPlace ? 'hidden' : ''} bg-epic w-full`}>
+                                            <p>Epic</p>
+                                        </div>
                                         <img src={isMarketPlace ? (post as MarketPlacePost).nft.nftImg : post.postImg} alt="" className={`w-full aspect-[1/1.6] object-cover group-hover:brightness ${isMarketPlace && 'object-contain aspect-square '}`} />
                                         <div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100'>
                                             <Heart color='hsl(var(--foreground))' />

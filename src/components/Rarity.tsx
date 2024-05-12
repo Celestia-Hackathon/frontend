@@ -1,10 +1,16 @@
 
-export default function Rarity({rarity}: {rarity: "Common" | "Rare" | "Epic" | "Legendary" | "Special" }) {
+export default function Rarity({rarity}: {rarity: "Common" | "Uncommon" | "Rare" | "Epic" | "Legendary" | "Special" }) {
     switch (rarity) {
         case "Common":
             return (
                 <div className={`absolute top-1 left-1 px-1 rounded-lg border-2 border-common bg-common/[.35]`}>   
                     <p className={`text-[0.6rem] lg:text-[0.7rem] text-common font-bold`}>{rarity}</p>
+                </div>
+            )
+        case "Uncommon":
+            return (
+                <div className={`absolute top-1 left-1 px-1 rounded-lg border-2 border-uncommon bg-uncommon/[.35]`}>   
+                    <p className={`text-[0.6rem] lg:text-[0.7rem] text-uncommon font-bold`}>{rarity}</p>
                 </div>
             )
         case "Rare":

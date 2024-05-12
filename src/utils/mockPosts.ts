@@ -49,8 +49,8 @@ export const mockPosts: (Post | MarketPlacePost)[] = [
             nftId: "1",
             nftImg: "/src/assets/nft.png",
             name: "NFT Name",
-            address: "0x",
-            rarity: "Common",
+            address: "0xa9760110671d7a5a37A72F684D7D1d92F2dE84dA",
+            rarity: "Special",
         }
     } as MarketPlacePost,
 ];
