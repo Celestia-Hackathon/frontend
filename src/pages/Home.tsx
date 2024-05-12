@@ -10,7 +10,7 @@ import { mockUsers } from "@/utils/mockUsers";
 import { mockPosts } from "@/utils/mockPosts";
 
 export default function Home() {
-    const blankUser = {
+    const blankUser : User = {
         name: "",
         userName: "",
         userId: "",
@@ -25,8 +25,20 @@ export default function Home() {
         badges: []
     }
 
+    const blankPost : Post = {
+        postId: "",
+        userId: "",
+        userName: "",
+        avatarImg: "",
+        postImg: "",
+        caption: "",
+        likes: [""],
+        comments: [""],
+        createdAt: ""
+    }
+
     const [users, setUsers] = useState<User[]>([blankUser]);
-    const [postsData, setPostsData] = useState<Post[]>([{ postId: "" ,userId: "", userName: "", avatarImg: "", postImg: "", caption: "", likes: [""], comments: [""], createdAt: ""}]);
+    const [postsData, setPostsData] = useState<Post[]>([blankPost]);
 
     useEffect(() => {
         /* const fetchData = async () => {

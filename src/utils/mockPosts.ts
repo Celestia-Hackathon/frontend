@@ -1,7 +1,7 @@
-import { Post } from "@/utils/types";
+import { MarketPlacePost, Post } from "@/utils/types";
 import { mockUsers } from "./mockUsers";
 
-export const mockPosts: Post[] = [
+export const mockPosts: (Post | MarketPlacePost)[] = [
     {
         userId: "1",
         userName: mockUsers[0].userName,
@@ -34,5 +34,23 @@ export const mockPosts: Post[] = [
         comments: ["This is a comment", "This is another comment"],
         createdAt: "2022-01-03",
         postId: "3"
-    }
+    },
+    {
+        userId: "1",
+        userName: mockUsers[0].userName,
+        avatarImg: mockUsers[0].avatarImg,
+        caption: "This is a test post",
+        likes: ["John Smith", "Jane Smith"],
+        comments: ["This is a comment", "This is another comment"],
+        createdAt: "2022-01-01",
+        postId: "4",
+        price: 100,
+        nft: {
+            nftId: "1",
+            nftImg: "/src/assets/nft.png",
+            name: "NFT Name",
+            address: "0x",
+            rarity: "Common",
+        }
+    } as MarketPlacePost,
 ];

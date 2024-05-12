@@ -2,7 +2,7 @@ import { Award, Crown, Grid3x3, Heart } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { Post, User } from "@/utils/types";
+import { MarketPlacePost, Post, User } from "@/utils/types";
 
 import { mockPosts } from "@/utils/mockPosts";
 import { mockUsers } from "@/utils/mockUsers";
@@ -14,7 +14,7 @@ import tokenImg from "@/assets/token.svg";
 export default function Profile() {
     const params = useParams();
     const id = params.id || "";
-
+    
     const [selected, setSelected] = useState('feed');
 
     const blankUser = {
@@ -33,7 +33,7 @@ export default function Profile() {
     }
 
     const [user, setUser] = useState<User>(blankUser);
-    const [userPosts, setUserPosts] = useState<Post[]>([]);
+    const [userPosts, setUserPosts] = useState<(Post | MarketPlacePost)[]>([]);
 
     const [loading, setLoading] = useState(true);
 
@@ -81,7 +81,7 @@ export default function Profile() {
         setUser(user || blankUser);
         setUserPosts(posts);
         setLoading(false);
-    }, [])
+    }, [id])
 
     return (
         <div className=' lg:flex lg:justify-between'>
@@ -134,11 +134,13 @@ export default function Profile() {
                         </div>
 
                         <div className='grid grid-cols-3 gap-x-[0.01rem] overflow-hidden'>
-                            {selected == 'feed' && userPosts.map((post: Post, index: number) => {
+                            {selected == 'feed' && userPosts.map((post: MarketPlacePost | Post, index: number) => {
+                                const isMarketPlace = !!(post as MarketPlacePost).nft;
                                 return (
                                     // should add routes to the post ?
                                     <div key={index} className='relative group'>
-                                        <img src={post.postImg} alt="" className='w-full aspect-[1/1.6] object-cover group-hover:brightness' />
+                                        <p>{isMarketPlace ? (post as MarketPlacePost).price + "STR" : "Not marketplace"}</p>
+                                        <img src={isMarketPlace ? (post as MarketPlacePost).nft.nftImg : post.postImg} alt="" className='w-full aspect-[1/1.6] object-cover group-hover:brightness' />
                                         <div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100'>
                                             <Heart color='hsl(var(--foreground))' />
                                             <p className='text-white ml-1'>{post.likes.length}</p>

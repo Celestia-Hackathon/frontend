@@ -25,6 +25,12 @@ export type Post = {
     createdAt: string;
 }
 
+export type MarketPlacePost = Post & {
+    price: number;
+    nft: NFT;
+    postImg?: string;
+}
+
 export type NFT = {
     nftId: string;
     nftImg: string;
