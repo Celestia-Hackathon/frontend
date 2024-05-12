@@ -4,6 +4,7 @@ import { ThemeProvider } from './components/theme-provider'
 import Home from './pages/Home'
 import Layout from './pages/Layout'
 import Profile from './pages/Profile'
+import Navigate from './pages/Navigate'
 
 function App() {
 
@@ -12,7 +13,8 @@ function App() {
       <BrowserRouter >
         <Routes >
           <Route path="/" element={<Layout />} >
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<Navigate />} />
+            <Route path='/feed' element={<Home />} />
             <Route path='profile/:id' element={<Profile />} />
           </Route>
         </Routes>

@@ -10,7 +10,22 @@ import { mockUsers } from "@/utils/mockUsers";
 import { mockPosts } from "@/utils/mockPosts";
 
 export default function Home() {
-    const [users, setUsers] = useState<User[]>([{ name: "", avatarImg: "", userId: "", userName: "", followers: [""], following: [""], bio: "", bannerImg: "", wallet: "", postsId: [""]}]);
+    const blankUser = {
+        name: "",
+        userName: "",
+        userId: "",
+        followers: [""],
+        following: [""],
+        bio: "",
+        avatarImg: "",
+        bannerImg: "",
+        wallet: "",
+        postsId: [""],
+        nfts: [],
+        badges: []
+    }
+
+    const [users, setUsers] = useState<User[]>([blankUser]);
     const [postsData, setPostsData] = useState<Post[]>([{ postId: "" ,userId: "", userName: "", avatarImg: "", postImg: "", caption: "", likes: [""], comments: [""], createdAt: ""}]);
 
     useEffect(() => {
@@ -44,15 +59,13 @@ export default function Home() {
             <DummyHeader/>
             <div className="flex flex-col items-center w-full lg:w-[35vw]">
                 <div className="pt-2 flex items-center w-full h-full bg-background justify-start overflow-x-auto lg:w-full">
-                    <div className="mx-3">
-                        <AvatarFeed avatar={"https://randomuser.me/api/portraits/men/1.jpg"} activeUser username={"Pintudo"}/>
-                    </div>
-                    {users.map((user: User) => {
+                    {users.map((user: User, index: number) => {
                     return (
                         <div className="mx-3">
                         <AvatarFeed
                             avatar={user.avatarImg}
                             username={user.userName}
+                            activeUser={index == 0}
                         />
                         </div>
                     );
@@ -64,7 +77,7 @@ export default function Home() {
                             <div className="w-full">
                                 <Card
                                     key={index}
-                                    /* userId={post.userId} */
+                                    userId={post.userId} 
                                     userName={post.userName}
                                     userImg={post.avatarImg}
                                     postImg={post.postImg}
@@ -77,7 +90,6 @@ export default function Home() {
                 </div>
             </div>
             <DummyHeader/>
-
         </div>
     )
 }

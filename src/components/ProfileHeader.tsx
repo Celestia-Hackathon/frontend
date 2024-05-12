@@ -9,14 +9,14 @@ export default function ProfileHeader({username} : {username: string}) {
     return (
         <header className='lg:hidden'>
             <div className='w-[100vw] py-2 px-6 grid grid-cols-[1fr_8fr_1fr] items-center'>
-                <div className="" onClick={handleClick}>
-                    <MoveLeft className='my-auto mx-auto' color='hsl(var(--foreground))'/>
+                <div className="flex justify-center items-center" onClick={handleClick}>
+                    <MoveLeft size={20} color='hsl(var(--foreground))'/>
                 </div>
                 <div className="">
-                    <p className='text-xl text-center font-bold my-auto'>{username}</p>
+                    <p className='text-base text-center font-bold my-auto'>{username}</p>
                 </div>
-                <div className="">
-                    <Settings className='w-[3rem]' />
+                <div className="flex justify-center items-center">
+                    <Settings size={20} />
                 </div>
             </div>
         </header>

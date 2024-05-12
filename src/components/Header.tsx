@@ -14,17 +14,17 @@ export function Header() {
                 <div className="flex flex-col gap-2 items-center">
                     <img className="cursor-pointer w-1/2 hidden lg:inline-block" src={Logo} alt="" onClick={() => navigator('/')}/>
                     <p className="cursor-pointer text-primary mx-2 hidden lg:inline-block" onClick={() => navigator('/')}>ChatSpace</p>
-                </div>
-                <div className="items-start w-full hidden lg:flex lg:flex-col">
-                    <NavButton to='/'><Home size={20}/>Home</NavButton>
-                    <NavButton to="/marketplace"><ShoppingCart size={20}/>Marketplace</NavButton>
-                    <NavButton to='/new'><PlusCircleIcon size={20}/>New post</NavButton>
-                    <NavButton to="/wallets"><ScrollText size={20}/>Quests</NavButton>
-                    <NavButton to="/profile/1"><CircleUser size={20}/>Profile</NavButton>
+                    <div className="pt-6 items-start w-full hidden lg:flex lg:flex-col">
+                        <NavButton to='/feed'><Home size={20}/><span className='text-lg'>Home</span></NavButton>
+                        <NavButton to="/marketplace"><ShoppingCart size={20}/><span className='text-lg'>Marketplace</span></NavButton>
+                        <NavButton to='/new'><PlusCircleIcon size={20}/><span className='text-lg'>New post</span></NavButton>
+                        <NavButton to="/wallets"><ScrollText size={20}/><span className='text-lg'>Quests</span></NavButton>
+                        <NavButton to="/profile/1"><CircleUser size={20}/><span className='text-lg'>Profile</span></NavButton>
+                    </div>
                 </div>
 
                 <div className="flex flex-row justify-evenly w-full px-4 lg:hidden">
-                    <NavButton to='/'><Home size={24}/></NavButton>
+                    <NavButton to='/feed'><Home size={24}/></NavButton>
                     <NavButton to="/marketplace"><ShoppingCart size={24}/></NavButton>
                     <NavButton to='/new'><PlusCircleIcon size={24}/></NavButton>
                     <NavButton to="/wallets"><ScrollText size={24}/></NavButton>

@@ -1,27 +1,30 @@
 import { AvatarPost } from "@/components/AvatarPost";
 
 import { MessageSquare, HeartIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function Card({
-    /* userId, */ // used to navigate to the user profile
+    userId, // used to navigate to the user profile
     userName,
     userImg,
     postImg,
     description,
     likes
 } : {
-    /* userId: string; */
+    userId: string;
     userName: string;
     userImg: string;
     postImg: string;
     description: string;
     likes: string[];
 }) {
+    const navigator = useNavigate();
+
     return (
         <div className="w-full h-full border-b items-start justify-center">
             <div className="rounded-lg py-4 flex flex-col">
                 <div className="px-2 flex flex-row justify-between items-center">
-                    <div /* onClick={() => navigator(`/profile/${userId}`)} */ className="mb-2">
+                    <div onClick={() => navigator(`/profile/${userId}`)} className="mb-2">
                         <AvatarPost avatar={userImg} username={userName} />
                     </div>
                 </div>

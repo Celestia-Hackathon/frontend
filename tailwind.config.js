@@ -51,6 +51,11 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        common: "hsl(var(--common))",
+        rare: "hsl(var(--rare))",
+        epic: "hsl(var(--epic))",
+        legendary: "hsl(var(--legendary))",
+        special: "hsl(var(--special))"
       },
       borderRadius: {
         lg: "var(--radius)",

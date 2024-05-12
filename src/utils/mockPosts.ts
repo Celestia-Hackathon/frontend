@@ -1,10 +1,11 @@
 import { Post } from "@/utils/types";
+import { mockUsers } from "./mockUsers";
 
 export const mockPosts: Post[] = [
     {
         userId: "1",
-        userName: "John Smith",
-        avatarImg: "https://randomuser.me/api/portraits/men/1.jpg",
+        userName: mockUsers[0].userName,
+        avatarImg: mockUsers[0].avatarImg,
         postImg: "https://random.imagecdn.app/400/400",
         caption: "This is a test post",
         likes: ["John Smith", "Jane Smith"],
@@ -14,8 +15,8 @@ export const mockPosts: Post[] = [
     },
     {
         userId: "2",
-        userName: "Jane Smith",
-        avatarImg: "https://randomuser.me/api/portraits/women/1.jpg",
+        userName: mockUsers[1].userName,
+        avatarImg: mockUsers[1].avatarImg,
         postImg: "https://random.imagecdn.app/500/500",
         caption: "This is a test post",
         likes: ["John Doe", "Jane Smith"],
@@ -25,8 +26,8 @@ export const mockPosts: Post[] = [
     },
     {
         userId: "3",
-        userName: "John Doe",
-        avatarImg: "https://randomuser.me/api/portraits/men/2.jpg",
+        userName: mockUsers[2].userName,
+        avatarImg: mockUsers[2].avatarImg,
         postImg: "https://random.imagecdn.app/600/600",
         caption: "This is a test post",
         likes: ["John Doe", "John Smith"],
