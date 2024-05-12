@@ -21,7 +21,7 @@ const NavButton: React.FC<NavLinkButtonProps> = ({ to, children }) => {
   const isActive = location.pathname.startsWith(to);
 
   return (
-    <Button variant={`${windowWidth > 1280 ? "desktop" : "mobile"}`} className={`h-[100%] relative  group ${isActive ? "text-primary font-bold glow-bottom-border-fixed" : "" }`} onClick={handleClick}><div className='flex items-center gap-2'>{children}</div></Button>
+    <Button variant={`${windowWidth > 1280 ? "desktop" : "mobile"}`} className={`h-[100%] relative  group ${isActive ? "text-accent font-bold glow-bottom-border-fixed" : "" }`} onClick={handleClick}><div className='flex items-center gap-2'>{children}</div></Button>
   );
 };
 

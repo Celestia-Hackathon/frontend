@@ -41,7 +41,7 @@ export default defineConfig({
           purpose:'any maskable',
         }
   ],
-  theme_color:"#2770FF",
+  theme_color:"#121212",
   background_color:"#121212",
   display:"standalone",
   scope:'/',
