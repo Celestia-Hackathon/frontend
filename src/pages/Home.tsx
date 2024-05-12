@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import { AvatarFeed } from "@/components/AvatarFeed";
 import Card from "@/components/Card";
@@ -6,36 +6,36 @@ import DummyHeader from "@/components/DummyHeader";
 
 import { MarketPlacePost, Post, User } from "@/utils/types.ts";
 
-import { mockUsers } from "@/utils/mockUsers";
-import { mockPosts } from "@/utils/mockPosts";
+// import { mockUsers } from "@/utils/mockUsers";
+// import { mockPosts } from "@/utils/mockPosts";
 
 export default function Home({ users, posts }: any) {
-    const blankUser: User = {
-        name: "",
-        userName: "",
-        userId: "",
-        followers: [""],
-        following: [""],
-        bio: "",
-        avatarImg: "",
-        bannerImg: "",
-        wallet: "",
-        postsId: [""],
-        nfts: [],
-        badges: []
-    }
+    // const blankUser: User = {
+    //     name: "",
+    //     userName: "",
+    //     userId: "",
+    //     followers: [""],
+    //     following: [""],
+    //     bio: "",
+    //     avatarImg: "",
+    //     bannerImg: "",
+    //     wallet: "",
+    //     postsId: [""],
+    //     nfts: [],
+    //     badges: []
+    // }
 
-    const blankPost: Post = {
-        postId: "",
-        userId: "",
-        userName: "",
-        avatarImg: "",
-        postImg: "",
-        caption: "",
-        likes: [""],
-        comments: [""],
-        createdAt: ""
-    }
+    // const blankPost: Post = {
+    //     postId: "",
+    //     userId: "",
+    //     userName: "",
+    //     avatarImg: "",
+    //     postImg: "",
+    //     caption: "",
+    //     likes: [""],
+    //     comments: [""],
+    //     createdAt: ""
+    // }
 
     // const [users, setUsers] = useState<User[]>([blankUser]);
     // const [postsData, setPostsData] = useState<(Post | MarketPlacePost)[]>([blankPost]);

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { MarketPlacePost, Post, User } from "@/utils/types";
 
 import { Button } from "@/components/ui/button";
-import { mockPosts } from "@/utils/mockPosts";
+// import { mockPosts } from "@/utils/mockPosts";
 import { mockUsers } from "@/utils/mockUsers";
 import { Avatar } from "@/components/Avatar";
 import DummyHeader from "@/components/DummyHeader";
