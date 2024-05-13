@@ -40,8 +40,32 @@
   color: #888;
 }
 
+.balloon {
+  position: relative;
+  display: inline-block;
+  padding: 0.5em 1em;
+  margin: 1em;
+  background: #f9f9f9;
+  border-radius: 0.5em;
+  box-shadow: 0 0 0.5em #0003;
+}
+
+.balloon::before {
+  content: "";
+  position: absolute;
+  top: 95%;
+  left: 20%;
+  width: 0;
+  height: 0;
+  border: 1em solid transparent;
+  border-top-color: #f9f9f9;
+  border-bottom: 0;
+  border-left: 0;
+  margin-left: -0.5em;
+}
+
 .animationAreaItems {
-  width: 100%;
+  width: 69%;
   height: fit-content; 
   position: relative;
   border: 4px solid hsl(var(--accent));
@@ -75,4 +99,11 @@
   border-style: solid;
   border-width: 10px 10px 0 10px;
   border-color: hsl(var(--accent)) transparent transparent transparent;
+}
+
+.cat {
+  background-image: url('/src/assets/gacha/manekineko.png');
+  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
 }

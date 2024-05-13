@@ -3,6 +3,7 @@ import './App.css'
 import { useState, useEffect } from 'react'
 import { ThemeProvider } from './components/theme-provider'
 import { User, Post, MarketPlacePost } from './utils/types'
+import { gachaImgs } from './utils/gacha'
 import Home from './pages/Home'
 import Layout from './pages/Layout'
 import Profile from './pages/Profile'
@@ -80,6 +81,15 @@ function App() {
       }
     };
 
+    const getThirtyTwoRandomImgs = () => {
+      const shuffledImg = gachaImgs.sort(() => 0.5 - Math.random());
+      const images1 = shuffledImg.slice(0, 21);
+      const images2 = shuffledImg.slice(22, 31);
+      localStorage.setItem('images1', JSON.stringify(images1));
+      localStorage.setItem('images2', JSON.stringify(images2));
+    }
+
+    getThirtyTwoRandomImgs();
     fetchUserData();
   }, []);
 

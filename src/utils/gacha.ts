@@ -57,3 +57,19 @@ import nft55 from '@/assets/gacha/55.svg'
 import nft56 from '@/assets/gacha/56.svg'
 
 export const gachaImgs = [ nft0, nft1, nft2, nft3, nft4, nft5, nft6, nft7, nft8, nft9, nft10, nft11, nft12, nft13, nft14, nft15, nft16, nft17, nft18, nft19, nft20, nft21, nft22, nft23, nft24, nft25, nft26, nft27, nft28, nft29, nft30, nft31, nft32, nft33, nft34, nft35, nft36, nft37, nft38, nft39, nft40, nft41, nft42, nft43, nft44, nft45, nft46, nft47, nft48, nft49, nft50, nft51, nft52, nft53, nft54, nft55, nft56 ];
+
+export const gachaSentences = [
+    "I'm sensing good vibes! A rare cat might be in your future",
+    "Meow! Feeling lucky today?",
+    "The wheel of fortune awaits",
+    "The stars are aligning for you",
+    "The cat gods are smiling upon you",
+    "I'm here to bring good luck! Let's spin the cat wheel!",
+    "A world of wonderful cats is just a spin away!",
+    "Ready to meet your new furry friend?"
+]
+
+export const getThirtyTwoRandomImgs = () => {
+    const shuffledImg = gachaImgs.sort(() => 0.5 - Math.random());
+    return shuffledImg.slice(0, 32);
+}
