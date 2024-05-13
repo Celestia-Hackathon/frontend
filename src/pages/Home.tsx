@@ -9,7 +9,7 @@ import { MarketPlacePost, Post, User } from "@/utils/types.ts";
 // import { mockUsers } from "@/utils/mockUsers";
 // import { mockPosts } from "@/utils/mockPosts";
 
-export default function Home({ users, posts }: any) {
+export default function Home({ users, posts }: {users: User[], posts: (Post | MarketPlacePost)[]}) {
     // const blankUser: User = {
     //     name: "",
     //     userName: "",

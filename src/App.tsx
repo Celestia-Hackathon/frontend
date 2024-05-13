@@ -88,8 +88,8 @@ function App() {
         <Routes >
           <Route path="/" element={<Layout />} >
             <Route path='/' element={<Navigate />} />
-            <Route path='feed' element={<Home />} />
-            <Route path='profile/:id' element={<Profile />} />
+            <Route path='feed' element={<Home users={users} posts={posts}/>} />
+            <Route path='profile/:id' element={<Profile users={users} posts={posts} />} />
             <Route path='gacha' element={<Gacha />} />
           </Route>
         </Routes>

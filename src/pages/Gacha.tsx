@@ -21,6 +21,7 @@ export default function Gacha() {
         <div className="flex lg:justify-between lg:pt-2 mb-16 justify-center items-center outline-none">
             <DummyHeader/>
             <div className="pt-4 flex flex-col items-center w-full lg:w-[35vw]">
+                <h1 className="text-xl mb-2">Gacha</h1>
                 <div className="animationAreaItems">
                     <div className="gachaItems flex items-center w-full h-full bg-background justify-start overflow-x-hidden lg:w-full">
                         {images1.map((img, index) => {

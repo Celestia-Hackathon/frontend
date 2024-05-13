@@ -15,7 +15,7 @@ export default function PostNFT({ nft }: { nft: NFT }) {
                 <img
                     src={nft.nftImg}
                     alt={nft.name}
-                    className={`aspect-square rounded-3xl border-4 ${color.border}`}
+                    className={`aspect-square w-full rounded-3xl border-4 ${color.border}`}
                 />
                 <div className={`${color.bg} absolute py-2 px-3 top-0 right-0 border ${color.border} rounded-tr-3xl rounded-bl-3xl`}>
                     <p className="text-black font-black">{nft.rarity}</p>

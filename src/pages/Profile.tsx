@@ -17,7 +17,7 @@ import ProfileFeedPost from "@/components/ProfileFeedPost";
 import ProfileNFT from "@/components/ProfileNFT";
 import ProfileBadge from "@/components/ProfileBadge";
 
-export default function Profile({ users, posts }: any) {
+export default function Profile({ users, posts }: {users: User[], posts: (Post | MarketPlacePost)[]}) {
     // console.log(tokenImg)
 
     const params = useParams();

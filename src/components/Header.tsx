@@ -29,7 +29,8 @@ export function Header() {
                 <div className="flex flex-row justify-evenly w-full px-4 lg:hidden">
                     <NavButton to='/feed'><Home size={24}/></NavButton>
                     <NavButton to="/marketplace"><ShoppingCart size={24}/></NavButton>
-                    <NavButton to='/new'><PlusCircleIcon size={24}/></NavButton>
+                    {/* <NavButton to='/new'><PlusCircleIcon size={24}/></NavButton> */}
+                    <NavButton to="/gacha"><D20 size={20} isSelected={useLocation().pathname.startsWith('/gacha')}/></NavButton>
                     <NavButton to="/wallets"><ScrollText size={24}/></NavButton>
                     <NavButton to="/profile/J7td4a56MVHTqYXDI2aD"><CircleUser size={24}/></NavButton>
                 </div>
