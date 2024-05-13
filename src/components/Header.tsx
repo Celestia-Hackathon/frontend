@@ -3,7 +3,8 @@ import { ModeToggle } from '@/components/mode-toggle';
 import Logo from "@/assets/logo.svg";
 
 import { Home, CircleUser, ShoppingCart, ScrollText, PlusCircleIcon, Settings } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import D20 from './ui/d20';
 
 export function Header() {
     const navigator = useNavigate();
@@ -20,6 +21,7 @@ export function Header() {
                         <NavButton to='/new'><PlusCircleIcon size={20}/><span className='text-lg'>New post</span></NavButton>
                         <NavButton to="/wallets"><ScrollText size={20}/><span className='text-lg'>Quests</span></NavButton>
                         <NavButton to="/profile/1"><CircleUser size={20}/><span className='text-lg'>Profile</span></NavButton>
+                        <NavButton to="/gacha"><D20 size={20} isSelected={useLocation().pathname.startsWith('/gacha')}/><span className='text-lg'>Gacha</span></NavButton>
                         <NavButton to="/settings"><Settings size={20}/><span className='text-lg'>Settings</span></NavButton>
                     </div>
                 </div>
