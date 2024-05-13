@@ -8,6 +8,7 @@ import Layout from './pages/Layout'
 import Profile from './pages/Profile'
 import Navigate from './pages/Navigate'
 import Gacha from './pages/Gacha'
+import Marketplace from './pages/Marketplace'
 
 function App() {
   const blankUser: User = {
@@ -46,7 +47,7 @@ function App() {
         const response = await fetch("https://chatspace-backend.vercel.app/api/get-posts");
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
+          // console.log(data);
 
           setPosts(data);
         } else {
@@ -67,7 +68,7 @@ function App() {
         const response = await fetch("https://chatspace-backend.vercel.app/api/get-users");
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
+          // console.log(data);
 
           setUsers(data);
         } else {
@@ -91,6 +92,7 @@ function App() {
             <Route path='feed' element={<Home users={users} posts={posts}/>} />
             <Route path='profile/:id' element={<Profile users={users} posts={posts} />} />
             <Route path='gacha' element={<Gacha />} />
+            <Route path='marketplace' element={<Marketplace posts={posts} />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -7,7 +7,8 @@ import { Badge, MarketPlacePost, NFT, Post, User } from "@/utils/types";
 import { Button } from "@/components/ui/button";
 // import { mockPosts } from "@/utils/mockPosts";
 import { mockUsers } from "@/utils/mockUsers";
-import { Avatar } from "@/components/Avatar";
+// import { Avatar } from "@/components/Avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import DummyHeader from "@/components/DummyHeader";
 import ProfileHeader from "@/components/ProfileHeader";
 import tokenImg from "@/assets/token.svg";
@@ -17,12 +18,12 @@ import ProfileFeedPost from "@/components/ProfileFeedPost";
 import ProfileNFT from "@/components/ProfileNFT";
 import ProfileBadge from "@/components/ProfileBadge";
 
-export default function Profile({ users, posts }: {users: User[], posts: (Post | MarketPlacePost)[]}) {
+export default function Profile({ users, posts }: { users: User[], posts: (Post | MarketPlacePost)[] }) {
     // console.log(tokenImg)
 
     const params = useParams();
     const id = params.id || "";
-    
+
     const [selected, setSelected] = useState('feed');
 
     const blankUser = {
@@ -180,8 +181,8 @@ export default function Profile({ users, posts }: {users: User[], posts: (Post |
 
     return (
         <div className=' lg:flex lg:justify-between'>
-            <DummyHeader/>
-            {!loading &&  
+            <DummyHeader />
+            {!loading &&
                 <div className='w-[full] lg:w-[35vw]'>
                     <ProfileHeader username={user.userName} />
                     <div className='h-[25vh] lg:h-[50vh]'>
@@ -189,14 +190,18 @@ export default function Profile({ users, posts }: {users: User[], posts: (Post |
                     </div>
                     <div className='bg-background py-6 -mt-12 relative'>
                         <div className='px-4 flex flex-col items-center justify-center -mt-16 lg:-mt-20'>
-                            <Avatar avatar={user.avatarImg} profile={true} />
+                            {/* <Avatar avatar={user.avatarImg} profile={true} /> */}
+                            <Avatar className="w-[5.5rem] h-[5.5rem] lg:w-[7rem] lg:h-[7rem]">
+                                <AvatarImage src={user.avatarImg} />
+                                <AvatarFallback>{user.userName}</AvatarFallback>
+                            </Avatar>
                             <p className='mt-1'><span className='font-bold'>{user.userName}</span></p>
                             <p className='text-base text-secondary-foreground'>{user.bio}</p>
                             <CopyAddress background="dark" address={user.wallet} />
                         </div>
-                        
+
                         <div className='w-full mt-6 flex items-center justify-between text-foreground pb-6'>
-                            <div className={`${id == '1' && 'hidden'} w-full`}>
+                            <div className={`${id == 'J7td4a56MVHTqYXDI2aD' && 'hidden'} w-full`}>
                                 {following ?
                                     <Button onClick={unfollow} variant="following" className='w-1/2 relative group'>
                                         <span>Following</span>
@@ -208,7 +213,7 @@ export default function Profile({ users, posts }: {users: User[], posts: (Post |
                                     <Button onClick={follow} variant="follow" className='w-1/2'>Follow</Button>
                                 }
                             </div>
-                            <div className={`${id != '1' ? 'hidden' : ''} w-full flex justify-center`}>
+                            <div className={`${id != 'J7td4a56MVHTqYXDI2aD' ? 'hidden' : ''} w-full flex justify-center`}>
                                 <div className="bg-accent/75 lg:bg-background hover:bg-secondary/75 w-fit py-1 px-2 rounded-lg flex items-center gap-2">
                                     <img className="w-[1.5rem]" src={tokenImg} alt="" />
                                     <p className="font-bold">1000 STR</p>
@@ -225,25 +230,25 @@ export default function Profile({ users, posts }: {users: User[], posts: (Post |
                         </div>
 
                         <div className="flex flex-row justify-between w-full">
-                            <div onClick={() => {setSelected('feed')}} className={`py-2 w-full flex justify-center cursor-pointer ${selected == 'feed' ? 'border-b-2 border-accent' : ''}`}>
+                            <div onClick={() => { setSelected('feed') }} className={`py-2 w-full flex justify-center cursor-pointer ${selected == 'feed' ? 'border-b-2 border-accent' : ''}`}>
                                 <div className="relative">
-                                    <Grid3x3 size={28} color={selected == 'feed' ? 'hsl(var(--accent))' : 'hsl(var(--primary))'}/>
+                                    <Grid3x3 size={28} color={selected == 'feed' ? 'hsl(var(--accent))' : 'hsl(var(--primary))'} />
                                     <div className="absolute text-[0.8rem] font-bold -bottom-1.5 -right-1.5 bg-muted flex items-center justify-center rounded-full w-5 h-5">
                                         {Object.keys(userPosts).length}
                                     </div>
                                 </div>
                             </div>
-                            <div onClick={() => {setSelected('nft')}} className={`py-2 w-full flex justify-center cursor-pointer ${selected == 'nft' ? 'border-b-2 border-accent' : ''}`}>
+                            <div onClick={() => { setSelected('nft') }} className={`py-2 w-full flex justify-center cursor-pointer ${selected == 'nft' ? 'border-b-2 border-accent' : ''}`}>
                                 <div className="relative">
-                                    <Crown size={28} color={selected == 'nft' ? 'hsl(var(--accent))' : 'hsl(var(--primary))'}/>
+                                    <Crown size={28} color={selected == 'nft' ? 'hsl(var(--accent))' : 'hsl(var(--primary))'} />
                                     <div className="absolute text-[0.8rem] font-bold -bottom-1.5 -right-1.5 bg-muted flex items-center justify-center rounded-full w-5 h-5">
                                         {user.nfts.length}
                                     </div>
                                 </div>
                             </div>
-                            <div onClick={() => {setSelected('badges')}} className={`py-2 w-full flex justify-center cursor-pointer ${selected == 'badges' ? 'border-b-2 border-accent' : ''}`}>
+                            <div onClick={() => { setSelected('badges') }} className={`py-2 w-full flex justify-center cursor-pointer ${selected == 'badges' ? 'border-b-2 border-accent' : ''}`}>
                                 <div className="relative">
-                                    <Award size={28} color={selected == 'badges' ? 'hsl(var(--accent))' : 'hsl(var(--primary))'}/>
+                                    <Award size={28} color={selected == 'badges' ? 'hsl(var(--accent))' : 'hsl(var(--primary))'} />
                                     <div className="absolute text-[0.8rem] font-bold -bottom-1.5 -right-1.5 bg-muted flex items-center justify-center rounded-full w-5 h-5">
                                         {user.badges.length}
                                     </div>
@@ -254,7 +259,7 @@ export default function Profile({ users, posts }: {users: User[], posts: (Post |
                         <div className='grid grid-cols-3 gap-x-[0.01rem] overflow-hidden'>
                             {selected == 'feed' && userPosts.map((post: MarketPlacePost | Post, index: number) => {
                                 const isMarketPlace = !!(post as MarketPlacePost).nft;
-                                if(isMarketPlace) {
+                                if (isMarketPlace) {
                                     return <ProfileFeedMarketplace key={index} post={post as MarketPlacePost} />
                                 } else {
                                     return <ProfileFeedPost key={index} post={post as Post} />
@@ -267,14 +272,14 @@ export default function Profile({ users, posts }: {users: User[], posts: (Post |
                             })}
                             {selected == "badges" && user.badges.map((badge: Badge, index) => {
                                 return (
-                                    <ProfileBadge key={index} badge={badge}/>
-                                )  
+                                    <ProfileBadge key={index} badge={badge} />
+                                )
                             })}
                         </div>
                     </div>
                 </div>
             }
-            <DummyHeader/>
+            <DummyHeader />
         </div>
     );
 }
