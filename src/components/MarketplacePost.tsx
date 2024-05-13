@@ -26,7 +26,7 @@ export default function MarketplacePost(
             <div className="rounded-lg py-4 flex flex-col">
                 <div className={`bg-marketplace rounded-b-lg`}>
                     <PostNFT nft={nft} />
-                    <div className="text-secondary flex items-center w-full py-2 px-[7.5%]">
+                    <div className="text-secondary flex items-center w-full pb-4 px-[7.5%]">
                         <div onClick={() => navigator(`/profile/${userId}`)} >
                             <AvatarPost avatar={userImg} username={userName} isMarketPlace />
                         </div>
@@ -41,8 +41,8 @@ export default function MarketplacePost(
                             </div>
                         </div>
                     </div>
-                    <div className="p-[2.5%] h-full w-full flex justify-between">
-                        <Button variant='buy' className="w-full flex items-center gap-3">
+                    <div className="px-[7.5%] py-[2.5%] h-full w-full flex justify-between">
+                        <Button variant='buy' className=" w-full flex items-center gap-3">
                             <ShoppingCart color="hsl(var(--primary))"/>
                             <p>Buy for {price} STR</p>
                         </Button>
