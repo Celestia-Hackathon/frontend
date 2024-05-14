@@ -80,6 +80,9 @@ module.exports = {
       },
       transitionDuration: {
         '12000': '12000ms'
+      },
+      fontFamily: {
+        'lucky': 'Lucky'
       }
     },
   },
