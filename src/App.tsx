@@ -10,6 +10,7 @@ import Profile from './pages/Profile'
 import Navigate from './pages/Navigate'
 import Gacha from './pages/Gacha'
 import Marketplace from './pages/Marketplace'
+import ExploreHub from './pages/ExploreHub'
 
 function App() {
   const blankUser: User = {
@@ -61,7 +62,7 @@ function App() {
     };
 
     fetchPosts();
-  }, []);
+  }, [posts]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -103,6 +104,7 @@ function App() {
             <Route path='profile/:id' element={<Profile users={users} posts={posts} />} />
             <Route path='gacha' element={<Gacha />} />
             <Route path='marketplace' element={<Marketplace posts={posts} />} />
+            <Route path='explore/:device' element={<ExploreHub posts={posts} />} />
           </Route>
         </Routes>
       </BrowserRouter>
