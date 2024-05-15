@@ -90,7 +90,7 @@ export default function Home({ users, posts }: {users: User[], posts: (Post | Ma
                         const isMarketPlace = !!(post as MarketPlacePost).nft;
 
                         return (
-                            <div className="w-full">
+                            <div className="w-full flex justify-center">
                                 <Card
                                     key={index}
                                     userId={post.userId}

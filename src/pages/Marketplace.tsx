@@ -1,84 +1,46 @@
 import { MarketPlacePost, Post } from "@/utils/types";
-import { Search, X } from "lucide-react";
-import { useState } from "react";
-import Card from "@/components/Card";
-import DummyHeader from "@/components/DummyHeader";
+// import { Search, X } from "lucide-react";
+// import { useState } from "react";
+// import Card from "@/components/Card";
+// import DummyHeader from "@/components/DummyHeader";
 import ProfileFeedMarketplace from "@/components/ProfileFeedMarketplace";
+// import * as React from "react";
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel"
+import PostNFT from "@/components/PostNFT";
 
 export default function Marketplace({ posts }: any) {
-    // const blankPost: MarketPlacePost = {
-    //     postId: "",
-    //     userId: "",
-    //     userName: "",
-    //     avatarImg: "",
-    //     postImg: "",
-    //     caption: "",
-    //     likes: [""],
-    //     comments: [""],
-    //     createdAt: "",
-    //     price: 0,
-    //     nft: {
-    //         nftId: "",
-    //         nftImg: "",
-    //         name: "",
-    //         address: "",
-    //         rarity: "Common"
-    //     }
-    // }
 
-    // const [filteredPosts, setFilteredPosts] = useState<(Post | MarketPlacePost)[]>(posts);
-    // const [searchTerm, setSearchTerm] = useState("");
-
-    // const handleSearch = (e: any) => {
-    //     setSearchTerm(e.target.value.toLowerCase());
-
-    //     const filtered = posts.filter((post: Post | MarketPlacePost) => {
-    //         // Filter by userName, price, nft.name, or nft.rarity
-    //         return (
-    //             post.userName.toLowerCase().includes(searchTerm)
-    //             || ((post as MarketPlacePost).nft && (post as MarketPlacePost).nft.rarity.toLowerCase().includes(searchTerm))
-    //             || ((post as MarketPlacePost).nft && (post as MarketPlacePost).nft.name.toLowerCase().includes(searchTerm))
-    //             // (post as MarketPlacePost).price.toString().includes(searchTerm)
-    //         );
-    //     });
-
-    //     setFilteredPosts(filtered);
-    // }
-
-    // const clearSearchBar = () => {
-    //     setSearchTerm("");
-    //     setFilteredPosts(posts);
-    // }
+    const nfts = posts.filter((post: Post | MarketPlacePost) => !!(post as MarketPlacePost).nft);
+    console.log(nfts);
 
     return (
         <div className="flex lg:justify-between lg:pt-2 mb-16 justify-center items-center outline-none">
-            <DummyHeader />
-            <div className="flex flex-col items-center w-full lg:w-[35vw]">
-                {/* <div className="flex w-full justify-center sticky top-0 z-10 bg-background">
-                    <div className="relative w-full">
-                        <label htmlFor="search">
-                            <Search className="absolute left-6 top-[1.15rem] w-5 h-5 text-gray-400" />
-                        </label>
-                        <input
-                            id="search"
-                            type="text"
-                            placeholder="Search User Name, NFT Name or Rarity"
-                            value={searchTerm}
-                            onChange={e => handleSearch(e)}
-                            className="pl-10 w-[95%] h-10 px-3 my-2 text-md bg-input border border-border rounded-full outline-none"
-                        />
-                        <button onClick={clearSearchBar} className={`absolute right-7 top-4 w-5 h-5 text-gray-400 ${searchTerm ? "" : "hidden"}`}>
-                            <X />
-                        </button>
-                    </div>
-                </div> */}
-
-                {/* {posts.length === 0 && (
-                    <div className="w-full h-full flex justify-center items-center">
-                        <p className="text-primary mt-8">No posts found 💀</p>
-                    </div>
-                )} */}
-
+            {/* <DummyHeader /> */}
+            <div className="flex flex-col items-center w-full">
+                <div className="w-[67%] flex flex-col">
+                    {/* colocar texto resenha gacha pixel */}
+                    <h1 className="text-3xl mt-3">Explore new NFTs</h1>
+                    <Carousel className="w-full max-w-xs">
+                        <CarouselContent>
+                            {/* arrumar para mostrar outras nfts */}
+                            {nfts.map((nft: any, index: number) => (
+                                <CarouselItem key={index}>
+                                    <div className="p-1">
+                                        <PostNFT nft={nft.nft} />
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </Carousel>
+                </div>
                 <div className="grid grid-cols-2 gap-4">
                     {posts.map((post: Post | MarketPlacePost, index: number) => {
                         const isMarketPlacePost = !!(post as MarketPlacePost).nft;
@@ -88,7 +50,7 @@ export default function Marketplace({ posts }: any) {
                     })}
                 </div>
             </div>
-            <DummyHeader />
+            {/* <DummyHeader /> */}
         </div>
     );
 }

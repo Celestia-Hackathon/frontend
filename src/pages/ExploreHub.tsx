@@ -1,9 +1,9 @@
 import { MarketPlacePost, Post } from "@/utils/types";
-import { Search, X, Compass, ShoppingCart, Flame, TrendingUp } from "lucide-react";
+import { Search, X, Store, TrendingUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import Card from "@/components/Card";
+// import Card from "@/components/Card";
 import DummyHeader from "@/components/DummyHeader";
 import ProfileFeedPost from "@/components/ProfileFeedPost";
 import ProfileFeedMarketplace from "@/components/ProfileFeedMarketplace";
@@ -97,7 +97,7 @@ export default function ExploreHub({ posts }: any) {
                         </div>
                         <div onClick={() => { setSelected('market') }} className={`py-2 w-full flex justify-center cursor-pointer ${selected == 'market' ? 'border-b-2 border-accent' : ''}`}>
                             <div className="flex items-center">
-                                <ShoppingCart size={28} color={selected == 'market' ? 'hsl(var(--accent))' : 'hsl(var(--primary))'} />
+                                <Store size={28} color={selected == 'market' ? 'hsl(var(--accent))' : 'hsl(var(--primary))'} />
                                 <p className={`ml-1 ${selected == 'market' ? 'text-accent' : 'text-primary'}`}>
                                     Marketplace
                                 </p>
