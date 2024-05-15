@@ -193,7 +193,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (PostI
                             {/* <Avatar avatar={user.avatarImg} profile={true} /> */}
                             <Avatar className="w-[5.5rem] h-[5.5rem] lg:w-[7rem] lg:h-[7rem]">
                                 <AvatarImage src={user.avatarImg} />
-                                <AvatarFallback>{user.userName}</AvatarFallback>
+                                <AvatarFallback>{user.userName.charAt(0)}</AvatarFallback>
                             </Avatar>
                             <p className='mt-1'><span className='font-bold'>{user.userName}</span></p>
                             <p className='text-base text-secondary-foreground'>{user.bio}</p>

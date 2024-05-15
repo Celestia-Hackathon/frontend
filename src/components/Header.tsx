@@ -2,7 +2,7 @@ import NavButton from '@/components/NavButton';
 import { ModeToggle } from '@/components/mode-toggle';
 import Logo from "@/assets/logo.svg";
 
-import { Home, CircleUser, ShoppingCart, ScrollText, PlusCircleIcon, Settings } from 'lucide-react';
+import { Home, CircleUser, Store, ScrollText, PlusCircleIcon, Settings, Compass } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import D20 from './ui/d20';
 
@@ -16,7 +16,8 @@ export function Header() {
                     <img className="cursor-pointer w-1/2 hidden lg:inline-block" src={Logo} alt="" onClick={() => navigator('/')}/>
                     <div className="pt-6 items-start w-full hidden lg:flex lg:flex-col">
                         <NavButton to='/feed'><Home size={20}/><span className='text-lg'>Home</span></NavButton>
-                        <NavButton to="/marketplace"><ShoppingCart size={20}/><span className='text-lg'>Marketplace</span></NavButton>
+                        <NavButton to="/explore/mobile"><Compass size={20}/><span className='text-lg'>Explore</span></NavButton>
+                        <NavButton to="/explore/desktop"><Store size={20}/><span className='text-lg'>Marketplace</span></NavButton>
                         <NavButton to='/new'><PlusCircleIcon size={20}/><span className='text-lg'>New post</span></NavButton>
                         <NavButton to="/quests"><ScrollText size={20}/><span className='text-lg'>Quests</span></NavButton>
                         <NavButton to="/gacha"><D20 size={20} isSelected={useLocation().pathname.startsWith('/gacha')}/><span className='text-lg'>Gacha</span></NavButton>
@@ -27,8 +28,8 @@ export function Header() {
 
                 <div className="flex flex-row justify-evenly w-full px-4 lg:hidden">
                     <NavButton to='/feed'><Home size={24}/></NavButton>
-                    <NavButton to="/marketplace"><ShoppingCart size={24}/></NavButton>
-                    {/* <NavButton to='/new'><PlusCircleIcon size={24}/></NavButton> */}
+                    {/* <NavButton to="/marketplace"><Store size={24}/></NavButton> */}
+                    <NavButton to="/explore/mobile"><Compass size={24}/></NavButton>
                     <NavButton to="/gacha"><D20 size={24} isSelected={useLocation().pathname.startsWith('/gacha')}/></NavButton>
                     <NavButton to="/quests"><ScrollText size={24}/></NavButton>
                     <NavButton to="/profile/J7td4a56MVHTqYXDI2aD"><CircleUser size={24}/></NavButton>

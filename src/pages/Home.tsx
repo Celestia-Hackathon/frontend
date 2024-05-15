@@ -88,7 +88,7 @@ export default function Home({ users, posts }: {users: User[], posts: (PostInter
                 <div className="flex flex-col w-full items-center bg-background">
                     {posts.map((post: PostInterface | MarketPlacePostInterface, index: number) => {
                         return (
-                            <div className="w-full">
+                            <div className="w-full flex justify-center">
                                 <Card
                                     key={index}
                                     post={post}
