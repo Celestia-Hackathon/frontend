@@ -1,8 +1,8 @@
-import { MarketPlacePostInterface, PostInterface } from "@/utils/types";
+import { MarketPlacePost, Post } from "@/utils/types";
 import { mockUsers } from "./mockUsers";
 import nftImg from "@/assets/nft.png";
 
-export const mockPosts: (PostInterface | MarketPlacePostInterface)[] = [
+export const mockPosts: (Post | MarketPlacePost)[] = [
     {
         userId: "1",
         userName: mockUsers[0].userName,
@@ -53,5 +53,5 @@ export const mockPosts: (PostInterface | MarketPlacePostInterface)[] = [
             address: "0xa9760110671d7a5a37A72F684D7D1d92F2dE84dA",
             rarity: "Special",
         }
-    } as MarketPlacePostInterface,
+    } as MarketPlacePost,
 ];

@@ -1,14 +1,34 @@
-import { MarketPlacePostInterface, PostInterface } from "@/utils/types";
+import { NFT } from "@/utils/types";
 
 import Post from "./Post";
 import MarketplacePost from "./MarketplacePost";
 
-export default function Card({post} : {post: PostInterface | MarketPlacePostInterface}) {
-    
-    const isMarketPlace = !!(post as MarketPlacePostInterface).nft;
+interface CardProps {
+    userId: string;
+    userName: string;
+    userImg: string;
+    postImg: string;
+    description: string;
+    likes: string[];
+    nft?: NFT;
+    price?: number;
+}
+
+export default function Card({
+    userId, // used to navigate to the user profile
+    userName,
+    userImg,
+    postImg,
+    description,
+    likes,
+    nft,
+    price
+} : CardProps) {
+
+    const isMarketPlace = !!nft;
 
     if(!isMarketPlace) 
-        return(<Post post={post} />)
+        return(<Post userId={userId} userName={userName} userImg={userImg} postImg={postImg} description={description} likes={likes} />)
     else
-        return(<MarketplacePost post={post as MarketPlacePostInterface} />)
+        return(<MarketplacePost userId={userId} userName={userName} userImg={userImg} postImg={postImg} description={description} likes={likes} nft={nft} price={price} />)
 }

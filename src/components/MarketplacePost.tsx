@@ -1,4 +1,4 @@
-import { MarketPlacePostInterface } from "@/utils/types";
+import { NFT } from "@/utils/types";
 import { MessageSquare, HeartIcon, ShoppingCart } from "lucide-react";
 import { AvatarPost } from "./AvatarPost";
 import { useNavigate } from "react-router-dom";
@@ -15,12 +15,21 @@ import {
     DrawerTrigger,
 } from "@/components/ui/drawer"
 
+interface MarketplacePostProps {
+    userId: string;
+    userName: string;
+    userImg: string;
+    postImg: string;
+    description: string;
+    likes: string[];
+    nft: NFT;
+    price?: number;
+}
 
 export default function MarketplacePost(
-    { userId, userName, userImg, /* postImg, description, */ likes, nft, price }: MarketplacePostProps
+    {userId, userName, userImg, /* postImg, description, */ likes, nft, price} : MarketplacePostProps
 ) {
     const navigator = useNavigate();
-    const {userId, userName, avatarImg, likes, nft, price} = post;
 
     return (
         <div className="w-[95%] h-full border-b items-start justify-center">
@@ -29,7 +38,7 @@ export default function MarketplacePost(
                     <PostNFT nft={nft} />
                     <div className="text-secondary flex items-center w-full pb-2 px-[7.5%]">
                         <div onClick={() => navigator(`/profile/${userId}`)} >
-                            <AvatarPost avatar={avatarImg} username={userName} isMarketPlace />
+                            <AvatarPost avatar={userImg} username={userName} isMarketPlace />
                         </div>
 
                         <div className="w-full flex gap-2 items-center justify-end">

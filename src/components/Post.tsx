@@ -24,10 +24,10 @@ export default function Post(
         setImageLoaded(true);
     }
 // =======
-// import { PostInterface } from "@/utils/types";
+// import { Post } from "@/utils/types";
 
 // export default function Post(
-//     {post} : {post: PostInterface}
+//     {post} : {post: Post}
 // ) {
 //     const navigator = useNavigate();
 
@@ -39,10 +39,10 @@ export default function Post(
             <div className="rounded-lg py-4 flex flex-col">
                 <div className="px-2 flex flex-row justify-between items-center">
                     <div onClick={() => navigator(`/profile/${userId}`)} className="mb-2">
-                        <AvatarPost avatar={avatarImg} username={userName} />
+                        <AvatarPost avatar={userImg} username={userName} />
                     </div>
                 </div>
-                <p className="px-2 mb-3 font-bold text-foreground text-xs text-left lg:text-sm">- {caption}</p>
+                <p className="px-2 mb-3 font-bold text-foreground text-xs text-left lg:text-sm">- {description}</p>
                 <div className="bg-primary cursor-pointer overflow-hidden">
                     {!imageLoaded && <Skeleton className="aspect-square w-full" />}
                     <img

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { DropzoneState, useDropzone } from "react-dropzone";
 import { Upload } from 'lucide-react';
 import Card  from "./Card";
-import { PostInterface, User } from "@/utils/types";
+import { User } from "@/utils/types";
 import { Button } from "./ui/button";
 
 interface InputProps {
@@ -73,28 +73,10 @@ const Input = ({dropzone} : InputProps) => {
 
 const HasFile = ({ user, file }: HasFileProps) => {
     const [description, setDescription] = useState<string>("");
-    const [post, setPost] = useState<PostInterface>({
-        postId: "",
-        userId: user.userId,
-        userName: user.userName,
-        avatarImg: user.avatarImg,
-        postImg: file as string,
-        likes: [],
-        comments: [],
-        caption: "",
-        createdAt: new Date().toISOString(),
-    });
     const textAreaRef = useRef(null);
 
     const handleChange = (event : any) => {
         setDescription(event.target.value)
-
-        const updatePost : PostInterface = {
-            ...post,
-            caption: event.target.value
-        }
-
-        setPost(updatePost);
     }
 
     useEffect(() => {
@@ -107,8 +89,13 @@ const HasFile = ({ user, file }: HasFileProps) => {
             <div className="flex flex-col items-center">
                 <p className="text-lg font-bold">Post preview</p>
                 <div className="w-full">
-                    <Card  
-                        post={post as PostInterface}
+                    <Card 
+                        userId={user.userId} 
+                        userName={user.userName} 
+                        userImg={user.avatarImg} 
+                        postImg={file as string} 
+                        description={description} 
+                        likes={["1", "2", "3"]}                        
                     />
                 </div>
                 <textarea

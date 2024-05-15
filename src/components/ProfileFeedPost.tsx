@@ -1,4 +1,4 @@
-// import { PostInterface } from "@/utils/types";
+// import { Post } from "@/utils/types";
 import { Post } from "@/utils/types";
 import { Heart } from "lucide-react";
 import { useState } from "react";
@@ -12,7 +12,7 @@ export default function ProfileFeedPost({ post }: { post: Post }) {
     }
 
 // =======
-// export default function ProfileFeedPost({post} : {post: PostInterface}) {
+// export default function ProfileFeedPost({post} : {post: Post}) {
 // >>>>>>> main
     return (
         <div className='relative group'>

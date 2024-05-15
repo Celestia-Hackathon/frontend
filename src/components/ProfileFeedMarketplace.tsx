@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MarketPlacePost } from "@/utils/types";
 // =======
-// import { MarketPlacePostInterface } from "@/utils/types";
+// import { MarketPlacePost } from "@/utils/types";
 // >>>>>>> main
 import { getColor } from "@/lib/utils";
 import { Button } from "./ui/button";
@@ -21,7 +21,7 @@ import PostNFT from "./PostNFT";
 
 export default function ProfileFeedMarketplace({ post }: { post: MarketPlacePost }) {
 // =======
-// export default function ProfileFeedMarketplace({post} : {post: MarketPlacePostInterface}) {
+// export default function ProfileFeedMarketplace({post} : {post: MarketPlacePost}) {
 // >>>>>>> main
     const { bg } = getColor(post.nft.rarity);
 
@@ -37,7 +37,7 @@ export default function ProfileFeedMarketplace({ post }: { post: MarketPlacePost
 
     return (
         <div className='flex flex-col'>
-            {/* <Rarity rarity={isMarketPlace && (post as MarketPlacePostInterface).nft.rarity} /> */}
+            {/* <Rarity rarity={isMarketPlace && (post as MarketPlacePost).nft.rarity} /> */}
             <div className={`${bg} w-full`}>
                 <p className="text-white text-sm font-bold">{post.nft.rarity}</p>
             </div>

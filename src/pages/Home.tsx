@@ -4,12 +4,12 @@ import { AvatarFeed } from "@/components/AvatarFeed";
 import Card from "@/components/Card";
 import DummyHeader from "@/components/DummyHeader";
 
-import { MarketPlacePostInterface, PostInterface, User } from "@/utils/types.ts";
+import { MarketPlacePost, Post, User } from "@/utils/types.ts";
 
 // import { mockUsers } from "@/utils/mockUsers";
 // import { mockPosts } from "@/utils/mockPosts";
 
-export default function Home({ users, posts }: {users: User[], posts: (PostInterface | MarketPlacePostInterface)[]}) {
+export default function Home({ users, posts }: {users: User[], posts: (Post | MarketPlacePost)[]}) {
     // const blankUser: User = {
     //     name: "",
     //     userName: "",
@@ -86,12 +86,19 @@ export default function Home({ users, posts }: {users: User[], posts: (PostInter
                 </div>
 
                 <div className="flex flex-col w-full items-center bg-background">
-                    {posts.map((post: PostInterface | MarketPlacePostInterface, index: number) => {
+                    {posts.map((post: Post | MarketPlacePost, index: number) => {
                         return (
                             <div className="w-full flex justify-center">
                                 <Card
                                     key={index}
-                                    post={post}
+                                    userId={post.userId}
+                                    userName={post.userName}
+                                    userImg={post.avatarImg}
+                                    postImg={post.postImg}
+                                    description={post.caption}
+                                    likes={post.likes}
+                                    nft={(post as MarketPlacePost).nft}
+                                    price={(post as MarketPlacePost).price}
                                 />
                             </div>
                         );

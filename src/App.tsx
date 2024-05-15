@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { useState, useEffect } from 'react'
 import { ThemeProvider } from './components/theme-provider'
-import { User, PostInterface, MarketPlacePostInterface } from './utils/types'
+import { User, Post, MarketPlacePost } from './utils/types'
 import { gachaImgs } from './utils/gacha'
 import Home from './pages/Home'
 import Layout from './pages/Layout'
@@ -30,7 +30,7 @@ function App() {
     badges: []
   }
 
-  const blankPost: PostInterface = {
+  const blankPost: Post = {
     postId: "",
     userId: "",
     userName: "",
@@ -43,7 +43,7 @@ function App() {
   }
 
   const [users, setUsers] = useState<User[]>([blankUser]);
-  const [posts, setPosts] = useState<(PostInterface | MarketPlacePostInterface)[]>([blankPost]);
+  const [posts, setPosts] = useState<(Post | MarketPlacePost)[]>([blankPost]);
 
   useEffect(() => {
     const fetchPosts = async () => {
