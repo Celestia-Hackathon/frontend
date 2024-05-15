@@ -2,7 +2,7 @@ import { Award, Crown, Grid3x3 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { Badge, MarketPlacePost, NFT, Post, User } from "@/utils/types";
+import { Badge, MarketPlacePostInterface, NFT, PostInterface, User } from "@/utils/types";
 
 import { Button } from "@/components/ui/button";
 // import { mockPosts } from "@/utils/mockPosts";
@@ -18,7 +18,7 @@ import ProfileFeedPost from "@/components/ProfileFeedPost";
 import ProfileNFT from "@/components/ProfileNFT";
 import ProfileBadge from "@/components/ProfileBadge";
 
-export default function Profile({ users, posts }: { users: User[], posts: (Post | MarketPlacePost)[] }) {
+export default function Profile({ users, posts }: { users: User[], posts: (PostInterface | MarketPlacePostInterface)[] }) {
     // console.log(tokenImg)
 
     const params = useParams();
@@ -42,7 +42,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
     }
 
     const [user, setUser] = useState<User>(blankUser);
-    const [userPosts, setUserPosts] = useState<(Post | MarketPlacePost)[]>([]);
+    const [userPosts, setUserPosts] = useState<(PostInterface | MarketPlacePostInterface)[]>([]);
 
     const [loading, setLoading] = useState(true);
 
@@ -91,7 +91,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
         // const posts = mockPosts.filter((post) => post.userId === id);
 
         const user = users.find((user: User) => user.userId === id);
-        const userPosts = posts.filter((post: Post | MarketPlacePost) => post.userId === id);
+        const userPosts = posts.filter((post: PostInterface | MarketPlacePostInterface) => post.userId === id);
 
         console.log(user);
         console.log(userPosts);
@@ -257,12 +257,12 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
                         </div>
 
                         <div className='grid grid-cols-3 gap-x-[0.01rem] overflow-hidden'>
-                            {selected == 'feed' && userPosts.map((post: MarketPlacePost | Post, index: number) => {
-                                const isMarketPlace = !!(post as MarketPlacePost).nft;
+                            {selected == 'feed' && userPosts.map((post: MarketPlacePostInterface | PostInterface, index: number) => {
+                                const isMarketPlace = !!(post as MarketPlacePostInterface).nft;
                                 if (isMarketPlace) {
-                                    return <ProfileFeedMarketplace key={index} post={post as MarketPlacePost} />
+                                    return <ProfileFeedMarketplace key={index} post={post as MarketPlacePostInterface} />
                                 } else {
-                                    return <ProfileFeedPost key={index} post={post as Post} />
+                                    return <ProfileFeedPost key={index} post={post as PostInterface} />
                                 }
                             })}
                             {selected == 'nft' && user.nfts.map((nft: NFT, index) => {

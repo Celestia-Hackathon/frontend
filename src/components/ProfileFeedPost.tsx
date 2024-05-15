@@ -1,3 +1,4 @@
+// import { PostInterface } from "@/utils/types";
 import { Post } from "@/utils/types";
 import { Heart } from "lucide-react";
 import { useState } from "react";
@@ -10,6 +11,9 @@ export default function ProfileFeedPost({ post }: { post: Post }) {
         setImageLoaded(true);
     }
 
+// =======
+// export default function ProfileFeedPost({post} : {post: PostInterface}) {
+// >>>>>>> main
     return (
         <div className='relative group'>
             {/* <Rarity rarity={isMarketPlace && (post as MarketPlacePost).nft.rarity} /> */}

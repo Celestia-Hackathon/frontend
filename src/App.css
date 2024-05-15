@@ -41,10 +41,11 @@
 }
 
 .stars {
-  background-image: url('stars.png');
+  background-image: url('/stars.png');
   background-size: contain;
   background-repeat: repeat-y;
 }
+
 
 .balloon {
   position: relative;
@@ -68,6 +69,23 @@
   border-bottom: 0;
   border-left: 0;
   margin-left: -0.5em;
+}
+
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-10px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+.floating {
+  animation: float 8s ease-in-out infinite;
 }
 
 .animationAreaItems {

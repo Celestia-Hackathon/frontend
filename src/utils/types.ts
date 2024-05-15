@@ -13,7 +13,7 @@ export type User = {
     badges: Badge[];
 }
 
-export type Post = {
+export type PostInterface = {
     postId: string;
     userId: string;
     userName: string;
@@ -25,7 +25,7 @@ export type Post = {
     createdAt: string;
 }
 
-export type MarketPlacePost = Post & {
+export type MarketPlacePostInterface = PostInterface & {
     price: number;
     nft: NFT;
     postImg?: string;
