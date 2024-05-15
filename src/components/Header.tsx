@@ -14,12 +14,11 @@ export function Header() {
             <div className="w-full bg-transparent flex flex-row justify-center items-center lg:px-4 lg:flex-col lg:justify-between lg:py-2 h-full">
                 <div className="flex flex-col gap-2 items-center">
                     <img className="cursor-pointer w-1/2 hidden lg:inline-block" src={Logo} alt="" onClick={() => navigator('/')}/>
-                    <p className="cursor-pointer text-primary mx-2 hidden lg:inline-block" onClick={() => navigator('/')}>ChatSpace</p>
                     <div className="pt-6 items-start w-full hidden lg:flex lg:flex-col">
                         <NavButton to='/feed'><Home size={20}/><span className='text-lg'>Home</span></NavButton>
                         <NavButton to="/marketplace"><ShoppingCart size={20}/><span className='text-lg'>Marketplace</span></NavButton>
                         <NavButton to='/new'><PlusCircleIcon size={20}/><span className='text-lg'>New post</span></NavButton>
-                        <NavButton to="/wallets"><ScrollText size={20}/><span className='text-lg'>Quests</span></NavButton>
+                        <NavButton to="/quests"><ScrollText size={20}/><span className='text-lg'>Quests</span></NavButton>
                         <NavButton to="/gacha"><D20 size={20} isSelected={useLocation().pathname.startsWith('/gacha')}/><span className='text-lg'>Gacha</span></NavButton>
                         <NavButton to="/profile/J7td4a56MVHTqYXDI2aD"><CircleUser size={20}/><span className='text-lg'>Profile</span></NavButton>
                         <NavButton to="/settings"><Settings size={20}/><span className='text-lg'>Settings</span></NavButton>
@@ -31,7 +30,7 @@ export function Header() {
                     <NavButton to="/marketplace"><ShoppingCart size={24}/></NavButton>
                     {/* <NavButton to='/new'><PlusCircleIcon size={24}/></NavButton> */}
                     <NavButton to="/gacha"><D20 size={24} isSelected={useLocation().pathname.startsWith('/gacha')}/></NavButton>
-                    <NavButton to="/wallets"><ScrollText size={24}/></NavButton>
+                    <NavButton to="/quests"><ScrollText size={24}/></NavButton>
                     <NavButton to="/profile/J7td4a56MVHTqYXDI2aD"><CircleUser size={24}/></NavButton>
                 </div>
 

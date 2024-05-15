@@ -82,7 +82,8 @@ module.exports = {
         '12000': '12000ms'
       },
       fontFamily: {
-        'lucky': 'Lucky'
+        'lucky': 'Lucky',
+        'pixel': 'Pixel'
       }
     },
   },

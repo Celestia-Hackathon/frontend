@@ -5,9 +5,13 @@
   @layer base {
     @font-face {
       font-family: 'Lucky';
-      src: url('fonts/gacha.ttf');
+      src: url('/fonts/gacha.ttf');
     }
-    
+
+    @font-face {
+      font-family: 'Pixel';
+      src: url('/fonts/pixel.ttf');
+    }
 
     :root {
       --background: 45 100% 99.2%;

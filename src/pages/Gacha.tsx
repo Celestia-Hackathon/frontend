@@ -1,9 +1,9 @@
 import DummyHeader from "@/components/DummyHeader";
 import GachaElement from "@/components/GachaElement";
-import { Button } from "@/components/ui/button";
 
 import manekinekoImg from "@/assets/gacha/manekineko.png"
 import nftImg from "@/assets/nft.png";
+import gachaButton from "@/assets/gacha-button.png";
 
 export default function Gacha() {
     /* const [sentence, setSentence] = useState(gachaSentences[Math.floor(Math.random() * gachaSentences.length)]);
@@ -64,7 +64,7 @@ export default function Gacha() {
         <div className="flex h-[calc(100vh-64px)] lg:h-[100vh] lg:mb-0 lg:justify-between mb-16 justify-center items-center outline-none">
             <DummyHeader/>
             <div className="stars w-full pt-16 h-full flex flex-col gap-16 lg:w-[35vw]">
-                <div className="px-2">
+                <div className="px-2 floating">
                     <h1 className="font-lucky text-[60px]">fortune kitty</h1>
                 </div>
                 <div>
@@ -90,9 +90,15 @@ export default function Gacha() {
                             </div>
                         </div>
                     </div>
-                    <Button onClick={startRoll} variant='follow' className="w-1/2 mt-16 font-black">Roll for 100 CAT</Button>
                 </div>
-
+                <div className="mt-10 w-full justify-center flex">
+                    <div className="cursor-pointer relative kitty-button font-lucky flex justify-center items-center w-[300px] h-[70px]">
+                        <img className="-z-10 w-[60%] h-full mt-auto mb-auto -bottom-0 -top-3 left-[16%] bottom-[5%] absolute " src={gachaButton} alt="" />
+                        <div className=" w-full flex justify-center items-center">
+                            <p onClick={startRoll} className="text-4xl text-black">ROLL</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <DummyHeader/>
         </div>

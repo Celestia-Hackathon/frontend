@@ -4,12 +4,12 @@ import { AvatarFeed } from "@/components/AvatarFeed";
 import Card from "@/components/Card";
 import DummyHeader from "@/components/DummyHeader";
 
-import { MarketPlacePost, Post, User } from "@/utils/types.ts";
+import { MarketPlacePostInterface, PostInterface, User } from "@/utils/types.ts";
 
 // import { mockUsers } from "@/utils/mockUsers";
 // import { mockPosts } from "@/utils/mockPosts";
 
-export default function Home({ users, posts }: {users: User[], posts: (Post | MarketPlacePost)[]}) {
+export default function Home({ users, posts }: {users: User[], posts: (PostInterface | MarketPlacePostInterface)[]}) {
     // const blankUser: User = {
     //     name: "",
     //     userName: "",
@@ -86,26 +86,18 @@ export default function Home({ users, posts }: {users: User[], posts: (Post | Ma
                 </div>
 
                 <div className="flex flex-col w-full items-center bg-background">
-                    {posts.map((post: Post | MarketPlacePost, index: number) => {
-                        const isMarketPlace = !!(post as MarketPlacePost).nft;
-
+                    {posts.map((post: PostInterface | MarketPlacePostInterface, index: number) => {
                         return (
                             <div className="w-full">
                                 <Card
                                     key={index}
-                                    userId={post.userId}
-                                    userName={post.userName}
-                                    userImg={post.avatarImg}
-                                    postImg={post.postImg}
-                                    description={post.caption}
-                                    likes={post.likes}
-                                    nft={isMarketPlace ? (post as MarketPlacePost).nft : undefined}
-                                    price={isMarketPlace ? (post as MarketPlacePost).price : undefined}
+                                    post={post}
                                 />
                             </div>
                         );
                     })}
                 </div>
+                
             </div>
             <DummyHeader />
         </div>
