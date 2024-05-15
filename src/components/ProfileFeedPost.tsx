@@ -1,7 +1,7 @@
-import { Post } from "@/utils/types";
+import { PostInterface } from "@/utils/types";
 import { Heart } from "lucide-react";
 
-export default function ProfileFeedPost({post} : {post: Post}) {
+export default function ProfileFeedPost({post} : {post: PostInterface}) {
     return (
         <div className='relative group'>
             {/* <Rarity rarity={isMarketPlace && (post as MarketPlacePost).nft.rarity} /> */}

@@ -1,14 +1,14 @@
-import { MarketPlacePost } from "@/utils/types";
+import { MarketPlacePostInterface } from "@/utils/types";
 import { getColor } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { ShoppingCart } from "lucide-react";
 
-export default function ProfileFeedMarketplace({post} : {post: MarketPlacePost}) {
+export default function ProfileFeedMarketplace({post} : {post: MarketPlacePostInterface}) {
     const { bg } = getColor(post.nft.rarity);
     
     return (
         <div className='flex flex-col'>
-            {/* <Rarity rarity={isMarketPlace && (post as MarketPlacePost).nft.rarity} /> */}
+            {/* <Rarity rarity={isMarketPlace && (post as MarketPlacePostInterface).nft.rarity} /> */}
             <div className={`${bg} w-full`}>
                 <p className="text-white text-sm font-bold">{post.nft.rarity}</p>
             </div>

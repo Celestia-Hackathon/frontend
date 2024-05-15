@@ -12,7 +12,7 @@ interface InputProps {
 interface HasFileProps {
     user: User,
     file?: string,
-    removeFile: () => void
+    // removeFile: () => void
 }
 
 export default function FileInput({users} : {users: User[]}) {
@@ -23,9 +23,9 @@ export default function FileInput({users} : {users: User[]}) {
         setFile(URL.createObjectURL(files[0]));
     }, [])
 
-    const removeFile = useCallback(() => {
+    /* const removeFile = useCallback(() => {
         setFile(null);
-    }, [file])
+    }, [file]) */
 
     const dropzone = useDropzone({
         onDrop,
@@ -34,7 +34,7 @@ export default function FileInput({users} : {users: User[]}) {
         }
     })
 
-    if(file) return <HasFile user={users[0]} file={file} removeFile={removeFile}/>;
+    if(file) return <HasFile user={users[0]} file={file} /* removeFile={removeFile} *//>;
 
     return <Input dropzone={dropzone}/>;
 }
@@ -71,7 +71,7 @@ const Input = ({dropzone} : InputProps) => {
     )
 }
 
-const HasFile = ({ user, file, removeFile }: HasFileProps) => {
+const HasFile = ({ user, file }: HasFileProps) => {
     const [description, setDescription] = useState<string>("");
     const [post, setPost] = useState<PostInterface>({
         postId: "",

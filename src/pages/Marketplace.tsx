@@ -1,11 +1,11 @@
-import { MarketPlacePost, Post } from "@/utils/types";
+import { MarketPlacePostInterface, PostInterface } from "@/utils/types";
 import { Search, X } from "lucide-react";
 import { useState } from "react";
 import Card from "@/components/Card";
 import DummyHeader from "@/components/DummyHeader";
 
 export default function Marketplace({ posts }: any) {
-    // const blankPost: MarketPlacePost = {
+    // const blankPost: MarketPlacePostInterface = {
     //     postId: "",
     //     userId: "",
     //     userName: "",
@@ -25,19 +25,19 @@ export default function Marketplace({ posts }: any) {
     //     }
     // }
 
-    const [filteredPosts, setFilteredPosts] = useState<(Post | MarketPlacePost)[]>(posts);
+    const [filteredPosts, setFilteredPosts] = useState<(PostInterface | MarketPlacePostInterface)[]>(posts);
     const [searchTerm, setSearchTerm] = useState("");
 
     const handleSearch = (e: any) => {
         setSearchTerm(e.target.value.toLowerCase());
 
-        const filtered = posts.filter((post: Post | MarketPlacePost) => {
+        const filtered = posts.filter((post: PostInterface | MarketPlacePostInterface) => {
             // Filter by userName, price, nft.name, or nft.rarity
             return (
                 post.userName.toLowerCase().includes(searchTerm)
-                || ((post as MarketPlacePost).nft && (post as MarketPlacePost).nft.rarity.toLowerCase().includes(searchTerm))
-                || ((post as MarketPlacePost).nft && (post as MarketPlacePost).nft.name.toLowerCase().includes(searchTerm))
-                // (post as MarketPlacePost).price.toString().includes(searchTerm)
+                || ((post as MarketPlacePostInterface).nft && (post as MarketPlacePostInterface).nft.rarity.toLowerCase().includes(searchTerm))
+                || ((post as MarketPlacePostInterface).nft && (post as MarketPlacePostInterface).nft.name.toLowerCase().includes(searchTerm))
+                // (post as MarketPlacePostInterface).price.toString().includes(searchTerm)
             );
         });
 
@@ -79,18 +79,11 @@ export default function Marketplace({ posts }: any) {
                 )}
 
                 <div className="grid grid-cols-2 gap-4">
-                    {filteredPosts.map((post: Post | MarketPlacePost, index: number) => (
+                    {filteredPosts.map((post: PostInterface | MarketPlacePostInterface, index: number) => (
                         // create another card for marketplace posts ??
                         <Card
                             key={index}
-                            userId={post.userId}
-                            userName={post.userName}
-                            userImg={post.avatarImg}
-                            postImg={post.postImg}
-                            description={post.caption}
-                            likes={post.likes}
-                            nft={(post as MarketPlacePost).nft}
-                            price={(post as MarketPlacePost).price}
+                            post={post}
                         />
                     ))}
                 </div>
