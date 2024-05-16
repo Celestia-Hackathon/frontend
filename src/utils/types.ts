@@ -9,6 +9,7 @@ export type User = {
     bannerImg: string;
     postsId: string[];
     wallet: string;
+    tokens: number;
     nfts: NFT[];
     badges: Badge[];
 }
@@ -44,4 +45,16 @@ export type Badge = {
     badgeImg: string;
     name: string;
     description: string;
+}
+
+export type Quest = {
+    questId: string;
+    questName: string;
+    questDescription: string;
+    reward: number;
+    createdBy: string;
+    completedBy: string[];
+    createdAt: string;
+    dueDate: string;
+    applicantsId: string[];
 }

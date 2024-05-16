@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { useState, useEffect, useMemo } from 'react'
 import { ThemeProvider } from './components/theme-provider'
-import { User, Post, MarketPlacePost } from './utils/types'
+import { User, Post, MarketPlacePost, Quest } from './utils/types'
 import { gachaImgs } from './utils/gacha'
 import Home from './pages/Home'
 import Layout from './pages/Layout'
@@ -25,6 +25,7 @@ function App() {
     avatarImg: "",
     bannerImg: "",
     wallet: "",
+    tokens: 0,
     postsId: [""],
     nfts: [],
     badges: []
@@ -42,8 +43,21 @@ function App() {
     createdAt: ""
   }
 
+  const blankQuest: Quest = {
+    questId: "",
+    questName: "",
+    questDescription: "",
+    reward: 0,
+    createdBy: "",
+    completedBy: [""],
+    createdAt: "",
+    dueDate: "",
+    applicantsId: [""]
+  }
+
   const [users, setUsers] = useState<User[]>([blankUser]);
   const [posts, setPosts] = useState<(Post | MarketPlacePost)[]>([blankPost]);
+  const [quests, setQuests] = useState<Quest[]>([blankQuest]);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -90,8 +104,28 @@ function App() {
     fetchUserData();
   }, []);
 
+  useEffect(() => {
+    const fetchQuests = async () => {
+      try {
+        const response = await fetch("https://chatspace-backend.vercel.app/api/get-quests");
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data)
+          setQuests(data);
+        } else {
+          console.error("error getting quests data");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchQuests();
+  }, []);
+
   const memoizedUsers = useMemo(() => users, [users]);
   const memoizedPosts = useMemo(() => posts, [posts]);
+  const memoizedQuests = useMemo(() => quests, [quests]);
 
   return (
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme' >
@@ -104,7 +138,7 @@ function App() {
             <Route path='gacha' element={<Gacha />} />
             <Route path='marketplace' element={<Marketplace posts={memoizedPosts} />} />
             <Route path='explore/:device' element={<ExploreHub posts={memoizedPosts} />} />
-            <Route path='quests' element={<Quests />} />
+            <Route path='quests' element={<Quests quests={memoizedQuests} />} />
             <Route path='new' element={<New users={memoizedUsers} />} />
           </Route>
         </Routes>

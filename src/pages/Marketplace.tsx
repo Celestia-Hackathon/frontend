@@ -20,12 +20,12 @@ export default function Marketplace({ posts }: any) {
     // console.log(nfts);
 
     return (
-        <div className="flex lg:justify-between lg:pt-2 mb-16 justify-center items-center outline-none">
+        <div className="flex w-full lg:justify-between lg:pt-2 mb-16 justify-center items-center outline-none">
             {/* <DummyHeader /> */}
             <div className="flex flex-col items-center w-full">
                 <div className="w-[67%] flex flex-col">
                     {/* colocar texto resenha gacha pixel */}
-                    <h1 className="text-3xl mt-3">Explore new NFTs</h1>
+                    <h1 className="text-3xl font-lucky mt-3">Explore new NFTs</h1>
                     <Carousel className="w-full max-w-xs">
                         <CarouselContent>
                             {/* arrumar para mostrar outras nfts */}
@@ -41,7 +41,7 @@ export default function Marketplace({ posts }: any) {
                         <CarouselNext />
                     </Carousel>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 w-full p-2 mt-3">
                     {posts.map((post: Post | MarketPlacePost, index: number) => {
                         const isMarketPlacePost = !!(post as MarketPlacePost).nft;
                         if (isMarketPlacePost) {

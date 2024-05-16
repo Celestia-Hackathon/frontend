@@ -11,7 +11,7 @@ import { mockUsers } from "@/utils/mockUsers";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import DummyHeader from "@/components/DummyHeader";
 import ProfileHeader from "@/components/ProfileHeader";
-import tokenImg from "@/assets/token.svg";
+import tokenImg from "@/assets/chatspcae_token_v2.png";
 import CopyAddress from "@/components/CopyAddress";
 import ProfileFeedMarketplace from "@/components/ProfileFeedMarketplace";
 import ProfileFeedPost from "@/components/ProfileFeedPost";
@@ -42,6 +42,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
         avatarImg: "",
         bannerImg: "",
         wallet: "",
+        tokens: 0,
         postsId: [""],
         nfts: [],
         badges: []
@@ -99,8 +100,8 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
         const user = users.find((user: User) => user.userId === id);
         const userPosts = posts.filter((post: Post | MarketPlacePost) => post.userId === id);
 
-        console.log(user);
-        console.log(userPosts);
+        // console.log(user);
+        // console.log(userPosts);
 
         setUser(user || blankUser);
         setUserPosts(userPosts || []);
@@ -221,10 +222,10 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
                                     <Button onClick={follow} variant="follow" className='w-1/2'>Follow</Button>
                                 }
                             </div>
-                            <div className={`${id != 'E6U6YomFu3dFKqEXJQ2C' ? 'hidden' : ''} w-full flex justify-center`}>
-                                <div className="bg-accent/75 lg:bg-background hover:bg-secondary/75 w-fit py-1 px-2 rounded-lg flex items-center gap-2">
+                            <div className={`${id != 'E6U6YomFu3dFKqEXJQ2C' ? 'hidden' : ''} w-full h-full flex justify-center`}>
+                                <div className="bg-secondary ml-2 lg:bg-background hover:bg-secondary/75 w-fit py-1 px-2 rounded-lg flex items-center gap-2">
                                     <img className="w-[1.5rem]" src={tokenImg} alt="" />
-                                    <p className="font-bold">1000 STR</p>
+                                    <p className="font-bold">{user.tokens} CAT</p>
                                 </div>
                             </div>
                             <div className='w-full flex flex-col items-center'>
