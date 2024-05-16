@@ -17,7 +17,7 @@ import New from './pages/New'
 import { WagmiProvider } from 'wagmi'
 import { config } from './config'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import Register from './pages/Register';
 
 const queryClient = new QueryClient();
@@ -104,7 +104,10 @@ function App() {
   return (
     <WagmiProvider config={config}>
     <QueryClientProvider client={queryClient}>
-    <RainbowKitProvider>
+    <RainbowKitProvider locale='en-US' theme={darkTheme({
+      accentColor: '#f8fafc',
+      accentColorForeground: '#121212',
+    })} >
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme' >
       <BrowserRouter >
         <Routes >
