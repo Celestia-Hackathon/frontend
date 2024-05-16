@@ -12,6 +12,7 @@ export type User = {
     tokens: number;
     nfts: NFT[];
     badges: Badge[];
+    questsId: string[];
 }
 
 export type Post = {

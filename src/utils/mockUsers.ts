@@ -12,6 +12,7 @@ export const mockUsers: User[] = [
         following: ["2", "3"],
         bio: "eu sou pintado 🐟",
         wallet: "0xa9760110671d7a5a37A72F684D7D1d92F2dE84dA",
+        tokens: 0,
         postsId: ["1", "2", "3"],
         bannerImg: "https://random.imagecdn.app/500/150",
         nfts: [
@@ -37,6 +38,7 @@ export const mockUsers: User[] = [
                 rarity: "Epic"
             },
         ],
+        questsId: [],
         badges: [
             {
                 badgeId: "1",
@@ -55,6 +57,7 @@ export const mockUsers: User[] = [
         following: ["2", "3"],
         bio: "violets are purple, roses are blue, I'm a poet and I know it",
         wallet: "0xa9760110671d7a5a37A72F684D7D1d92F2dE84dA",
+        tokens: 0,
         postsId: ["1", "2", "3"],
         bannerImg: "https://random.imagecdn.app/500/150",
         nfts: [
@@ -80,6 +83,7 @@ export const mockUsers: User[] = [
                 rarity: "Epic"
             },
         ],
+        questsId: [],
         badges: [
             {
                 badgeId: "1",
@@ -98,9 +102,11 @@ export const mockUsers: User[] = [
         following: ["10"],
         bio: "rosas são vermelhas, violetas são azuis, eu sou um poeta e sei disso",
         wallet: "0xa9760110671d7a5a37A72F684D7D1d92F2dE84dA",
+        tokens: 0,
         postsId: ["4", "5", "6"],
         bannerImg: "https://random.imagecdn.app/500/150",
         nfts: [],
+        questsId: [],
         badges: []
     },
     {
@@ -112,9 +118,11 @@ export const mockUsers: User[] = [
         following: ["2100"],
         bio: "sou legal",
         wallet: "0xa9760110671d7a5a37A72F684D7D1d92F2dE84dA",
+        tokens: 0,
         postsId: ["7", "8", "9"],
         bannerImg: "https://random.imagecdn.app/500/150",
         nfts: [],
+        questsId: [],
         badges: []
     }
 ]
