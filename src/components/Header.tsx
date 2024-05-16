@@ -21,7 +21,7 @@ export function Header() {
                         <NavButton to='/new'><PlusCircleIcon size={20}/><span className='text-lg'>New post</span></NavButton>
                         <NavButton to="/quests"><ScrollText size={20}/><span className='text-lg'>Quests</span></NavButton>
                         <NavButton to="/gacha"><D20 size={20} isSelected={useLocation().pathname.startsWith('/gacha')}/><span className='text-lg'>Gacha</span></NavButton>
-                        <NavButton to="/profile/J7td4a56MVHTqYXDI2aD"><CircleUser size={20}/><span className='text-lg'>Profile</span></NavButton>
+                        <NavButton to="/profile/E6U6YomFu3dFKqEXJQ2C"><CircleUser size={20}/><span className='text-lg'>Profile</span></NavButton>
                         <NavButton to="/settings"><Settings size={20}/><span className='text-lg'>Settings</span></NavButton>
                     </div>
                 </div>
@@ -32,7 +32,7 @@ export function Header() {
                     <NavButton to="/explore/mobile"><Compass size={24}/></NavButton>
                     <NavButton to="/gacha"><D20 size={24} isSelected={useLocation().pathname.startsWith('/gacha')}/></NavButton>
                     <NavButton to="/quests"><ScrollText size={24}/></NavButton>
-                    <NavButton to="/profile/J7td4a56MVHTqYXDI2aD"><CircleUser size={24}/></NavButton>
+                    <NavButton to="/profile/E6U6YomFu3dFKqEXJQ2C"><CircleUser size={24}/></NavButton>
                 </div>
 
                 <div className="flex flex-col items-center justify-center hidden lg:flex">

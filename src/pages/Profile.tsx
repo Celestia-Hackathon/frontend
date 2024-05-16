@@ -17,6 +17,7 @@ import ProfileFeedMarketplace from "@/components/ProfileFeedMarketplace";
 import ProfileFeedPost from "@/components/ProfileFeedPost";
 import ProfileNFT from "@/components/ProfileNFT";
 import ProfileBadge from "@/components/ProfileBadge";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Profile({ users, posts }: { users: User[], posts: (Post | MarketPlacePost)[] }) {
     // console.log(tokenImg)
@@ -25,6 +26,11 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
     const id = params.id || "";
 
     const [selected, setSelected] = useState('feed');
+    const [imageLoaded, setImageLoaded] = useState(false);
+
+    const handleImageLoad = () => {
+        setImageLoaded(true);
+    }
 
     const blankUser = {
         name: "",
@@ -186,7 +192,9 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
                 <div className='w-[full] lg:w-[35vw]'>
                     <ProfileHeader username={user.userName} />
                     <div className='h-[25vh] lg:h-[50vh]'>
-                        <img src={user.bannerImg} alt="" className='w-full lg:w-full h-full' />
+                    {!imageLoaded && <Skeleton className="w-full lg:w-full h-full" />}
+
+                        <img src={user.bannerImg} onLoad={handleImageLoad} alt="" className={`w-full lg:w-full h-full ${imageLoaded ? "block" : "hidden"}`} />
                     </div>
                     <div className='bg-background py-6 -mt-12 relative'>
                         <div className='px-4 flex flex-col items-center justify-center -mt-16 lg:-mt-20'>
@@ -201,7 +209,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
                         </div>
 
                         <div className='w-full mt-6 flex items-center justify-between text-foreground pb-6'>
-                            <div className={`${id == 'J7td4a56MVHTqYXDI2aD' && 'hidden'} w-full`}>
+                            <div className={`${id == 'E6U6YomFu3dFKqEXJQ2C' && 'hidden'} w-full`}>
                                 {following ?
                                     <Button onClick={unfollow} variant="following" className='w-1/2 relative group'>
                                         <span>Following</span>
@@ -213,7 +221,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
                                     <Button onClick={follow} variant="follow" className='w-1/2'>Follow</Button>
                                 }
                             </div>
-                            <div className={`${id != 'J7td4a56MVHTqYXDI2aD' ? 'hidden' : ''} w-full flex justify-center`}>
+                            <div className={`${id != 'E6U6YomFu3dFKqEXJQ2C' ? 'hidden' : ''} w-full flex justify-center`}>
                                 <div className="bg-accent/75 lg:bg-background hover:bg-secondary/75 w-fit py-1 px-2 rounded-lg flex items-center gap-2">
                                     <img className="w-[1.5rem]" src={tokenImg} alt="" />
                                     <p className="font-bold">1000 STR</p>

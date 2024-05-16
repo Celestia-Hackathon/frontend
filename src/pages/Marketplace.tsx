@@ -17,7 +17,7 @@ import PostNFT from "@/components/PostNFT";
 export default function Marketplace({ posts }: any) {
 
     const nfts = posts.filter((post: Post | MarketPlacePost) => !!(post as MarketPlacePost).nft);
-    console.log(nfts);
+    // console.log(nfts);
 
     return (
         <div className="flex lg:justify-between lg:pt-2 mb-16 justify-center items-center outline-none">
