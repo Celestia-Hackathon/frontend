@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { ThemeProvider } from './components/theme-provider'
 import { User, Post, MarketPlacePost } from './utils/types'
 import { gachaImgs } from './utils/gacha'
@@ -51,12 +51,9 @@ function App() {
         const response = await fetch("https://chatspace-backend.vercel.app/api/get-posts");
         if (response.ok) {
           const data = await response.json();
-          // console.log(data);
-
           setPosts(data);
         } else {
           console.error("error getting posts data");
-          // throw new Error("Something went wrong");
         }
       } catch (error) {
         console.error(error);
@@ -64,7 +61,7 @@ function App() {
     };
 
     fetchPosts();
-  }, [posts]);
+  }, []);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -72,12 +69,9 @@ function App() {
         const response = await fetch("https://chatspace-backend.vercel.app/api/get-users");
         if (response.ok) {
           const data = await response.json();
-          // console.log(data);
-
           setUsers(data);
         } else {
           console.error("error getting users data");
-          // throw new Error("Something went wrong");
         }
       } catch (error) {
         console.error(error);
@@ -96,19 +90,22 @@ function App() {
     fetchUserData();
   }, []);
 
+  const memoizedUsers = useMemo(() => users, [users]);
+  const memoizedPosts = useMemo(() => posts, [posts]);
+
   return (
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme' >
       <BrowserRouter >
         <Routes >
           <Route path="/" element={<Layout />} >
             <Route path='/' element={<Navigate />} />
-            <Route path='feed' element={<Home users={users} posts={posts}/>} />
-            <Route path='profile/:id' element={<Profile users={users} posts={posts} />} />
+            <Route path='feed' element={<Home users={memoizedUsers} posts={memoizedPosts} />} />
+            <Route path='profile/:id' element={<Profile users={memoizedUsers} posts={memoizedPosts} />} />
             <Route path='gacha' element={<Gacha />} />
-            <Route path='marketplace' element={<Marketplace posts={posts} />} />
-            <Route path='explore/:device' element={<ExploreHub posts={posts} />} />
+            <Route path='marketplace' element={<Marketplace posts={memoizedPosts} />} />
+            <Route path='explore/:device' element={<ExploreHub posts={memoizedPosts} />} />
             <Route path='quests' element={<Quests />} />
-            <Route path='new' element={<New users={users} />} />
+            <Route path='new' element={<New users={memoizedUsers} />} />
           </Route>
         </Routes>
       </BrowserRouter>
