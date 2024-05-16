@@ -1,3 +1,4 @@
+import '@rainbow-me/rainbowkit/styles.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { useState, useEffect, useMemo } from 'react'
@@ -13,6 +14,13 @@ import Marketplace from './pages/Marketplace'
 import ExploreHub from './pages/ExploreHub'
 import Quests from './pages/Quests'
 import New from './pages/New'
+import { WagmiProvider } from 'wagmi'
+import { config } from './config'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import Register from './pages/Register';
+
+const queryClient = new QueryClient();
 
 function App() {
   const blankUser: User = {
@@ -128,11 +136,18 @@ function App() {
   const memoizedQuests = useMemo(() => quests, [quests]);
 
   return (
+    <WagmiProvider config={config}>
+    <QueryClientProvider client={queryClient}>
+    <RainbowKitProvider locale='en-US' theme={darkTheme({
+      accentColor: '#f8fafc',
+      accentColorForeground: '#121212',
+    })} >
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme' >
       <BrowserRouter >
         <Routes >
+          <Route path='/' element={<Navigate />} />
+          <Route path='register' element = {<Register />} />
           <Route path="/" element={<Layout />} >
-            <Route path='/' element={<Navigate />} />
             <Route path='feed' element={<Home users={memoizedUsers} posts={memoizedPosts} />} />
             <Route path='profile/:id' element={<Profile users={memoizedUsers} posts={memoizedPosts} />} />
             <Route path='gacha' element={<Gacha />} />
@@ -144,6 +159,9 @@ function App() {
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
+    </RainbowKitProvider>
+    </QueryClientProvider>
+    </WagmiProvider>
   )
 }
 
