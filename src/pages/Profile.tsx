@@ -18,9 +18,20 @@ import ProfileFeedPost from "@/components/ProfileFeedPost";
 import ProfileNFT from "@/components/ProfileNFT";
 import ProfileBadge from "@/components/ProfileBadge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useAccount , useBalance } from 'wagmi'
+import { config } from '../config'
 
 export default function Profile({ users, posts }: { users: User[], posts: (Post | MarketPlacePost)[] }) {
     // console.log(tokenImg)
+    const account = useAccount(
+        {
+            config,
+        }
+    )
+    const balance = useBalance({
+        address: account.address,
+        token: '0x597346565Eb10a60336c6c9C1aCfB26E085fd426', 
+    }) as any
 
     const params = useParams();
     const id = params.id || "";
@@ -224,7 +235,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
                             <div className={`${id != 'E6U6YomFu3dFKqEXJQ2C' ? 'hidden' : ''} w-full flex justify-center`}>
                                 <div className="bg-accent/75 lg:bg-background hover:bg-secondary/75 w-fit py-1 px-2 rounded-lg flex items-center gap-2">
                                     <img className="w-[1.5rem]" src={tokenImg} alt="" />
-                                    <p className="font-bold">1000 STR</p>
+                                    <p className="font-bold">{(balance.data?.value / BigInt(10**18)).toString()} CAT</p>
                                 </div>
                             </div>
                             <div className='w-full flex flex-col items-center'>
