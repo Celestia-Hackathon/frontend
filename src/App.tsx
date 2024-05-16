@@ -19,6 +19,8 @@ import { config } from './config'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 
+const queryClient = new QueryClient();
+
 function App() {
   const blankUser: User = {
     name: "",
