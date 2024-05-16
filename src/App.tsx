@@ -17,8 +17,9 @@ import New from './pages/New'
 import { WagmiProvider } from 'wagmi'
 import { config } from './config'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { AvatarComponent, RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import Register from './pages/Register';
+import logo from '@/assets/logo.svg';
 
 const queryClient = new QueryClient();
 
@@ -136,10 +137,28 @@ function App() {
   const memoizedPosts = useMemo(() => posts, [posts]);
   const memoizedQuests = useMemo(() => quests, [quests]);
 
+  const CustomAvatar: AvatarComponent = () => {
+    return users[0].avatarImg ? (
+      <img
+        src={users[0].avatarImg}
+        width={80}
+        height={80}
+        style={{ borderRadius: 999 }}
+      />
+    ) : (
+      <img
+        src={logo}
+        width={80}
+        height={80}
+        style={{ borderRadius: 999 }}
+      />
+    );
+  };
+
   return (
     <WagmiProvider config={config}>
     <QueryClientProvider client={queryClient}>
-    <RainbowKitProvider locale='en-US' theme={darkTheme({
+    <RainbowKitProvider locale='en-US' avatar={CustomAvatar} theme={darkTheme({
       accentColor: '#f8fafc',
       accentColorForeground: '#121212',
     })} >

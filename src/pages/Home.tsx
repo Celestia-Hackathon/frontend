@@ -66,11 +66,19 @@ export default function Home({ users, posts }: {users: User[], posts: (Post | Ma
         // setPostsData(mockPosts);
     }, []);
 
+    const loggedInUser : User = JSON.parse(localStorage.getItem('user') || '{}');
+
     return (
         <div className="flex lg:justify-between lg:pt-2 mb-16 justify-center items-center outline-none">
             <DummyHeader />
             <div className="flex flex-col items-center w-full lg:w-[35vw]">
                 <div className="pt-2 flex items-center w-full h-full bg-background justify-start overflow-x-auto lg:w-full">
+                    <div className="mx-3">
+                        <AvatarFeed
+                            avatar={loggedInUser.avatarImg}
+                            username={loggedInUser.userName}
+                        />
+                    </div>
                     {users.map((user: User, index: number) => {
                         return (
                             <div className="mx-3">
@@ -78,7 +86,6 @@ export default function Home({ users, posts }: {users: User[], posts: (Post | Ma
                                     key={index}
                                     avatar={user.avatarImg}
                                     username={user.userName}
-                                    activeUser={index == 0}
                                 />
                             </div>
                         );

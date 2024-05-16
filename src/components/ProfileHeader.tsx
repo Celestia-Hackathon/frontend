@@ -1,7 +1,7 @@
 import { MoveLeft, Settings } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-export default function ProfileHeader({username} : {username: string}) {
+export default function ProfileHeader({name} : {name: string}) {
     const navigator = useNavigate();
     const handleClick = () => {
         navigator('/');
@@ -13,7 +13,7 @@ export default function ProfileHeader({username} : {username: string}) {
                     <MoveLeft size={20} color='hsl(var(--foreground))'/>
                 </div>
                 <div className="">
-                    <p className='text-base text-center font-bold my-auto'>{username}</p>
+                    <p className='text-base text-center font-bold my-auto'>{name}</p>
                 </div>
                 <div className="flex justify-center items-center">
                     <Settings size={20} />
