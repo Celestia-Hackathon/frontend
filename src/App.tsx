@@ -36,7 +36,8 @@ function App() {
     tokens: 0,
     postsId: [""],
     nfts: [],
-    badges: []
+    badges: [],
+    questsId: []
   }
 
   const blankPost: Post = {

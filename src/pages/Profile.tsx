@@ -43,7 +43,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
         setImageLoaded(true);
     }
 
-    const blankUser = {
+    const blankUser: User = {
         name: "",
         userName: "",
         userId: "",
@@ -56,8 +56,9 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
         tokens: 0,
         postsId: [""],
         nfts: [],
-        badges: []
-    }
+        badges: [],
+        questsId: []
+      }
 
     const [user, setUser] = useState<User>(blankUser);
     const [userPosts, setUserPosts] = useState<(Post | MarketPlacePost)[]>([]);
