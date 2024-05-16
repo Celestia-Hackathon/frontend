@@ -5,6 +5,7 @@ import Logo from "@/assets/logo.svg";
 import { Home, CircleUser, Store, ScrollText, PlusCircleIcon, Settings, Compass } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import D20 from './ui/d20';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export function Header() {
     const navigator = useNavigate();
@@ -23,6 +24,7 @@ export function Header() {
                         <NavButton to="/gacha"><D20 size={20} isSelected={useLocation().pathname.startsWith('/gacha')}/><span className='text-lg'>Gacha</span></NavButton>
                         <NavButton to="/profile/E6U6YomFu3dFKqEXJQ2C"><CircleUser size={20}/><span className='text-lg'>Profile</span></NavButton>
                         <NavButton to="/settings"><Settings size={20}/><span className='text-lg'>Settings</span></NavButton>
+                        <ConnectButton />
                     </div>
                 </div>
 

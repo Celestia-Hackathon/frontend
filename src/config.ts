@@ -22,5 +22,5 @@ export const config = getDefaultConfig({
     appName: 'My RainbowKit App',
     projectId: {projectId} as any,
     chains: [testnet, sepolia],
-    ssr: false, // If your dApp uses server side rendering (SSR)
+    ssr: true, // If your dApp uses server side rendering (SSR)
   });
