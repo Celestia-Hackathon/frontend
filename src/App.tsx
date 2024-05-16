@@ -18,6 +18,7 @@ import { WagmiProvider } from 'wagmi'
 import { config } from './config'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import Register from './pages/Register';
 
 const queryClient = new QueryClient();
 
@@ -107,8 +108,9 @@ function App() {
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme' >
       <BrowserRouter >
         <Routes >
+          <Route path='/' element={<Navigate />} />
+          <Route path='register' element = {<Register />} />
           <Route path="/" element={<Layout />} >
-            <Route path='/' element={<Navigate />} />
             <Route path='feed' element={<Home users={memoizedUsers} posts={memoizedPosts} />} />
             <Route path='profile/:id' element={<Profile users={memoizedUsers} posts={memoizedPosts} />} />
             <Route path='gacha' element={<Gacha />} />
