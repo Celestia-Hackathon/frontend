@@ -94,6 +94,21 @@ const updateUserInfo = async(address : string) => {
   }
 }
 
+const getUser = async(userId : string) => {
+  try {
+    const response = await fetch('https://chatspace-backend.vercel.app/api/get-user/' + userId);
+    if(response.status == 200) {
+        console.log("fetched user")
+        const data = await response.json();
+        return data;
+    } else if(response.status == 404) {
+        return ;
+    }
+  } catch(err) {
+    console.log(err);
+  }
+}
+
 const addUserNFT = async(userId : string, nft : NFT) => {
   try {
     const response = await fetch(`https://chatspace-backend.vercel.app/api/add-nft/${userId}`, {
@@ -127,6 +142,20 @@ const followUser = async (userId: string, otherUserId: string) => {
     }
 }
 
+const getUserPosts = async (userId: string) => {
+  try {
+    const response = await fetch('https://chatspace-backend.vercel.app/api/get-user-posts/' + userId);
+    if(response.status == 200) {
+        const data = await response.json();
+        return data;
+    } else if(response.status == 404) {
+        return ;
+    }
+  } catch(err) {
+    console.log(err);
+  }
+}
+
 export const api = {
     fetchPosts,
     fetchUserData,
@@ -135,5 +164,7 @@ export const api = {
     assignQuest,
     updateUserInfo,
     addUserNFT,
-    followUser
+    followUser,
+    getUser,
+    getUserPosts
 }
