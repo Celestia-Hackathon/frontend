@@ -1,7 +1,7 @@
 import {Eip1193Provider, ethers} from 'ethers';
 import CatCoin from '@/abi/CatCoin.sol/CatCoin.json';
 import CatNFT from '@/abi/CatNFT.sol/CatNFT.json';
-const NFTContractAddress = '0x12E0c157429a6765711D6Bde42B62bec095B9bB7';
+const NFTContractAddress = '0x109b845038c0960F71c1a564D76EBdc08b7B9254';
 const catCoinContractAddress = '0xA38dafA100bb9852b7C4065CdF2dE774c39043f8';
 
 export const getCatCoinBalance = async (account : any) => {
@@ -53,13 +53,11 @@ export const buyNFTWithCatCoin = async (metadataURI : string) => {
     const NFTContract = new ethers.Contract(NFTContractAddress, CatNFT.abi, signer);
     const catCoinContract = new ethers.Contract(catCoinContractAddress, CatCoin.abi, signer);
     
-    const costInCatCoin = ethers.parseUnits('1', 18);
+    const costInCatCoin = ethers.parseUnits('100', 18);
     const tx = await catCoinContract.transfer(NFTContractAddress, costInCatCoin);
     await tx.wait();
 
-    const mintTx = await NFTContract.payToMint(await signer.getAddress(), metadataURI,  {
-        value: ethers.parseEther('0.05'),
-    });
+    const mintTx = await NFTContract.payToMintWithCatCoins(await signer.getAddress(), metadataURI);
     await mintTx.wait();
     return mintTx.to;
 }
