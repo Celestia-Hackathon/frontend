@@ -54,7 +54,7 @@ export default function QuestCard({ quest }: { quest: Quest }) {
         if (progress === 100 && !isClaimed) {
             try {
                 const receipt = await claimTokens(reward);
-                if(receipt && receipt.status == 1) {
+                if(receipt && receipt == 1) {
                     await api.addQuestReward(loggedInUser.userId, quest.questId, reward);
                     await api.updateUserInfo(loggedInUser.wallet);
                     toast({
