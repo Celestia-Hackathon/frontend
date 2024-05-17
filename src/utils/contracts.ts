@@ -4,7 +4,6 @@ import CatNFT from '@/abi/CatNFT.sol/CatNFT.json';
 const NFTContractAddress = '0x12E0c157429a6765711D6Bde42B62bec095B9bB7';
 const catCoinContractAddress = '0xA38dafA100bb9852b7C4065CdF2dE774c39043f8';
 
-
 export const getCatCoinBalance = async (account : any) => {
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
@@ -21,7 +20,6 @@ export const getCatCoinBalance = async (account : any) => {
         return 0;
     }
 };
-
 
 export const getCount = async () => {
     const provider = new ethers.BrowserProvider(window.ethereum);
@@ -51,8 +49,8 @@ export const getURI = async (tokenId : number) => {
 export const buyNFTWithCatCoin = async (metadataURI : string) => {
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
+    
     const NFTContract = new ethers.Contract(NFTContractAddress, CatNFT.abi, signer);
-    const catCoinContractAddress = '0x597346565Eb10a60336c6c9C1aCfB26E085fd426';
     const catCoinContract = new ethers.Contract(catCoinContractAddress, CatCoin.abi, signer);
     
     const costInCatCoin = ethers.parseUnits('1', 18);
@@ -69,7 +67,6 @@ export const buyNFTWithCatCoin = async (metadataURI : string) => {
 export const claimTokens = async (reward : number) => {
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
-    
     const catCoinContract = new ethers.Contract(catCoinContractAddress, CatCoin.abi, signer);
 
     try {
@@ -81,4 +78,4 @@ export const claimTokens = async (reward : number) => {
         return;
     }
 
-};
+}

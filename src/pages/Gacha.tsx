@@ -4,11 +4,10 @@ import GachaElement from "@/components/GachaElement";
 import manekinekoImg from "@/assets/gacha/manekineko.png"
 import gachaButton from "@/assets/gacha-button.png";
 import { buyNFTWithCatCoin, getCount} from "@/utils/contracts";
-import { NFT } from "@/utils/types";
+import { NFT, User } from "@/utils/types";
 import { useState } from "react";
 import { blankNft } from "@/utils/blank";
-
-
+import { api } from "@/utils/api";
 
 export default function Gacha() {
     const [nft, setNft] = useState<NFT>(blankNft)
@@ -22,14 +21,14 @@ export default function Gacha() {
     }); */
     const contentIdImg = 'QmTudPsbaksg9oG3jR3uNYXtpjAkHGsGnh1tAqVAYt7nRy';
     const contentIdJson = 'QmY9yW5B7xHXBGDwW5Y5ido3VULyXD2njD4QhApBqxtPxd';
-    
+    const loggedInUser : User = JSON.parse(localStorage.getItem('user') || '{}');
 
     const startRoll = async () => {
         const tokenId = await getCount();
         const metadataURI = `${contentIdJson}/${tokenId}.json`
         const imageURI = `https://gateway.pinata.cloud/ipfs/${contentIdImg}/${tokenId}.png`;
         console.log(tokenId);
-        await buyNFTWithCatCoin(metadataURI);
+        const address = await buyNFTWithCatCoin(metadataURI);
        
         const response = await fetch(`https://gateway.pinata.cloud/ipfs/` + metadataURI)
         const data = await response.json(); 
@@ -38,11 +37,12 @@ export default function Gacha() {
             nftId: tokenId.toString(),
             nftImg: imageURI,
             name: data.name,
-            address: "0x",
+            address,
             rarity: data.attributes[0].rarity.charAt(0).toUpperCase() + data.attributes[0].rarity.slice(1)
         }
 
         setNft(nft)
+        await api.addUserNFT(loggedInUser.userId ,nft);
 
         document.querySelectorAll('#gachaEl').forEach((element) => {
         element.classList.add('-translate-x-[1850px]');
