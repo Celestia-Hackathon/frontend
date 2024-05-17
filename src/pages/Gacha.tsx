@@ -48,7 +48,7 @@ export default function Gacha() {
             const tokenId = await getCount();
             const metadataURI = `${contentIdJson}/${tokenId}.json`;
             const imageURI = `https://gateway.pinata.cloud/ipfs/${contentIdImg}/${tokenId}.png`
-            const address = "0x56012074492279b3C2a7a13c820c3ee5eFb67e7C";
+            const address = "0x7164c48b7EA2acAa055FA1B8738ba5A4F7abeFca";
 
             await buyNFTWithCatCoin(metadataURI);
 

@@ -2,8 +2,8 @@ import {ethers} from 'ethers';
 import { GelatoRelay } from "@gelatonetwork/relay-sdk";
 import CatCoin from '@/abi/CatCoin.sol/CatCoin.json';
 import CatNFT from '@/abi/CatNFT.sol/CatNFT.json';
-const NFTContractAddress = '0x56012074492279b3C2a7a13c820c3ee5eFb67e7C';
-const catCoinContractAddress = '0x4ebb45Ef0a7a5aE2BD1DEf50eE9EBF6628064cbb';
+const NFTContractAddress = '0x7164c48b7EA2acAa055FA1B8738ba5A4F7abeFca';
+const catCoinContractAddress = '0x04AD2aDd99df586E5236b0DA1EA2df1881E21662';
 
 const relay = new GelatoRelay();
 
