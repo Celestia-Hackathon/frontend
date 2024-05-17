@@ -57,7 +57,7 @@ export default function ProfileFeedMarketplace({ post }: { post: MarketPlacePost
                         <DrawerTrigger className="w-full">
                             <Button variant="buy" className="w-full px-0 py-1 text-xs h-fit leading-none flex gap-1">
                                 <ShoppingCart size={16} />
-                                <p className="text-xs lg:text-base font-bold">| {post.price + " STR"}</p>
+                                <p className="text-xs lg:text-base font-bold">| {post.price + " CAT"}</p>
                             </Button>
                         </DrawerTrigger>
                         <DrawerContent>

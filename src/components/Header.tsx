@@ -1,5 +1,4 @@
 import NavButton from '@/components/NavButton';
-import { ModeToggle } from '@/components/mode-toggle';
 import Logo from "@/assets/logo.svg";
 
 import { Home, CircleUser, Store, ScrollText, PlusCircleIcon, Settings, Compass } from 'lucide-react';
@@ -36,10 +35,6 @@ export function Header() {
                     <NavButton to="/gacha"><D20 size={24} isSelected={useLocation().pathname.startsWith('/gacha')}/></NavButton>
                     <NavButton to="/quests"><ScrollText size={24}/></NavButton>
                     <NavButton to={`/profile/${loggedInUser.userId}`}><CircleUser size={24}/></NavButton>
-                </div>
-
-                <div className="flex flex-col items-center justify-center hidden lg:flex">
-                    <ModeToggle/>
                 </div>
             </div>
         </div>

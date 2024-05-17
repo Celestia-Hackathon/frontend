@@ -88,6 +88,27 @@
   animation: float 8s ease-in-out infinite;
 }
 
+@keyframes float2 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.99);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.floating2 {
+  animation: float2 1.5s ease-in-out infinite;
+}
+
+.animate {
+  transform: scale(0.8);
+  transition: all 0.5s;
+}
+
 .animationAreaItems {
   border: 2px solid hsl(45 100% 99.2%);
   text-align: center;

@@ -12,11 +12,12 @@ import Gacha from './pages/Gacha'
 import Marketplace from './pages/Marketplace'
 import ExploreHub from './pages/ExploreHub'
 import Quests from './pages/Quests'
-import New from './pages/New'
 import Register from './pages/Register';
 
 import {api} from './utils/api';
 import { blankUser, blankPost, blankQuest } from './utils/blank';
+import NewMarketplacePost from './pages/NewMarketplacePost'
+import NewMarketplacePostIndex from './pages/NewMarketplacePostIndex'
 
 
 function App() {
@@ -64,7 +65,8 @@ function App() {
             <Route path='marketplace' element={<Marketplace posts={memoizedPosts} />} />
             <Route path='explore/:device' element={<ExploreHub posts={memoizedPosts} />} />
             <Route path='quests' element={<Quests quests={memoizedQuests} />} />
-            <Route path='new' element={<New users={memoizedUsers} />} />
+            <Route path='newmarketplace' element={<NewMarketplacePost  />} />
+            <Route path='newmarketplace/create' element={<NewMarketplacePostIndex  />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -21,6 +21,6 @@ export const testnet = defineChain({
 export const config = getDefaultConfig({
     appName: 'My RainbowKit App',
     projectId: {projectId} as any,
-    chains: [testnet, sepolia],
+    chains: [testnet],
     ssr: true, // If your dApp uses server side rendering (SSR)
   });

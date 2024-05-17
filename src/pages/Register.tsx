@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useAccount } from "@metamask/sdk-react-ui";
+import { useAccount } from "wagmi";
 import { useNavigate } from "react-router-dom";
 
 import logo from "@/assets/logo.svg";
@@ -58,10 +58,10 @@ export default function Register() {
                 console.log(response)
                 const data = await response.text();
                 console.log(data);
-                localStorage.setItem('user', JSON.stringify(userInfo));
-                await api.assignQuest(data, '1sJFXuOf39sjbXyFnrai');
+                localStorage.setItem('user', JSON.stringify({...userInfo, userId: data}));
                 await api.assignQuest(data, '3aeMuCve6e8FydEhcJdr');
                 await api.assignQuest(data, '3dACZetZDfdUiQ7MvumU');
+                await api.completeQuest(data, '3dACZetZDfdUiQ7MvumU');
                 navigator('/feed');
             }
         } catch(err) {

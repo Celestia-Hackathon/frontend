@@ -17,6 +17,7 @@ import { useAccount } from 'wagmi'
 import { getCatCoinBalance } from "@/utils/contracts";
 import { blankUser } from "@/utils/blank";
 import { api } from "@/utils/api";
+import { toast } from "@/components/ui/use-toast";
 
 export default function Profile({ users, posts }: { users: User[], posts: (Post | MarketPlacePost)[] }) {
     // console.log(tokenImg)
@@ -82,6 +83,15 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
             users.find((user: User) => user.userId === id)?.followers.push(loggedInUser.userId);
             loggedInUser.following.push(id);
             localStorage.setItem('user', JSON.stringify(loggedInUser));
+        
+            if(id == 'E6U6YomFu3dFKqEXJQ2C' && !(loggedInUser as User).questsId.includes('3aeMuCve6e8FydEhcJdr')) {
+                const res = await api.completeQuest(loggedInUser.userId, '3aeMuCve6e8FydEhcJdr');
+                if(res == 200) {
+                    console.log('deu bom patrao vai pega moeda')
+                }
+                toast({title: "Quest completed!", description: "Go to quests page to claim your prize."});
+                await api.updateUserInfo(loggedInUser.wallet);
+            }
         }
     }
 

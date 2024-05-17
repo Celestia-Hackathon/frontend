@@ -30,7 +30,7 @@ export default function NewPostBtn() {
                     </Button>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="bg-background focus:bg-inherit">
-                    <Button variant='secondary' className="flex p-0 bg-transparent items-center rounded-full" onClick={() => navigator("/new")}>
+                    <Button variant='secondary' className="flex p-0 bg-transparent items-center rounded-full" onClick={() => navigator("/newmarketplace")}>
                         <Store />
                         {/* <p>Post NFT</p> */}
                     </Button>
