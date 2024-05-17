@@ -43,10 +43,25 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
     const [following, setFollowing] = useState(false);
 
     useEffect(() => {
-        setUser(users.find((user: User) => user.userId === id) || blankUser);
-        const userPosts = posts.filter((post: Post | MarketPlacePost) => post.userId === id);
-        setUserPosts(userPosts || []);
-        setLoading(false);
+        if(users.length > 1 && posts.length > 1) {
+            console.log("entrei aq")
+            console.log(users)
+            setUser(users.find((user: User) => user.userId === id) || blankUser);
+            const userPosts = posts.filter((post: Post | MarketPlacePost) => post.userId === id);
+            setUserPosts(userPosts || []);
+            setLoading(false);
+            setImageLoaded(false);
+
+        } else {
+            console.log("to no fetch")
+            api.fetchUserData()
+                .then((data : User[]) => {setUser(data.find((el: User) => el.userId === id) || blankUser);})
+                
+            api.getUserPosts(id).then((data: (Post | MarketPlacePost)[]) => {setUserPosts(data)});
+            setLoading(false);
+            setImageLoaded(false);
+        }
+        
     }, [id])
 
     useEffect(() => {
