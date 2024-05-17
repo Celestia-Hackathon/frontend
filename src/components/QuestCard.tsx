@@ -1,31 +1,17 @@
 import { useState, useEffect } from 'react';
-import { Quest } from '@/utils/types';
+import { Quest, User } from '@/utils/types';
 // import { ChevronDown, ChevronUp } from 'lucide-react';
 // import { Progress } from "@/components/ui/progress";
 import ConfettiExplosion from 'react-confetti-explosion';
 import { useToast } from "@/components/ui/use-toast"
 import chatspace_token from "@/assets/chatspcae_token_v2.png";
+import { claimTokens } from '@/utils/contracts';
 
 export default function QuestCard({ quest }: { quest: Quest }) {
     const { questName, questId, questDescription, reward, createdBy, completedBy } = quest;
 
     // consider that our user data is hardcoded for now, and that soon we can retrieve its data from localstorage
-    const user = {
-        userId: "E6U6YomFu3dFKqEXJQ2C",
-        name: "Chatspace",
-        userName: "Chatspace",
-        followers: [],
-        following: [],
-        bio: "I'm a Cat bruh",
-        avatarImg: "https://avatars.githubusercontent.com/u/52754547?v=4",
-        bannerImg: "https://avatars.githubusercontent.com/u/52754547?v=4",
-        postsId: [],
-        nfts: [],
-        badges: [],
-        wallet: "0x123456789",
-        tokens: 0,
-        questsId: ["1sJFXuOf39sjbXyFnrai"]
-    }
+    const loggedInUser : User = JSON.parse(localStorage.getItem('user') || '{}');
 
     const [expanded, setExpanded] = useState(false);
     const [isExploding, setIsExploding] = useState(false);
@@ -43,13 +29,13 @@ export default function QuestCard({ quest }: { quest: Quest }) {
     //     return () => clearTimeout(timer);
     // }, []);
 
-    //set isclaimed to true if the user has already completed the quest (that is, if my user.questsId includes the questId)
+    //set isclaimed to true if the user has already completed the quest (that is, if my loggedInUser.questsId includes the questId)
     useEffect(() => {
-        if (user.questsId.includes(questId)) {
+        if (loggedInUser.questsId.includes(questId)) {
             setIsClaimed(true);
             console.log("Rewards claimed by user");
         }
-    }, [questId, user.questsId]);
+    }, [questId, loggedInUser.questsId]);
 
     useEffect(() => {
         if (completedBy.includes("E6U6YomFu3dFKqEXJQ2C")) {
@@ -66,8 +52,9 @@ export default function QuestCard({ quest }: { quest: Quest }) {
     const claimReward = async () => {
         if (progress === 100 && !isClaimed) {
             try {
-                const response = await fetch(`https://chatspace-backend.vercel.app/api/add-quest-reward/${"E6U6YomFu3dFKqEXJQ2C"}/${questId}/${reward}`);
-                if (response.ok) {
+                // const response = await api.addQuestReward(loggedInUser.userId, questId, reward.toString());
+                if (true) {
+                    await claimTokens(reward);
                     toast({
                         title: `Congratulations on completing the quest!`,
                         description: `You have been rewarded with ${reward} CAT's! 🎉`,
@@ -79,6 +66,7 @@ export default function QuestCard({ quest }: { quest: Quest }) {
                     setTimeout(() => {
                         setIsExploding(false);
                     }, 2000);
+
                 } else {
                     console.error("error claiming reward");
                 }

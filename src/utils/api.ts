@@ -49,8 +49,39 @@ const fetchQuests = async () => {
     }
 };
 
+const getUserByWallet = async (address: string) => {
+  try {
+      const response = await fetch('https://chatspace-backend.vercel.app/api/get-user/' + address);
+      if(response.status == 200) {
+          const data = await response.json();
+          localStorage.setItem('user', JSON.stringify(data));
+          return 200;
+      } else if(response.status == 404) {
+          return 404;
+      }
+  } catch(err) {
+      console.log(err);
+      return 400;
+  }
+}
+
+const addQuestReward = async (userId: string, questId: string, reward : string) => {
+  try {
+    const response = await fetch(`https://chatspace-backend.vercel.app/api/add-quest-reward/${userId}/${questId}/${reward}`);
+    if(response.ok) {
+      console.log("Quest reward added");
+      return 200;
+    }
+  } catch(err) {
+    console.log(err);
+    return 400;
+  }
+}
+
 export const api = {
     fetchPosts,
     fetchUserData,
-    fetchQuests
+    fetchQuests,
+    getUserByWallet,
+    addQuestReward
 }

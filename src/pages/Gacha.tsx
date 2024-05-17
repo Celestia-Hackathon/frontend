@@ -25,25 +25,8 @@ export default function Gacha() {
     
     const startRoll = () => {
         // at first, it should generate an random NFT
-        /*
-        const generateNFT = async () => {
-            try {
-                const response = await fetch("https://chatspace-backend.vercel.app/api/get-random-nft");
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log(data);
-                    setNft(data);
-                } else {
-                    console.error("error getting nft data");
-                    // throw new Error("Something went wrong");
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        */
         
-        //setNft(nftImg);
+
         document.querySelectorAll('#gachaEl').forEach((element) => {
             element.classList.add('-translate-x-[1850px]');
         })

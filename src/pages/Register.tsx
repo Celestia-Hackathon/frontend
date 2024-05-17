@@ -40,7 +40,8 @@ export default function Register() {
             bannerImg: marketplacepost,
             postsId: [],
             nfts: [],
-            badges: []
+            badges: [],
+            questsId: ["1sJFXuOf39sjbXyFnrai", "3aeMuCve6e8FydEhcJdr", "3dACZetZDfdUiQ7MvumU"]
         }
 
         try {
