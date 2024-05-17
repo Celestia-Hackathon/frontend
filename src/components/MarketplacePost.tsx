@@ -27,6 +27,8 @@ interface MarketplacePostProps {
     userId: string;
     userName: string;
     userImg: string;
+    postImg: string;
+    description: string;
     likes: string[];
     nft: NFT;
     price?: number;

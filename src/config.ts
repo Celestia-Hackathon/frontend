@@ -1,5 +1,4 @@
 import { defineChain } from 'viem'
-import { sepolia } from 'wagmi/chains'
 import { getDefaultConfig } from '@rainbow-me/rainbowkit';
 
 const projectId = '7a6f6198dfa778cf78750771eac41053'

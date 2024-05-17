@@ -18,7 +18,7 @@ import { getCatCoinBalance } from "@/utils/contracts";
 import { blankUser } from "@/utils/blank";
 import { api } from "@/utils/api";
 import { toast } from "@/components/ui/use-toast";
-import { ScrollArea } from "@/components/ui/scroll-area"
+// import { ScrollArea } from "@/components/ui/scroll-area"
 
 export default function Profile({ users, posts }: { users: User[], posts: (Post | MarketPlacePost)[] }) {
     // console.log(tokenImg)

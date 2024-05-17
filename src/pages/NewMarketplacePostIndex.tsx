@@ -44,7 +44,7 @@ export default function NewMarketplacePostIndex() {
             <DummyHeader />
             <div className="flex flex-col items-center w-full lg:w-[35vw]">
                 <div className="w-[80%]">
-                    <MarketplacePost userId={loggedInUser.userId} userName={loggedInUser.userName} userImg={loggedInUser.avatarImg} nft={nft} likes={[]} price={price}/>
+                    <MarketplacePost userId={loggedInUser.userId} userName={loggedInUser.userName} userImg={loggedInUser.avatarImg} nft={nft} likes={[]} postImg='' description="" price={price}/>
                 </div>
                 <div className="relative w-full flex flex-col items-center justify-center">
                     <input type="number" placeholder="Value" value={price} onChange={handleChange} className="w-[80%] text-base text-muted border-2 bg-common p-2 py-1 rounded-lg"/>
