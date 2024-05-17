@@ -238,7 +238,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
                                 <div className="bg-secondary ml-2 lg:bg-background hover:bg-secondary/75 w-fit py-1 px-2 rounded-lg flex items-center gap-2">
                                     <img className="w-[1.5rem]" src={tokenImg} alt="" />
                                     {/* <p className="font-bold">{user.tokens} CAT</p> */}
-                                    <p className="font-bold">{(balance.data?.value / BigInt(10**18)).toString()} CAT</p>
+                                    <p className="font-bold">{((balance.data?.value / BigInt(10**18)).toString())||""} CAT</p>
                                 </div>
                             </div>
                             <div className='w-full flex flex-col items-center'>

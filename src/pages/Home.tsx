@@ -3,13 +3,14 @@ import { useEffect } from "react";
 import { AvatarFeed } from "@/components/AvatarFeed";
 import Card from "@/components/Card";
 import DummyHeader from "@/components/DummyHeader";
+import NewPostBtn from "@/components/NewPostsBtn";
 
 import { MarketPlacePost, Post, User } from "@/utils/types.ts";
 
 // import { mockUsers } from "@/utils/mockUsers";
 // import { mockPosts } from "@/utils/mockPosts";
 
-export default function Home({ users, posts }: {users: User[], posts: (Post | MarketPlacePost)[]}) {
+export default function Home({ users, posts }: { users: User[], posts: (Post | MarketPlacePost)[] }) {
     // const blankUser: User = {
     //     name: "",
     //     userName: "",
@@ -104,9 +105,14 @@ export default function Home({ users, posts }: {users: User[], posts: (Post | Ma
                         );
                     })}
                 </div>
-                
+
             </div>
             <DummyHeader />
+
+            <div className="fixed bottom-20 right-5 z-10"> {/* Apply absolute positioning here */}
+                <NewPostBtn />
+            </div>
+
         </div>
     )
 }
