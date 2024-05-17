@@ -1,17 +1,23 @@
 import { CirclePlus } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useNavigate } from "react-router-dom";
 
 export function AvatarFeed({
   avatar,
   username,
   activeUser = false,
+  userId,
 }: {
   avatar: any;
   username: string;
   activeUser?: boolean;
+  userId: string;
 }) {
+
+  const navigator = useNavigate();
+
   return (
-    <div className="flex flex-col items-center">
+    <div onClick={() => navigator(`/profile/${userId}`)} className="flex flex-col items-center">
       <div className="w-[3.5rem] h-[3.5rem] lg:w-[4rem] lg:h-[4rem] relative cursor-pointer">
         {/* <img
             src={avatar}
