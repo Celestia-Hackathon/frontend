@@ -81,7 +81,7 @@ export default function Register() {
                         <div className="flex flex-col">
                             <input type="text" placeholder="wallet" value={account.address} readOnly className="text-sm text-muted border-2 bg-common p-2 py-1 rounded-lg mt-3" />
                             <input onChange={handleChange} name="name" type="text" placeholder="name" autoFocus className="text-sm text-primary-foreground border-2 border-gray-200 p-2 py-1 rounded-lg focus:outline-none focus:border-blue-500 mt-3" />
-                            <input onChange={handleChange} name="username" type="text" placeholder="username" autoFocus className="text-sm text-primary-foreground border-2 border-gray-200 p-2 py-1 rounded-lg focus:outline-none focus:border-blue-500 mt-3" />
+                            <input onChange={handleChange} name="username" type="text" placeholder="username" className="text-sm text-primary-foreground border-2 border-gray-200 p-2 py-1 rounded-lg focus:outline-none focus:border-blue-500 mt-3" />
                             <input type="password" placeholder="password" className="text-sm text-primary-foreground border-2 border-gray-200 p-2 py-1 rounded-lg focus:outline-none focus:border-blue-500 mt-3" />
                             <input type="password" placeholder="confirm password" className="text-sm text-primary-foreground border-2 border-gray-200 p-2 py-1 rounded-lg focus:outline-none focus:border-blue-500 mt-3" />
                             <div className="w-full justify-center mt-6">

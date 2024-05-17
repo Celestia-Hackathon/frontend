@@ -5,7 +5,7 @@ import { Quest, User } from '@/utils/types';
 import ConfettiExplosion from 'react-confetti-explosion';
 import { useToast } from "@/components/ui/use-toast"
 import chatspace_token from "@/assets/chatspcae_token_v2.png";
-import { claimTokens } from '@/utils/contracts';
+import { addCatCoinToWallet, claimTokens } from '@/utils/contracts';
 import { api } from '@/utils/api';
 
 export default function QuestCard({ quest }: { quest: Quest }) {
@@ -57,6 +57,7 @@ export default function QuestCard({ quest }: { quest: Quest }) {
                 if(receipt && receipt == 1) {
                     await api.addQuestReward(loggedInUser.userId, quest.questId, reward);
                     await api.updateUserInfo(loggedInUser.wallet);
+                    await addCatCoinToWallet();
                     toast({
                         title: `Congratulations on completing the quest!`,
                         description: `You have been rewarded with ${reward} CAT's! 🎉`,

@@ -57,7 +57,7 @@ export const buyNFTWithCatCoin = async (metadataURI: string) => {
     const catCoinContract = new ethers.Contract(catCoinContractAddress, CatCoin.abi, signer);
 
     const apiKey = "3QyZFI__i8AP7peyKJTx9aBfA78jT8ENragF776GOK4_";
-    
+
     try {
         const functionDataTransfer = catCoinContract.interface.encodeFunctionData(
             "transferTokens",
@@ -146,5 +146,33 @@ export const claimTokens = async (reward : number) => {
         console.error("Error fetching balance:", error);
         return;
     }
-
 }
+
+export const addCatCoinToWallet = async () => {
+    const provider = new ethers.BrowserProvider(window.ethereum);
+
+    const tokenAddress = catCoinContractAddress;
+    const tokenSymbol = 'CAT';
+    const tokenDecimals = 18;
+    const tokenImage = 'https://gateway.pinata.cloud/ipfs/QmZHBnnHaXM1k1xGLukV3UAT8qgsNDGBrWeHyYwySkLa8A/cat.png';
+
+    try {
+      const wasAdded = await provider.send('wallet_watchAsset', {
+        type: 'ERC20',
+        options: {
+          address: tokenAddress,
+          symbol: tokenSymbol,
+          decimals: tokenDecimals,
+          image: tokenImage,
+        },
+      });
+
+      if (wasAdded) {
+        console.log('Token added!');
+      } else {
+        console.log('Token not added.');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };

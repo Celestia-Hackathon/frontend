@@ -186,7 +186,7 @@ export default function Gacha() {
                 <div className="z-50 w-[100vw] h-[100vh]  bg-background/75 fixed justify-center items-center flex">
                     <LoadingSpinner />
                     <p className="ml-2">
-                        Waiting for the confirmation...
+                        Waiting for the confirmation... It can take a minute
                     </p>
                 </div>
             }
