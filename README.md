@@ -62,21 +62,22 @@ The ...
 
 ## Items Completed For the Hackathon
 
-- Blockchain Side:
+- *Blockchain Side:*
       - [NFT-generator](https://github.com/Celestia-Hackathon/NFT-generator): It's the code in JS used for generating random combinations of a selected asset of layers that are used as the NFT's for the project.
       - [Tokens](https://github.com/Celestia-Hackathon/ERC721-ERC20): These are the contracts used for creating, minting and interacting with the CAT coin (a ERC20 token) and the NFT's (ERC721 tokens) deployed to OP Celestia Raspberry Testnet.
 
   - *Client Side:*
-    - *Web Owner Features:*
-      - Focused in the funding and management of properties.
-      - Create Project ('/create-project' route)
-      - Funding Project (after choose one in the '/projects' route)
+    - Web Owner Features:
+      - Focused in the management of the tokens.
+      - Withdraw funds from CATS trading.
+      - Manage CATS to ETH rate.
       - Manage holdings and create proposals ('/my-holding' route)
-    - *Web Renter Features:*
-      - Focused in the rent of properties.
-      - Rent a Property (after choose one in the '/' route)
-      - See Trips upcoming or past ('/trips' route)
-     
+    - *Web User Features:*
+	- Buy NFT's in the marketplace ('/Marketplace' route)
+	- Explore the social network. ('/ExploreHub' route)
+	- Make posts. ('/NewMarketPlacePost' route)
+	- Do quests to win CATS. ('/Quests' route)
+Use the gatcha to win an NFT with no gas fees. ('/Gatcha' route)7
 ### Addresses
 
 - Gelato:
