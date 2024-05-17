@@ -62,10 +62,9 @@ The ...
 
 ## Items Completed For the Hackathon
 
-  - *Blockchain Side:*
-      - [ProjectAccount](https://github.com/WhaleLabs/block-estate-contracts/blob/master/src/ProjectAccount.sol): It's the contract that creates the account for the deposits, managing the transactions between stakeholders and where it is implemented the ERC 404 and the ERC 6551.
-      - [Rentals](https://github.com/WhaleLabs/block-estate-contracts/blob/master/src/Rentals.sol): It's the address that keeps the implementation of the rent value interaction.
-      - [WhaleFinance](https://github.com/WhaleLabs/block-estate-contracts/blob/master/src/BlockEstate.sol): It's the main contract, which implements the creation of the project (property) starting the crowdfunding.
+- Blockchain Side:
+      - [NFT-generator](https://github.com/Celestia-Hackathon/NFT-generator): It's the code in JS used for generating random combinations of a selected asset of layers that are used as the NFT's for the project.
+      - [Tokens](https://github.com/Celestia-Hackathon/ERC721-ERC20): These are the contracts used for creating, minting and interacting with the CAT coin (a ERC20 token) and the NFT's (ERC721 tokens) deployed to OP Celestia Raspberry Testnet.
 
   - *Client Side:*
     - *Web Owner Features:*
