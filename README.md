@@ -29,7 +29,11 @@
 
 ### Technology Stack
 
-- React.
+- React Vite
+- Nodejs
+- Solidity
+- Firebase
+- Gelato
 
 - *Project Repos:*
 
@@ -53,13 +57,17 @@
 
 - *Screenshots*
 
-![Project Photo](public/screenshot_mobile_feed.png)
+![Project Photo](public/img1.jpg)
+
+![Project Photo](public/tech1.jpg)
 
 ![Project Photo](public/screenshot_mobile_gacha.png)
 
+![Project Photo](public/screenshot_mobile_feed.png)
+
 - *Project Logo:* 
 
-![Project Photo](public/Chatspace_logo.png)
+![Project Photo](public/Chatspace_text.png)
 
 
 ## Items Completed For the Hackathon
@@ -69,17 +77,15 @@
       - [Tokens](https://github.com/Celestia-Hackathon/ERC721-ERC20): These are the contracts used for creating, minting and interacting with the CAT coin (a ERC20 token) and the NFT's (ERC721 tokens) deployed to OP Celestia Raspberry Testnet.
 
   - *Client Side:*
-    - Web Owner Features:
       - Focused in the management of the tokens.
       - Withdraw funds from CATS trading.
       - Manage CATS to ETH rate.
-      - Manage holdings and create proposals ('/my-holding' route)
-    - *Web User Features:*
-	- Buy NFT's in the marketplace ('/Marketplace' route)
-	- Explore the social network. ('/ExploreHub' route)
-	- Make posts. ('/NewMarketPlacePost' route)
-	- Do quests to win CATS. ('/Quests' route)
-Use the gatcha to win an NFT with no gas fees. ('/Gatcha' route)
+      - Manage holdings and create proposals 
+	    - Buy NFT's in the marketplace 
+	    - Explore the social network. 
+	    - Make posts.
+	    - Do quests to win CATS. 
+      - Use the gatcha to win an NFT with no gas fees. 
 
 ### Addresses
 
