@@ -18,6 +18,7 @@ import { getCatCoinBalance } from "@/utils/contracts";
 import { blankUser } from "@/utils/blank";
 import { api } from "@/utils/api";
 import { toast } from "@/components/ui/use-toast";
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 export default function Profile({ users, posts }: { users: User[], posts: (Post | MarketPlacePost)[] }) {
     // console.log(tokenImg)
@@ -83,13 +84,13 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
             users.find((user: User) => user.userId === id)?.followers.push(loggedInUser.userId);
             loggedInUser.following.push(id);
             localStorage.setItem('user', JSON.stringify(loggedInUser));
-        
-            if(id == 'E6U6YomFu3dFKqEXJQ2C' && !(loggedInUser as User).questsId.includes('3aeMuCve6e8FydEhcJdr')) {
+
+            if (id == 'E6U6YomFu3dFKqEXJQ2C' && !(loggedInUser as User).questsId.includes('3aeMuCve6e8FydEhcJdr')) {
                 const res = await api.completeQuest(loggedInUser.userId, '3aeMuCve6e8FydEhcJdr');
-                if(res == 200) {
+                if (res == 200) {
                     console.log('deu bom patrao vai pega moeda')
                 }
-                toast({title: "Quest completed!", description: "Go to quests page to claim your prize."});
+                toast({ title: "Quest completed!", description: "Go to quests page to claim your prize." });
                 await api.updateUserInfo(loggedInUser.wallet);
             }
         }
@@ -136,7 +137,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
             {!loading &&
                 <div className='w-[full] lg:w-[35vw]'>
                     <ProfileHeader name={user.name} />
-                    <div className='h-[25vh] lg:h-[50vh]'>
+                    <div className='h-[20vh] lg:h-[30vh]'>
                         {!imageLoaded && <Skeleton className="w-full lg:w-full h-full" />}
 
                         <img src={user.bannerImg} onLoad={handleImageLoad} alt="" className={`w-full lg:w-full h-full ${imageLoaded ? "block" : "hidden"}`} />
@@ -153,7 +154,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
                             <CopyAddress background="dark" address={user.wallet} />
                         </div>
 
-                        <div className='w-full mt-6 flex items-center justify-between text-foreground pb-6'>
+                        <div className='w-full mt-4 flex items-center justify-between text-foreground'>
                             <div className={`${id == loggedInUser.userId && 'hidden'} w-full`}>
                                 {following ?
                                     <Button variant="following" className='w-1/2 relative group'>
@@ -183,7 +184,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
                             </div>
                         </div>
 
-                        <div className="flex flex-row justify-between w-full">
+                        <div className="flex flex-row justify-between w-full sticky top-0 bg-background z-10 pt-2">
                             <div onClick={() => { setSelected('feed') }} className={`py-2 w-full flex justify-center cursor-pointer ${selected == 'feed' ? 'border-b-2 border-accent' : ''}`}>
                                 <div className="relative">
                                     <Grid3x3 size={28} color={selected == 'feed' ? 'hsl(var(--accent))' : 'hsl(var(--primary))'} />
@@ -210,7 +211,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
                             </div>
                         </div>
 
-                        <div className='grid grid-cols-3 gap-x-[0.01rem] overflow-hidden'>
+                        <div className='grid grid-cols-3 gap-x-[0.01rem] pb-10'>
                             {selected == 'feed' && userPosts.map((post: MarketPlacePost | Post, index: number) => {
                                 const isMarketPlace = !!(post as MarketPlacePost).nft;
                                 if (isMarketPlace) {
