@@ -17,7 +17,7 @@ export function AvatarFeed({
   const navigator = useNavigate();
 
   return (
-    <div onClick={() => navigator(`/profile/${userId}`)} className="flex flex-col items-center">
+    <div onClick={() => navigator(`/profile/${userId}`)} className="flex flex-col items-center py-1">
       <div className="w-[3.5rem] h-[3.5rem] lg:w-[4rem] lg:h-[4rem] relative cursor-pointer">
         {/* <img
             src={avatar}

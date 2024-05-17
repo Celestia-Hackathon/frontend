@@ -1,106 +1,127 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
-  @layer base {
+@layer base {
     @font-face {
-      font-family: 'Lucky';
-      src: url('/fonts/gacha.ttf');
+        font-family: "Lucky";
+        src: url("/fonts/gacha.ttf");
     }
 
     @font-face {
-      font-family: 'Pixel';
-      src: url('/fonts/pixel.ttf');
+        font-family: "Pixel";
+        src: url("/fonts/pixel.ttf");
     }
 
     :root {
-      --background: 45 100% 99.2%;
-      --foreground: 0 0% 7.1%;
+        --background: 45 100% 99.2%;
+        --foreground: 0 0% 7.1%;
 
-      --card: 45 100% 99.2%;
-      --card-foreground: 0 0% 7.1%;
+        --card: 45 100% 99.2%;
+        --card-foreground: 0 0% 7.1%;
 
-      --popover: 45 100% 99.2%;
-      --popover-foreground: 0 0% 7.1%;
+        --popover: 45 100% 99.2%;
+        --popover-foreground: 0 0% 7.1%;
 
-      --primary: 222.2 47.4% 11.2%;
-      --primary-foreground: 210 40% 98%;
+        --primary: 222.2 47.4% 11.2%;
+        --primary-foreground: 210 40% 98%;
 
-      --secondary: 45 16.7% 95.3%;
-      --secondary-foreground: 222.2 47.4% 11.2%;
+        --secondary: 45 16.7% 95.3%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
 
-      --muted: 210 40% 96.1%;
-      --muted-foreground: 215.4 16.3% 46.9%;
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
 
-      --accent: 210 84% 62%;
-      --accent-foreground: 222.2 47.4% 11.2%;
+        --accent: 210 84% 62%;
+        --accent-foreground: 222.2 47.4% 11.2%;
 
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 210 40% 98%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
 
-      --border: 214.3 31.8% 91.4%;
-      --input: 214.3 31.8% 91.4%;
-      --ring: 0 0% 7.1%;
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 0 0% 7.1%;
 
-      --radius: 0.5rem;
+        --radius: 0.5rem;
 
-      --common: 60 9% 89%;
-      --uncommon: 125 100% 78%;
-      --rare: 190 98% 83%;
-      --epic: 291 95% 70%;
-      --legendary: 63 100% 61%;
-      --special: 30 97% 54%;
+        --common: 60 9% 89%;
+        --uncommon: 125 100% 78%;
+        --rare: 190 98% 83%;
+        --epic: 291 95% 70%;
+        --legendary: 63 100% 61%;
+        --special: 30 97% 54%;
 
-      --marketplace: 0 0% 19%;
+        --marketplace: 0 0% 19%;
     }
 
     .dark {
-      --background: 0 0% 7.1%;
-      --foreground: 45 100% 99.2%;
+        --background: 0 0% 7.1%;
+        --foreground: 45 100% 99.2%;
 
-      --card: 0 0% 7.1%;
-      --card-foreground: 210 40% 98%;
+        --card: 0 0% 7.1%;
+        --card-foreground: 210 40% 98%;
 
-      --popover: 0 0% 7.1%;
-      --popover-foreground: 210 40% 98%;
+        --popover: 0 0% 7.1%;
+        --popover-foreground: 210 40% 98%;
 
-      --primary: 210 40% 98%;
-      --primary-foreground: 222.2 47.4% 11.2%;
+        --primary: 210 40% 98%;
+        --primary-foreground: 222.2 47.4% 11.2%;
 
-      --secondary: 0 0% 10.6%;
-      --secondary-foreground: 210 40% 98%;
+        --secondary: 0 0% 10.6%;
+        --secondary-foreground: 210 40% 98%;
 
-      --muted: 217.2 32.6% 17.5%;
-      --muted-foreground: 215 20.2% 65.1%;
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
 
-      --accent: 219.7 100% 57.6%;
-      --accent-foreground: 210 40% 98%;
+        --accent: 219.7 100% 57.6%;
+        --accent-foreground: 210 40% 98%;
 
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 210 40% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
 
-      --border: 217.2 32.6% 17.5%;
-      --input: 0 0% 10.6%;
-      --ring: 212.7 26.8% 83.9%;
+        --border: 217.2 32.6% 17.5%;
+        --input: 0 0% 10.6%;
+        --ring: 212.7 26.8% 83.9%;
 
-      --common: 60 9% 89%;
-      --uncommon: 125 100% 78%;
-      --rare: 190 98% 83%;
-      --epic: 291 95% 70%;
-      --legendary: 63 100% 61%;
-      --special: 30 97% 54%;
+        --common: 60 9% 89%;
+        --uncommon: 125 100% 78%;
+        --rare: 190 98% 83%;
+        --epic: 291 95% 70%;
+        --legendary: 63 100% 61%;
+        --special: 30 97% 54%;
 
-      --marketplace: 60 9% 89%;
+        --marketplace: 60 9% 89%;
     }
-  }
+}
 
-  @layer base {
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+    width: 10px; /* width of the entire scrollbar */
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #121212; /* color of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #2c2c2c; /* color of the scroll thumb */
+    border-radius: 10px; /* roundness of the scroll thumb */
+    border: 3px solid #121212; /* creates padding around scroll thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* color of the scroll thumb when hovered */
+}
+
+@layer base {
     * {
-      @apply border-border;
+        @apply border-border;
     }
     body {
-      @apply bg-background text-foreground;
+        @apply bg-background text-foreground;
     }
+}
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;

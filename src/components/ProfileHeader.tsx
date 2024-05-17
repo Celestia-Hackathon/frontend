@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export default function ProfileHeader({name} : {name: string}) {
     const navigator = useNavigate();
     const handleClick = () => {
-        navigator('/');
+        navigator(-1);
     }
     return (
         <header className='lg:hidden'>
