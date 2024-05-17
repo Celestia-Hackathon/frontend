@@ -49,23 +49,7 @@ const fetchQuests = async () => {
     }
 };
 
-const getUserByWallet = async (address: string) => {
-  try {
-      const response = await fetch('https://chatspace-backend.vercel.app/api/get-user/' + address);
-      if(response.status == 200) {
-          const data = await response.json();
-          localStorage.setItem('user', JSON.stringify(data));
-          return 200;
-      } else if(response.status == 404) {
-          return 404;
-      }
-  } catch(err) {
-      console.log(err);
-      return 400;
-  }
-}
-
-const addQuestReward = async (userId: string, questId: string, reward : string) => {
+const addQuestReward = async (userId: string, questId: string, reward : number) => {
   try {
     const response = await fetch(`https://chatspace-backend.vercel.app/api/add-quest-reward/${userId}/${questId}/${reward}`);
     if(response.ok) {
@@ -78,10 +62,43 @@ const addQuestReward = async (userId: string, questId: string, reward : string) 
   }
 }
 
+const assignQuest = async (userId: string, questId : string) => {
+  try {
+    const response = await fetch(`https://chatspace-backend.vercel.app/api/apply-for-quest/${userId}/${questId}`);
+    if(response.status == 200) {
+        const data = await response.json();
+        localStorage.setItem('user', JSON.stringify(data));
+        return 200;
+    } else if(response.status == 404) {
+        return 404;
+    }
+  } catch(err) {
+    console.log(err);
+    return 400;
+  }
+}
+
+const updateUserInfo = async(address : string) => {
+  try {
+    const response = await fetch('https://chatspace-backend.vercel.app/api/get-user/' + address);
+    if(response.status == 200) {
+        const data = await response.json();
+        localStorage.setItem('user', JSON.stringify(data));
+        return 200;
+    } else if(response.status == 404) {
+        return 404;
+    }
+  } catch(err) {
+    console.log(err);
+    return 400;
+  }
+}
+
 export const api = {
     fetchPosts,
     fetchUserData,
     fetchQuests,
-    getUserByWallet,
-    addQuestReward
+    addQuestReward,
+    assignQuest,
+    updateUserInfo
 }

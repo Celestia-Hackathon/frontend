@@ -7,6 +7,7 @@ import logo from "@/assets/logo.svg";
 import marketplacepost from "@/assets/marketplacepost.png";
 
 import { getCatCoinBalance } from "@/utils/contracts";
+import { api } from "@/utils/api";
 
 export default function Register() {
     const navigator = useNavigate();
@@ -41,7 +42,7 @@ export default function Register() {
             postsId: [],
             nfts: [],
             badges: [],
-            questsId: ["1sJFXuOf39sjbXyFnrai", "3aeMuCve6e8FydEhcJdr", "3dACZetZDfdUiQ7MvumU"]
+            questsId: []
         }
 
         try {
@@ -53,10 +54,14 @@ export default function Register() {
                 body: JSON.stringify(userInfo)
             });
 
-            console.log(response.status);
-
-            if(response.status == 200) {
+            if(response.ok) {
+                console.log(response)
+                const data = await response.text();
+                console.log(data);
                 localStorage.setItem('user', JSON.stringify(userInfo));
+                await api.assignQuest(data, '1sJFXuOf39sjbXyFnrai');
+                await api.assignQuest(data, '3aeMuCve6e8FydEhcJdr');
+                await api.assignQuest(data, '3dACZetZDfdUiQ7MvumU');
                 navigator('/feed');
             }
         } catch(err) {

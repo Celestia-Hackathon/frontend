@@ -3,6 +3,7 @@ import card1 from "@/assets/card1.png";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 import { useEffect } from "react";
+import { api } from "@/utils/api";
 
 export default function Navigate() {
     const account = useAccount();
@@ -13,24 +14,18 @@ export default function Navigate() {
     // OK : EXISTE
 
     useEffect(() => {
-        const getUserByWallet = async () => {
-            if(account.address) {
-                try {
-                    const response = await fetch('https://chatspace-backend.vercel.app/api/get-user/' + account.address);
-                    if(response.status == 200) {
-                        const data = await response.json();
-                        localStorage.setItem('user', JSON.stringify(data));
+        if(account.address) {
+            api.updateUserInfo(account.address)
+                .then((response) => {
+                    if(response == 200) {
                         navigator('/feed');
-                    } else if(response.status == 404) {
+                    } else if(response == 404) {
                         navigator('/register');
+                    } else {
+                        console.log("Error fetching user");
                     }
-                } catch(err) {
-                    console.log(err);
-                }
-            }
+                })
         }
-
-        getUserByWallet();
     })
 
     return (

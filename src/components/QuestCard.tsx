@@ -6,6 +6,7 @@ import ConfettiExplosion from 'react-confetti-explosion';
 import { useToast } from "@/components/ui/use-toast"
 import chatspace_token from "@/assets/chatspcae_token_v2.png";
 import { claimTokens } from '@/utils/contracts';
+import { api } from '@/utils/api';
 
 export default function QuestCard({ quest }: { quest: Quest }) {
     const { questName, questId, questDescription, reward, createdBy, completedBy } = quest;
@@ -38,7 +39,7 @@ export default function QuestCard({ quest }: { quest: Quest }) {
     }, [questId, loggedInUser.questsId]);
 
     useEffect(() => {
-        if (completedBy.includes("E6U6YomFu3dFKqEXJQ2C")) {
+        if (completedBy.includes(loggedInUser.userId)) {
             setProgress(100);
             console.log("Quest completed by user");
         }
@@ -52,9 +53,10 @@ export default function QuestCard({ quest }: { quest: Quest }) {
     const claimReward = async () => {
         if (progress === 100 && !isClaimed) {
             try {
-                // const response = await api.addQuestReward(loggedInUser.userId, questId, reward.toString());
-                if (true) {
-                    await claimTokens(reward);
+                const receipt = await claimTokens(reward);
+                if(receipt && receipt.status == 1) {
+                    await api.addQuestReward(loggedInUser.userId, quest.questId, reward);
+                    await api.updateUserInfo(loggedInUser.wallet);
                     toast({
                         title: `Congratulations on completing the quest!`,
                         description: `You have been rewarded with ${reward} CAT's! 🎉`,
@@ -66,10 +68,7 @@ export default function QuestCard({ quest }: { quest: Quest }) {
                     setTimeout(() => {
                         setIsExploding(false);
                     }, 2000);
-
-                } else {
-                    console.error("error claiming reward");
-                }
+                }  
             } catch (error) {
                 console.error(error);
             }

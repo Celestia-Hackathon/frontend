@@ -27,12 +27,11 @@ export const claimTokens = async (reward : number) => {
     const catCoinContract = new ethers.Contract(catCoinContractAddress, CatCoin.abi, signer);
 
     try {
-        const tx = await catCoinContract.claim(ethers.parseUnits(reward.toString(), 18))
-        await tx.wait();
-        console.log(tx);
-        return 200;
+        const tx = await catCoinContract.claim(BigInt(reward * 1e18));
+        const receipt = await tx.wait();
+        return receipt;
     } catch (error) {
         console.error("Error fetching balance:", error);
-        return 0;
+        return;
     }
 };
