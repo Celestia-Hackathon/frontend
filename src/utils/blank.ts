@@ -1,4 +1,4 @@
-import { Post, Quest, User } from "./types";
+import { NFT, Post, Quest, User } from "./types";
 
 export const blankUser: User = {
     name: "",
@@ -39,4 +39,12 @@ export const blankQuest: Quest = {
     createdAt: "",
     dueDate: "",
     applicantsId: [""]
+}
+
+export const blankNft: NFT = {
+    nftId: "",
+    nftImg: "",
+    name: "",
+    address: "",
+    rarity: "Common",
 }

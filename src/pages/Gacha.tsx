@@ -2,10 +2,16 @@ import DummyHeader from "@/components/DummyHeader";
 import GachaElement from "@/components/GachaElement";
 
 import manekinekoImg from "@/assets/gacha/manekineko.png"
-import nftImg from "@/assets/nft.png";
 import gachaButton from "@/assets/gacha-button.png";
+import { buyNFTWithCatCoin, getCount} from "@/utils/contracts";
+import { NFT } from "@/utils/types";
+import { useState } from "react";
+import { blankNft } from "@/utils/blank";
+
+
 
 export default function Gacha() {
+    const [nft, setNft] = useState<NFT>(blankNft)
     /* const [sentence, setSentence] = useState(gachaSentences[Math.floor(Math.random() * gachaSentences.length)]);
     const [nft, setNft] = useState<NFT>({
         nftId: "1",
@@ -14,24 +20,35 @@ export default function Gacha() {
         address: "0x",
         rarity: "Legendary",
     }); */
-
-    const nft = {
-        nftId: "1",
-        nftImg: nftImg,
-        name: "NFT",
-        address: "0x",
-        rarity: "Legendary"
-    }
+    const contentIdImg = 'QmTudPsbaksg9oG3jR3uNYXtpjAkHGsGnh1tAqVAYt7nRy';
+    const contentIdJson = 'QmY9yW5B7xHXBGDwW5Y5ido3VULyXD2njD4QhApBqxtPxd';
     
-    const startRoll = () => {
-        // at first, it should generate an random NFT
-        
+
+    const startRoll = async () => {
+        const tokenId = await getCount();
+        const metadataURI = `${contentIdJson}/${tokenId}.json`
+        const imageURI = `https://gateway.pinata.cloud/ipfs/${contentIdImg}/${tokenId}.png`;
+        console.log(tokenId);
+        await buyNFTWithCatCoin(metadataURI);
+       
+        const response = await fetch(`https://gateway.pinata.cloud/ipfs/` + metadataURI)
+        const data = await response.json(); 
+
+        const nft : NFT = {
+            nftId: tokenId.toString(),
+            nftImg: imageURI,
+            name: data.name,
+            address: "0x",
+            rarity: data.attributes[0].rarity.charAt(0).toUpperCase() + data.attributes[0].rarity.slice(1)
+        }
+
+        setNft(nft)
 
         document.querySelectorAll('#gachaEl').forEach((element) => {
-            element.classList.add('-translate-x-[1850px]');
-        })
+        element.classList.add('-translate-x-[1850px]');
+    })
     }
-
+    
     const images1 : string[] = JSON.parse(localStorage.getItem('images1') || '[]');
     const images2 : string[] = JSON.parse(localStorage.getItem('images2') || '[]');
 
@@ -78,7 +95,7 @@ export default function Gacha() {
                     <div className="cursor-pointer relative kitty-button font-lucky flex justify-center items-center w-[300px] h-[70px]">
                         <img className="-z-10 w-[60%] h-full mt-auto mb-auto -bottom-0 -top-3 left-[16%] bottom-[5%] absolute " src={gachaButton} alt="" />
                         <div className=" w-full flex justify-center items-center">
-                            <p onClick={startRoll} className="text-4xl text-black">ROLL</p>
+                            <p onClick={() => {startRoll()}} className="text-4xl text-black">ROLL</p>
                         </div>
                     </div>
                 </div>
