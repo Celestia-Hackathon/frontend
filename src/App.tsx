@@ -17,89 +17,26 @@ import New from './pages/New'
 import { WagmiProvider } from 'wagmi'
 import { config } from './config'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { AvatarComponent, RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import Register from './pages/Register';
+import logo from '@/assets/logo.svg';
+
+import {api} from './utils/api';
+import { blankUser, blankPost, blankQuest } from './utils/blank';
 
 const queryClient = new QueryClient();
 
 function App() {
-  const blankUser: User = {
-    name: "",
-    userName: "",
-    userId: "",
-    followers: [""],
-    following: [""],
-    bio: "",
-    avatarImg: "",
-    bannerImg: "",
-    wallet: "",
-    tokens: 0,
-    postsId: [""],
-    nfts: [],
-    badges: [],
-    questsId: []
-  }
-
-  const blankPost: Post = {
-    postId: "",
-    userId: "",
-    userName: "",
-    avatarImg: "",
-    postImg: "",
-    caption: "",
-    likes: [""],
-    comments: [""],
-    createdAt: ""
-  }
-
-  const blankQuest: Quest = {
-    questId: "",
-    questName: "",
-    questDescription: "",
-    reward: 0,
-    createdBy: "",
-    completedBy: [""],
-    createdAt: "",
-    dueDate: "",
-    applicantsId: [""]
-  }
-
   const [users, setUsers] = useState<User[]>([blankUser]);
   const [posts, setPosts] = useState<(Post | MarketPlacePost)[]>([blankPost]);
   const [quests, setQuests] = useState<Quest[]>([blankQuest]);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch("https://chatspace-backend.vercel.app/api/get-posts");
-        if (response.ok) {
-          const data = await response.json();
-          setPosts(data);
-        } else {
-          console.error("error getting posts data");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchPosts();
+    api.fetchPosts().then((data) => setPosts(data))
   }, []);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch("https://chatspace-backend.vercel.app/api/get-users");
-        if (response.ok) {
-          const data = await response.json();
-          setUsers(data);
-        } else {
-          console.error("error getting users data");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    api.fetchUserData().then((data) => setUsers(data))
 
     const getThirtyTwoRandomImgs = () => {
       const shuffledImg = gachaImgs.sort(() => 0.5 - Math.random());
@@ -110,36 +47,38 @@ function App() {
     }
 
     getThirtyTwoRandomImgs();
-    fetchUserData();
   }, []);
 
   useEffect(() => {
-    const fetchQuests = async () => {
-      try {
-        const response = await fetch("https://chatspace-backend.vercel.app/api/get-quests");
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data)
-          setQuests(data);
-        } else {
-          console.error("error getting quests data");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchQuests();
+    api.fetchQuests().then((data) => setQuests(data))
   }, []);
 
   const memoizedUsers = useMemo(() => users, [users]);
   const memoizedPosts = useMemo(() => posts, [posts]);
   const memoizedQuests = useMemo(() => quests, [quests]);
 
+  const CustomAvatar: AvatarComponent = () => {
+    return users[0].avatarImg ? (
+      <img
+        src={users[0].avatarImg}
+        width={80}
+        height={80}
+        style={{ borderRadius: 999 }}
+      />
+    ) : (
+      <img
+        src={logo}
+        width={80}
+        height={80}
+        style={{ borderRadius: 999 }}
+      />
+    );
+  };
+
   return (
     <WagmiProvider config={config}>
     <QueryClientProvider client={queryClient}>
-    <RainbowKitProvider locale='en-US' theme={darkTheme({
+    <RainbowKitProvider locale='en-US' avatar={CustomAvatar} theme={darkTheme({
       accentColor: '#f8fafc',
       accentColorForeground: '#121212',
     })} >

@@ -2,12 +2,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useAccount } from "wagmi";
 import { useNavigate } from "react-router-dom";
-import {ethers} from 'ethers';
 
 import logo from "@/assets/logo.svg";
 import marketplacepost from "@/assets/marketplacepost.png";
 
-import CatCoin from '@/abi/CatCoin.sol/CatCoin.json';
+import { getCatCoinBalance } from "@/utils/contracts";
 
 export default function Register() {
     const navigator = useNavigate();
@@ -19,22 +18,6 @@ export default function Register() {
         username: '',
     });
 
-    const getCatCoinBalance = async () => {
-        try {
-            const provider = new ethers.BrowserProvider(window.ethereum);
-            const signer = await provider.getSigner();
-            const catCoinContractAddress = '0x1fAab810CfEB248d31ffc972f18Dc4917A83C79a';
-            const catCoinContract = new ethers.Contract(catCoinContractAddress, CatCoin.abi, signer);
-
-            const address = account.address;
-            const balance = await catCoinContract.balanceOf(address);
-            const balanceCorrected = parseFloat(balance.toString()) / 1e18;
-            return balanceCorrected;
-        } catch (error) {
-            console.error("Error fetching balance:", error);
-        }
-      };
-
     const handleChange = (e: any) => {
         setForm({
             ...form,
@@ -43,9 +26,11 @@ export default function Register() {
     }
 
     const handleSubmit = async () => {
+        const balance = await getCatCoinBalance(account.address);
+
         const userInfo = {
-            wallet: account.address,
-            tokens: getCatCoinBalance(),
+            wallet: account.address || "",
+            tokens: balance,
             name: form.name,
             userName: form.username,
             followers: [],

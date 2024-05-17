@@ -37,7 +37,7 @@ export default function Navigate() {
         <div className=" lg:pt-2 px-4">
             <div className="floating flex justify-center py-8">
                 {/* imagems aqui */}
-                <img src={card1} alt="" className="w-[50%]"/>
+                <img src={card1} alt="" className="w-[50%] lg:w-[12%]"/>
             </div>
             <div>
                 <h1 className="font-lucky text-lg">earn tokens. roll for cats.</h1>
