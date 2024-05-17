@@ -27,8 +27,6 @@ interface MarketplacePostProps {
     userId: string;
     userName: string;
     userImg: string;
-    postImg: string;
-    description: string;
     likes: string[];
     nft: NFT;
     price?: number;
@@ -42,7 +40,7 @@ export default function MarketplacePost(
     const isDesktop = window.innerWidth > 1024;
 
     return (
-        <div className="w-[95%] h-full border-b items-start justify-center">
+        <div className="w-full h-full border-b items-start justify-center">
             <div className="rounded-lg py-4 flex flex-col">
                 <div className={`bg-marketplace rounded-xl`}>
                     <PostNFT nft={nft} />
@@ -68,7 +66,7 @@ export default function MarketplacePost(
                                     <DialogTrigger className="w-full">
                                         <Button variant='buy' className="w-full flex items-center gap-3">
                                             <ShoppingCart color="hsl(var(--primary))" />
-                                            <p>Buy for {price} STR</p>
+                                            <p>Buy for {price} CAT</p>
                                         </Button>
                                     </DialogTrigger>
                                     <DialogContent>
@@ -84,7 +82,7 @@ export default function MarketplacePost(
                                         </DialogDescription>
                                         <Button variant='buy' className="w-full flex items-center gap-3">
                                             <ShoppingCart color="hsl(var(--primary))" />
-                                            <p>Buy for {price} STR</p>
+                                            <p>Buy for {price} CAT</p>
                                         </Button>
                                     </DialogContent>
                                 </Dialog>
@@ -95,7 +93,7 @@ export default function MarketplacePost(
                                     <DrawerTrigger className="w-full">
                                         <Button variant='buy' className="w-full flex items-center gap-3">
                                             <ShoppingCart color="hsl(var(--primary))" />
-                                            <p>Buy for {price} STR</p>
+                                            <p>Buy for {price} CAT</p>
                                         </Button>
                                     </DrawerTrigger>
                                     <DrawerContent>
@@ -113,7 +111,7 @@ export default function MarketplacePost(
                                         <DrawerFooter>
                                             <Button variant='buy' className="w-full flex items-center gap-3">
                                                 <ShoppingCart color="hsl(var(--primary))" />
-                                                <p>Buy for {price} STR</p>
+                                                <p>Buy for {price} CAT</p>
                                             </Button>
                                         </DrawerFooter>
                                     </DrawerContent>

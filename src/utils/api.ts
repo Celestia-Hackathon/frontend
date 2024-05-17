@@ -78,6 +78,23 @@ const assignQuest = async (userId: string, questId : string) => {
   }
 }
 
+const completeQuest = async (userId: string, questId : string) => {
+  try {
+    const response = await fetch(`https://chatspace-backend.vercel.app/api/complete-quest/${userId}/${questId}`);
+    if(response.status == 200) {
+        const data = await response.json();
+        localStorage.setItem('user', JSON.stringify(data));
+        return 200;
+    } else if(response.status == 404) {
+        return 404;
+    }
+  } catch(err) {
+    console.log(err);
+    return 400;
+  }
+
+}
+
 const updateUserInfo = async(address : string) => {
   try {
     const response = await fetch('https://chatspace-backend.vercel.app/api/get-user/' + address);
@@ -156,6 +173,27 @@ const getUserPosts = async (userId: string) => {
   }
 }
 
+const createMarketPlacePost = async (userId: string, userName: string, avatarImg: string, postImg: string, caption: string, likes: string[], comments: string[], price: number, nft: NFT) => {
+  try {
+    const response = await fetch('https://chatspace-backend.vercel.app/api/create-post', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({userId, userName, avatarImg, postImg, caption, likes, comments, price, nft})
+    });
+
+    if(response.ok) {
+      console.log("Marketplace post created");
+      return 200;
+    }
+  } catch(err) {
+      console.log(err);
+      return 400;
+  }
+}
+
+
 export const api = {
     fetchPosts,
     fetchUserData,
@@ -166,5 +204,7 @@ export const api = {
     addUserNFT,
     followUser,
     getUser,
-    getUserPosts
+    getUserPosts,
+    completeQuest,
+    createMarketPlacePost
 }
