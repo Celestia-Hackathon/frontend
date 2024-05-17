@@ -52,7 +52,6 @@ export const buyNFTWithCatCoin = async (metadataURI : string) => {
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
     const NFTContract = new ethers.Contract(NFTContractAddress, CatNFT.abi, signer);
-    const catCoinContractAddress = '0x597346565Eb10a60336c6c9C1aCfB26E085fd426';
     const catCoinContract = new ethers.Contract(catCoinContractAddress, CatCoin.abi, signer);
     
     const costInCatCoin = ethers.parseUnits('1', 18);

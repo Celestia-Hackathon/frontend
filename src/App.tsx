@@ -14,7 +14,11 @@ import ExploreHub from './pages/ExploreHub'
 import Quests from './pages/Quests'
 import New from './pages/New'
 import Register from './pages/Register';
-
+import {
+  RainbowKitProvider,
+  midnightTheme,
+} from "@rainbow-me/rainbowkit";
+import {connectors, provider} from "./config"
 import {api} from './utils/api';
 import { blankUser, blankPost, blankQuest } from './utils/blank';
 
@@ -50,8 +54,15 @@ function App() {
   const memoizedPosts = useMemo(() => posts, [posts]);
   const memoizedQuests = useMemo(() => quests, [quests]);
 
+  const wagmiClient = createClient({
+    autoConnect: false,
+    connectors,
+    provider,
+  });
+
   return (
-    
+    <WagmiConfig client={wagmiClient}>
+    <RainbowKitProvider chains={chains} theme={midnightTheme()} coolMode>
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme' >
       <BrowserRouter >
         <Routes >
@@ -69,6 +80,8 @@ function App() {
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
+    </RainbowKitProvider>
+    </WagmiConfig>
 
   )
 }

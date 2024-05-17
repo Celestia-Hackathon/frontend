@@ -1,8 +1,9 @@
 import { defineChain } from 'viem'
-import { sepolia } from 'wagmi/chains'
-import { getDefaultConfig } from '@rainbow-me/rainbowkit';
+import {
+  connectorsForWallets,
+  wallet,
+} from "@rainbow-me/rainbowkit";
 
-const projectId = '7a6f6198dfa778cf78750771eac41053'
 
 export const testnet = defineChain({
   id: 123420111,
@@ -18,9 +19,26 @@ export const testnet = defineChain({
   },
 })
 
-export const config = getDefaultConfig({
-    appName: 'My RainbowKit App',
-    projectId: {projectId} as any,
-    chains: [testnet, sepolia],
-    ssr: true, // If your dApp uses server side rendering (SSR)
-  });
+export const { chains, provider } = configureChains(
+  [
+    testnet
+  ],
+);
+
+
+export const connectors = connectorsForWallets([
+  {
+    groupName: "Recommended",
+    wallets: [
+      wallet.metaMask({ chains, shimDisconnect: true }),
+      wallet.walletConnect({ chains }),
+    ],
+  },
+]);
+
+
+export const wagmiClient = createClient({
+  autoConnect: false,
+  connectors,
+  provider,
+});
