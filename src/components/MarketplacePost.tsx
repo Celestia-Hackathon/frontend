@@ -80,7 +80,6 @@ export default function MarketplacePost(
                                         <DialogDescription>
                                             <PostNFT nft={nft} />
                                             {nft.address}
-                                            {"|user tokens here"}
                                         </DialogDescription>
                                         <Button variant='buy' className="w-full flex items-center gap-3">
                                             <ShoppingCart color="hsl(var(--primary))" />
@@ -108,7 +107,6 @@ export default function MarketplacePost(
                                         <DrawerDescription>
                                             <PostNFT nft={nft} />
                                             {nft.address}
-                                            {"|user tokens here"}
                                         </DrawerDescription>
                                         <DrawerFooter>
                                             <Button variant='buy' className="w-full flex items-center gap-3">

@@ -43,7 +43,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
     const [following, setFollowing] = useState(false);
 
     useEffect(() => {
-        if(users.length > 1 && posts.length > 1) {
+        if (users.length > 1 && posts.length > 1) {
             console.log("entrei aq")
             console.log(users)
             setUser(users.find((user: User) => user.userId === id) || blankUser);
@@ -55,25 +55,25 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
         } else {
             console.log("to no fetch")
             api.fetchUserData()
-                .then((data : User[]) => {setUser(data.find((el: User) => el.userId === id) || blankUser);})
-                
-            api.getUserPosts(id).then((data: (Post | MarketPlacePost)[]) => {setUserPosts(data)});
+                .then((data: User[]) => { setUser(data.find((el: User) => el.userId === id) || blankUser); })
+
+            api.getUserPosts(id).then((data: (Post | MarketPlacePost)[]) => { setUserPosts(data) });
             setLoading(false);
             setImageLoaded(false);
         }
-        
+
     }, [id])
 
     useEffect(() => {
-        if(!user.userId) return;
+        if (!user.userId) return;
         setFollowing(user.followers.includes(loggedInUser.userId));
 
-        getCatCoinBalance(account).then((balance) => {setBalace(balance)});
+        getCatCoinBalance(account).then((balance) => { setBalace(balance) });
     }, [user])
 
     const follow = async () => {
         const response = await api.followUser(loggedInUser.userId, id);
-        if(response == 200) {
+        if (response == 200) {
             setFollowing(true);
             setUser({
                 ...user,
@@ -84,7 +84,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
             localStorage.setItem('user', JSON.stringify(loggedInUser));
         }
     }
-    
+
     /* const unfollow = async () => {
         const followers = user.followers.filter((follower: string) => follower !== id);
         await fetch(`api/${user.userId}`, {
@@ -127,7 +127,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
                 <div className='w-[full] lg:w-[35vw]'>
                     <ProfileHeader name={user.name} />
                     <div className='h-[25vh] lg:h-[50vh]'>
-                    {!imageLoaded && <Skeleton className="w-full lg:w-full h-full" />}
+                        {!imageLoaded && <Skeleton className="w-full lg:w-full h-full" />}
 
                         <img src={user.bannerImg} onLoad={handleImageLoad} alt="" className={`w-full lg:w-full h-full ${imageLoaded ? "block" : "hidden"}`} />
                     </div>
@@ -146,7 +146,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
                         <div className='w-full mt-6 flex items-center justify-between text-foreground pb-6'>
                             <div className={`${id == loggedInUser.userId && 'hidden'} w-full`}>
                                 {following ?
-                                    <Button  variant="following" className='w-1/2 relative group'>
+                                    <Button variant="following" className='w-1/2 relative group'>
                                         <span>Following</span>
                                         <div className='absolute top-0 left-0 w-full h-full bg-secondary rounded-md flex items-center justify-center opacity-0 group-hover:opacity-100'>
                                             <span>Unfollow</span>
