@@ -43,6 +43,7 @@ export default function Gacha() {
         }
 
         setNft(nft)
+
         document.querySelectorAll('#gachaEl').forEach((element) => {
         element.classList.add('-translate-x-[1850px]');
     })

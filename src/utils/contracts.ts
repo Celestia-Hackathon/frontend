@@ -2,13 +2,15 @@ import {ethers} from 'ethers';
 import CatCoin from '@/abi/CatCoin.sol/CatCoin.json';
 import CatNFT from '@/abi/CatNFT.sol/CatNFT.json';
 const NFTContractAddress = '0x12E0c157429a6765711D6Bde42B62bec095B9bB7';
-const catCoinContractAddress = '0x597346565Eb10a60336c6c9C1aCfB26E085fd426';
+const catCoinContractAddress = '0xA38dafA100bb9852b7C4065CdF2dE774c39043f8';
+
 
 export const getCatCoinBalance = async (account : any) => {
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
     
     const catCoinContract = new ethers.Contract(catCoinContractAddress, CatCoin.abi, signer);
+
     try {
         const address = account.address;
         const balance = await catCoinContract.balanceOf(address);
@@ -62,4 +64,20 @@ export const buyNFTWithCatCoin = async (metadataURI : string) => {
     });
     await mintTx.wait();
     return mintTx.to;
+
+export const claimTokens = async (reward : number) => {
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = await provider.getSigner();
+    
+    const catCoinContract = new ethers.Contract(catCoinContractAddress, CatCoin.abi, signer);
+
+    try {
+        const tx = await catCoinContract.claim(BigInt(reward * 1e18));
+        const receipt = await tx.wait();
+        return receipt;
+    } catch (error) {
+        console.error("Error fetching balance:", error);
+        return;
+    }
+
 };
