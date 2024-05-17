@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useAccount } from "wagmi";
+import { useAccount } from "@metamask/sdk-react-ui";
 import { useNavigate } from "react-router-dom";
 
 import logo from "@/assets/logo.svg";
