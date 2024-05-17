@@ -7,23 +7,25 @@
 
 
 ## Overall Project Introduction
-- *Project Background:*
-
-   > "We love ..."
 
 - *Project Introduction:*
 
-  - Chatspace is a ...
+  - Social networks enhance connections and creativity
 
-- *Project Explanation:*
+	In today's digital age, social networks play a crucial role in facilitating a wide range of connections, enabling individuals to interact and build communities across the globe. These platforms enhance the reliability of common sense and foster community intelligence by allowing the exchange of diverse perspectives and information. Additionally, social networks deliver relevant news concerning local events and global trends rapidly, ensuring users are always informed about the latest developments.
 
-### Problem
+	Moreover, social networks offer a seamless media playing and sharing experience, enriching user engagement and fostering creative expression. They also serve as ideal marketplaces, revolutionizing how businesses connect with customers through targeted advertising and direct communication channels. As these platforms continue to evolve, their impact on global connectivity, information dissemination, and commerce will only grow stronger.
 
-The ... 
+	Unfortunatelly top players still miss some features
 
-### Solution
+	Top digital platforms often miss out on incorporating key features that could significantly enhance user experience and engagement. While they focus on broad appeal, they frequently overlook innovative engagement tools and personalized content, which are essential for retaining and attracting users. Instead of relying primarily on word of mouth, these platforms should implement mechanisms such as gamification, interactive content, and community-building tools to actively engage users. Additionally, marketplaces integrated as secondary features often lack seamless incorporation, which can diminish their effectiveness. To thrive, marketplaces must provide real value, be user-friendly, and align closely with the core functionalities of the platform.
 
-...
+	Furthermore, the lack of emphasis on blockchain technology presents a missed opportunity for enhancing security, transparency, and global reach. Blockchain can offer substantial benefits, such as improved data security, verifiable digital identities, and decentralized transaction systems, all of which can build user trust and facilitate international interactions. By adopting blockchain, platforms can create a more secure and globally accessible environment, addressing users' growing concerns about privacy and data integrity. Prioritizing these advancements will not only improve current user satisfaction but also attract a broader, more diverse audience, positioning the platform for sustained growth and competitiveness.
+
+	First of all, Chatspace focuses on scalability, and there's nothing better for that than PWA (Progressive Web Apps). Furthermore Chatspace is a social dapp designed to provide a fun and rewarding user experience. It stands out by offering diverse post formats, enabling users to share content through text, images, videos, and NFTs. This variety keeps the platform engaging and caters to a wide range of user preferences, ensuring that there's something for everyone. The platform's dynamic environment encourages users to participate actively, fostering a vibrant and lively community where creativity and interaction thrive.
+
+	Moreover, Chatspace incorporates DAO-like features, allowing users to take part in the governance and decision-making processes of the platform. This democratized approach gives users a sense of ownership and involvement, making the platform not just a social space but also a community-driven ecosystem. Registration is free, and users can easily earn tokens through their activities, which can be used in various ways within the platform—such as playing gacha to get unique Catstronauts (NFTs), participating in votes, or trading in our native marketplace. This vast token usability enhances the user experience, providing tangible rewards for engagement and fostering a sustainable, participatory economy within Chatspace.
+
 
 ### Technology Stack
 
@@ -45,9 +47,9 @@ The ...
 
 [Demo Link](https://chatspace-frontend.vercel.app/)
 
-[Demo Video]()
+[Demo Video](https://youtu.be/CY2z63xffAA)
 
-[Presentation Link]()
+[More Links](https://drive.google.com/drive/folders/1HAp2bUpQyWIcDGt0_aQGLl-mCZX5_pCn?usp=sharing)
 
 - *Screenshots*
 
@@ -77,7 +79,8 @@ The ...
 	- Explore the social network. ('/ExploreHub' route)
 	- Make posts. ('/NewMarketPlacePost' route)
 	- Do quests to win CATS. ('/Quests' route)
-Use the gatcha to win an NFT with no gas fees. ('/Gatcha' route)7
+Use the gatcha to win an NFT with no gas fees. ('/Gatcha' route)
+
 ### Addresses
 
 - Gelato:
@@ -93,17 +96,17 @@ Use the gatcha to win an NFT with no gas fees. ('/Gatcha' route)7
 
 *Arthur Jacobina*
  - Head of Business
- - Engineering student at ITA (Brazil)...
+ - Engineering student at ITA (Brazil)
  - [Github](https://github.com/Arthur-Jacobina)
 
 *Lucas Fochesatto*
  - Frontend Developer &
- - Computer Engineering student at ITA (Brazil)...
+ - Computer Engineering student at ITA (Brazil)
  - [Github](https://github.com/lucas-fochesatto)
 
 *Julia Fernandes*
  - Blockchain Developer
- - Computer Engineering student at ITA (Brazil)...
+ - Computer Engineering student at ITA (Brazil)
  - [Github](https://github.com/JFernandesLO)
 
 
