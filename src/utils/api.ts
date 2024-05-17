@@ -1,4 +1,4 @@
-import { User } from "./types";
+import { NFT, User } from "./types";
 
 const fetchPosts = async () => {
     try {
@@ -94,11 +94,46 @@ const updateUserInfo = async(address : string) => {
   }
 }
 
+const addUserNFT = async(userId : string, nft : NFT) => {
+  try {
+    const response = await fetch(`https://chatspace-backend.vercel.app/api/add-nft/${userId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(nft)
+    });
+
+    if(response.ok) {
+      console.log("NFT added");
+      return 200;
+    }
+  } catch(err) {
+    console.log(err);
+    return 400;
+  }
+}
+
+const followUser = async (userId: string, otherUserId: string) => {
+    try {
+      const response = await fetch(`https://chatspace-backend.vercel.app/api/follow-user/${userId}/${otherUserId}`);
+      if(response.ok) {
+        console.log("User followed");
+        return 200;
+      }
+    } catch(err) {
+      console.log(err);
+      return 400;
+    }
+}
+
 export const api = {
     fetchPosts,
     fetchUserData,
     fetchQuests,
     addQuestReward,
     assignQuest,
-    updateUserInfo
+    updateUserInfo,
+    addUserNFT,
+    followUser
 }

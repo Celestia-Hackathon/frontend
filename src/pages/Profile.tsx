@@ -16,6 +16,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useAccount } from 'wagmi'
 import { getCatCoinBalance } from "@/utils/contracts";
 import { blankUser } from "@/utils/blank";
+import { api } from "@/utils/api";
 
 export default function Profile({ users, posts }: { users: User[], posts: (Post | MarketPlacePost)[] }) {
     // console.log(tokenImg)
@@ -50,49 +51,25 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
 
     useEffect(() => {
         if(!user.userId) return;
-        setFollowing(user.following.includes(id));
+        setFollowing(user.followers.includes(loggedInUser.userId));
 
         getCatCoinBalance(account).then((balance) => {setBalace(balance)});
     }, [user])
 
-    /* const follow = async () => {
-        const followers = user.followers;
-        followers.push(id);
-        await fetch(`api/${user.userId}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                followers
-            })
-        });
-
-        const following = user.following;
-        following.push(id);
-        await fetch(`api/${user.userId}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                following
-            })
-        });
-        setFollowing(true); 
-        
-
-        const followers = user.followers;
-        followers.push(id);
-        setUser({
-            ...user,
-            followers
-        });
-        mockUsers[Number(id) - 1].followers = followers;
-        mockUsers[0].following.push(id);
-        setFollowing(true);
-    } */
-
+    const follow = async () => {
+        const response = await api.followUser(loggedInUser.userId, id);
+        if(response == 200) {
+            setFollowing(true);
+            setUser({
+                ...user,
+                followers: [...user.followers, loggedInUser.userId]
+            });
+            users.find((user: User) => user.userId === id)?.followers.push(loggedInUser.userId);
+            loggedInUser.following.push(id);
+            localStorage.setItem('user', JSON.stringify(loggedInUser));
+        }
+    }
+    
     /* const unfollow = async () => {
         const followers = user.followers.filter((follower: string) => follower !== id);
         await fetch(`api/${user.userId}`, {
@@ -128,8 +105,6 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
         setFollowing(false);
     } */
 
-    console.log(id == loggedInUser.userId)
-
     return (
         <div className=' lg:flex lg:justify-between'>
             <DummyHeader />
@@ -163,7 +138,7 @@ export default function Profile({ users, posts }: { users: User[], posts: (Post 
                                         </div>
                                     </Button>
                                     :
-                                    <Button  variant="follow" className='w-1/2'>Follow</Button>
+                                    <Button onClick={follow} variant="follow" className='w-1/2'>Follow</Button>
                                 }
                             </div>
                             <div className={`${id != loggedInUser.userId ? 'hidden' : ''} w-full h-full flex justify-center`}>
