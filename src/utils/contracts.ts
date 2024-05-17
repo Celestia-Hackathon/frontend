@@ -64,6 +64,7 @@ export const buyNFTWithCatCoin = async (metadataURI : string) => {
     });
     await mintTx.wait();
     return mintTx.to;
+}
 
 export const claimTokens = async (reward : number) => {
     const provider = new ethers.BrowserProvider(window.ethereum);
