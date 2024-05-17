@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { AvatarFeed } from "@/components/AvatarFeed";
 import Card from "@/components/Card";
 import DummyHeader from "@/components/DummyHeader";
@@ -7,65 +5,7 @@ import NewPostBtn from "@/components/NewPostsBtn";
 
 import { MarketPlacePost, Post, User } from "@/utils/types.ts";
 
-// import { mockUsers } from "@/utils/mockUsers";
-// import { mockPosts } from "@/utils/mockPosts";
-
 export default function Home({ users, posts }: { users: User[], posts: (Post | MarketPlacePost)[] }) {
-    // const blankUser: User = {
-    //     name: "",
-    //     userName: "",
-    //     userId: "",
-    //     followers: [""],
-    //     following: [""],
-    //     bio: "",
-    //     avatarImg: "",
-    //     bannerImg: "",
-    //     wallet: "",
-    //     postsId: [""],
-    //     nfts: [],
-    //     badges: []
-    // }
-
-    // const blankPost: Post = {
-    //     postId: "",
-    //     userId: "",
-    //     userName: "",
-    //     avatarImg: "",
-    //     postImg: "",
-    //     caption: "",
-    //     likes: [""],
-    //     comments: [""],
-    //     createdAt: ""
-    // }
-
-    // const [users, setUsers] = useState<User[]>([blankUser]);
-    // const [postsData, setPostsData] = useState<(Post | MarketPlacePost)[]>([blankPost]);
-
-    useEffect(() => {
-        /* const fetchData = async () => {
-            try {
-                const response = await fetch("api");
-                console.log(response);
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log(data);
-
-                    setPostsData(data.posts);
-                    setUsers(data.users);
-                } else {
-                    console.error("Something went wrong");
-                    // throw new Error("Something went wrong");
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        }; */
-
-        // fetchData();
-
-        // setUsers(mockUsers);
-        // setPostsData(mockPosts);
-    }, []);
 
     const loggedInUser : User = JSON.parse(localStorage.getItem('user') || '{}');
 
@@ -78,6 +18,7 @@ export default function Home({ users, posts }: { users: User[], posts: (Post | M
                         <AvatarFeed
                             avatar={loggedInUser.avatarImg}
                             username={loggedInUser.userName}
+                            userId={loggedInUser.userId}
                         />
                     </div>
                     {users.map((user: User, index: number) => {
@@ -87,6 +28,7 @@ export default function Home({ users, posts }: { users: User[], posts: (Post | M
                                     key={index}
                                     avatar={user.avatarImg}
                                     username={user.userName}
+                                    userId={user.userId}
                                 />
                             </div>
                         );
@@ -116,7 +58,7 @@ export default function Home({ users, posts }: { users: User[], posts: (Post | M
             </div>
             <DummyHeader />
 
-            <div className="fixed bottom-20 right-5 z-10"> {/* Apply absolute positioning here */}
+            <div className="fixed bottom-20 right-5 z-10 lg:right-20">
                 <NewPostBtn />
             </div>
 

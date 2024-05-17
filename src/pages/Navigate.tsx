@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import card1 from "@/assets/card1.png";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAccount } from "wagmi";
 import { useEffect } from "react";
 import { api } from "@/utils/api";
 
@@ -82,7 +84,7 @@ export default function Navigate() {
                 <p className="mt-4 text-sm">Complete quests, roll for NFTs and join a huge marketplace</p>
             </div>
             <div className="mt-8 flex justify-center">
-                <MetaMaskButton />
+                <ConnectButton />
             </div>
         </div>
     )
