@@ -54,7 +54,6 @@ export default function Home({ users, posts }: { users: User[], posts: (Post | M
                         );
                     })}
                 </div>
-
             </div>
             <DummyHeader />
 

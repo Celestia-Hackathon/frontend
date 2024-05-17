@@ -14,6 +14,14 @@ import {
     DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer"
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
 
 interface MarketplacePostProps {
     userId: string;
@@ -27,9 +35,11 @@ interface MarketplacePostProps {
 }
 
 export default function MarketplacePost(
-    {userId, userName, userImg, /* postImg, description, */ likes, nft, price} : MarketplacePostProps
+    { userId, userName, userImg, /* postImg, description, */ likes, nft, price }: MarketplacePostProps
 ) {
     const navigator = useNavigate();
+
+    const isDesktop = window.innerWidth > 1024;
 
     return (
         <div className="w-[95%] h-full border-b items-start justify-center">
@@ -52,34 +62,64 @@ export default function MarketplacePost(
                         </div>
                     </div>
                     <div className="px-[7.5%] py-[2.5%] h-full w-full flex">
-                        <Drawer>
-                            <DrawerTrigger className="w-full">
-                                <Button variant='buy' className="w-full flex items-center gap-3">
-                                    <ShoppingCart color="hsl(var(--primary))" />
-                                    <p>Buy for {price} STR</p>
-                                </Button>
-                            </DrawerTrigger>
-                            <DrawerContent>
-                                <DrawerHeader>
-                                    <DrawerTitle>
-                                        {nft.name}
-                                    </DrawerTitle>
-                                    <DrawerClose />
-                                </DrawerHeader>
-                                <DrawerDescription>
-                                    {/* add stuff here */}
-                                    <PostNFT nft={nft} />
-                                    {nft.address}
-                                    {"|user tokens here"}
-                                </DrawerDescription>
-                                <DrawerFooter>
-                                    <Button variant='buy' className="w-full flex items-center gap-3">
-                                        <ShoppingCart color="hsl(var(--primary))" />
-                                        <p>Buy for {price} STR</p>
-                                    </Button>
-                                </DrawerFooter>
-                            </DrawerContent>
-                        </Drawer>
+                        {isDesktop ?
+                            (
+                                <Dialog>
+                                    <DialogTrigger className="w-full">
+                                        <Button variant='buy' className="w-full flex items-center gap-3">
+                                            <ShoppingCart color="hsl(var(--primary))" />
+                                            <p>Buy for {price} STR</p>
+                                        </Button>
+                                    </DialogTrigger>
+                                    <DialogContent>
+                                        <DialogHeader>
+                                            <DialogTitle>
+                                                {nft.name}
+                                            </DialogTitle>
+                                        </DialogHeader>
+                                        <DialogDescription>
+                                            <PostNFT nft={nft} />
+                                            {nft.address}
+                                            {"|user tokens here"}
+                                        </DialogDescription>
+                                        <Button variant='buy' className="w-full flex items-center gap-3">
+                                            <ShoppingCart color="hsl(var(--primary))" />
+                                            <p>Buy for {price} STR</p>
+                                        </Button>
+                                    </DialogContent>
+                                </Dialog>
+                            )
+                            :
+                            (
+                                <Drawer>
+                                    <DrawerTrigger className="w-full">
+                                        <Button variant='buy' className="w-full flex items-center gap-3">
+                                            <ShoppingCart color="hsl(var(--primary))" />
+                                            <p>Buy for {price} STR</p>
+                                        </Button>
+                                    </DrawerTrigger>
+                                    <DrawerContent>
+                                        <DrawerHeader>
+                                            <DrawerTitle>
+                                                {nft.name}
+                                            </DrawerTitle>
+                                            <DrawerClose />
+                                        </DrawerHeader>
+                                        <DrawerDescription>
+                                            <PostNFT nft={nft} />
+                                            {nft.address}
+                                            {"|user tokens here"}
+                                        </DrawerDescription>
+                                        <DrawerFooter>
+                                            <Button variant='buy' className="w-full flex items-center gap-3">
+                                                <ShoppingCart color="hsl(var(--primary))" />
+                                                <p>Buy for {price} STR</p>
+                                            </Button>
+                                        </DrawerFooter>
+                                    </DrawerContent>
+                                </Drawer>
+                            )
+                        }
                     </div>
                 </div>
             </div>

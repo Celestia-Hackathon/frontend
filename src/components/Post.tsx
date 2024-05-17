@@ -23,16 +23,6 @@ export default function Post(
     const handleImageLoad = () => {
         setImageLoaded(true);
     }
-// =======
-// import { Post } from "@/utils/types";
-
-// export default function Post(
-//     {post} : {post: Post}
-// ) {
-//     const navigator = useNavigate();
-
-//     const {userId, userName, avatarImg, postImg, caption, likes} = post;
-// >>>>>>> main
 
     return (
         <div className="w-full h-full border-b items-start justify-center">
